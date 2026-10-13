@@ -30,7 +30,7 @@ The table below holds the limits you may rely on. Where it says to check, the nu
 | LinkedIn | Up to 3,000 characters; aim for 1,200 to 1,500 | The first two or three lines before "see more" | Three to five, at the very end after the call to action |
 | X | 280 characters on a standard account; longer needs X Premium | Short post; lead with the point anyway | None to two |
 | Threads | 500 characters | Short post; lead with the point anyway | None or one |
-| Bluesky | 300 characters | Short post; lead with the point anyway | None |
+| Bluesky | 300 characters | Short post; lead with the point anyway | None by default; the original skills disagreed (one said none, another one to three used in context), so follow the profile or ask |
 | Instagram | Captions up to 2,200 characters | Only the opening line or so before "more" | Follow the profile, or ask |
 | Facebook | Long posts are allowed | The first few lines before "See more" | Follow the profile, or ask |
 | TikTok | Check the current caption limit before writing a long one | Check in the app | Follow the profile, or ask |

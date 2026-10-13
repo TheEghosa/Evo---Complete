@@ -86,6 +86,7 @@ The matrix gives a starting answer for where a profile should focus. Each row is
 | Community building | Threads or Facebook | Bluesky |
 | Broad audience growth | TikTok or Instagram Reels | X |
 | Niche or technical credibility | Bluesky | X |
+| Broad brand awareness | X | LinkedIn |
 | Evergreen discovery and site traffic | Pinterest | YouTube |
 | Teaching in depth | YouTube | LinkedIn |
 | Local customers and word of mouth | Facebook | Instagram |
@@ -115,6 +116,17 @@ Some material survives the move between platforms and some does not, as the tabl
 | How-to or educational | Yes, resized | Shorten for X and Bluesky, expand for LinkedIn, rebuild as a carousel or pin |
 | Short vertical video | Yes, re-cut | Recaption for TikTok, Reels and Shorts without other apps' watermarks |
 | Long video | No | Cut clips and write native posts that point to it |
+
+Adapting a piece means more than resizing it, because each platform expects a different ending and a different amount of polish. The checks below come from the original skills and apply on top of the length and fold rules.
+
+| Destination | Adaptation checks |
+|---|---|
+| LinkedIn | Line breaks every one or two sentences, the link moved to the first comment, and a closing question that invites a considered reply |
+| X | Fits in 280 characters or becomes a proper thread, the first post stands alone, and the call to action is removed or made implicit |
+| Threads | Casual and conversational, X conventions such as thread numbering removed, shortened if it began as a long post, and ending on a genuine question or observation |
+| Bluesky | Corporate and promotional language removed, the words people would search for included so the post surfaces in custom feeds, and a direct, unpolished tone |
+
+A post that passes these checks reads as if it was written for the destination, which is the whole point of adapting rather than copying.
 
 Before anything goes out, check the destination against section 2 and its entry in section 3: length, what shows before the fold, where the link sits, and whether the format exists there at all. Most failures come from copying without changing tone, leaving a link in a LinkedIn post body, carrying thread numbering onto platforms without threads, posting everywhere at once when audiences wake at different times, and reusing a call to action that only made sense on the original platform.
 
