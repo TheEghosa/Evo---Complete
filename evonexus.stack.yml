@@ -89,7 +89,6 @@ services:
       - "claude"
       - "--channels"
       - "plugin:telegram@claude-plugins-official"
-      - "--dangerously-skip-permissions"
 
     volumes:
       - evonexus_config:/workspace/config

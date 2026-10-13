@@ -238,7 +238,6 @@ def step7_invoke_claude(
         claude_bin,
         "--print",
         "--max-turns", str(max_turns),
-        "--dangerously-skip-permissions",
         "--output-format", "json",
         prompt,  # positional argument — Claude CLI does not have a -p flag
     ]

@@ -154,7 +154,7 @@ telegram:           ## 📨 Start Telegram bot in background (screen)
 	@if screen -list | grep -q '\.telegram'; then \
 		echo "⚠ Telegram bot is already running. Use 'make telegram-stop' first or 'make telegram-attach' to connect."; \
 	else \
-		screen -dmS telegram claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-permissions; \
+		screen -dmS telegram claude --channels plugin:telegram@claude-plugins-official; \
 		echo "✅ Telegram bot running in background (screen: telegram)"; \
 		echo "📺 Ver: screen -r telegram"; \
 		echo "🛑 Parar: make telegram-stop"; \
@@ -170,7 +170,7 @@ discord-channel:    ## 💬 Start Discord channel in background (screen)
 	@if screen -list | grep -q '\.discord-channel'; then \
 		echo "⚠ Discord channel is already running. Use 'make discord-channel-stop' first or 'make discord-channel-attach' to connect."; \
 	else \
-		screen -dmS discord-channel claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions; \
+		screen -dmS discord-channel claude --channels plugin:discord@claude-plugins-official; \
 		echo "✅ Discord channel running in background (screen: discord-channel)"; \
 		echo "📺 Ver: screen -r discord-channel"; \
 		echo "🛑 Parar: make discord-channel-stop"; \
@@ -186,7 +186,7 @@ imessage:           ## 💬 Start iMessage channel in background (screen)
 	@if screen -list | grep -q '\.imessage'; then \
 		echo "⚠ iMessage channel is already running. Use 'make imessage-stop' first or 'make imessage-attach' to connect."; \
 	else \
-		screen -dmS imessage claude --channels plugin:imessage@claude-plugins-official --dangerously-skip-permissions; \
+		screen -dmS imessage claude --channels plugin:imessage@claude-plugins-official; \
 		echo "✅ iMessage channel running in background (screen: imessage)"; \
 		echo "📺 Ver: screen -r imessage"; \
 		echo "🛑 Parar: make imessage-stop"; \

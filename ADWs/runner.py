@@ -133,7 +133,9 @@ def _spawn_cli(cli_command: str, prompt: str, agent: str | None, provider_env: d
     Uses a dictionary lookup so that the subprocess argument is always
     a static string, satisfying semgrep/opengrep subprocess injection rules.
     """
-    base_args = ["--print", "--dangerously-skip-permissions", "--output-format", "json"]
+    # Permission bypass is deliberately never passed: routines run under the
+    # allowlist in .claude/settings.json, which also disables bypass mode.
+    base_args = ["--print", "--output-format", "json"]
     if agent:
         base_args.extend(["--agent", agent])
     base_args.append(prompt)

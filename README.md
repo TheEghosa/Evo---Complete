@@ -136,6 +136,26 @@ make setup
 
 ---
 
+## Security rules for this copy
+
+This copy of EvoNexus has been changed in two ways that differ from the upstream project, and both are standing rules rather than temporary settings, so any future change to the code should keep them in place.
+
+### Claude never runs with permission checks switched off
+
+Upstream EvoNexus starts Claude with `--dangerously-skip-permissions` (or `--permission-mode bypassPermissions`) in its routines, heartbeats, plugin scanner, knowledge classifier, chat channels, Docker files and browser terminal. That flag lets Claude run commands and edit files without asking anyone, which is risky for a system that runs unattended on a schedule. In this copy the flag has been removed from every one of those places, and `.claude/settings.json` sets `"disableBypassPermissionsMode": "disable"` as a second lock, because that setting makes Claude Code ignore the flag even if someone adds it back later.
+
+The practical effect is that unattended jobs can only use the tools pre-approved in the `permissions.allow` list of `.claude/settings.json`. When a routine, heartbeat or chat channel needs something outside that list, Claude refuses the action instead of doing it silently, so the fix is to add that specific tool or command to the allow list after checking it is safe. Do not reintroduce the bypass flag to get around a refusal.
+
+### The dashboard does not send your details to the licensing server
+
+Upstream EvoNexus registers each install with `license.evolutionfoundation.com.br`, sending the admin's email and name, a machine id derived from the hostname and network card, and a country and city looked up from your IP address. In this copy `dashboard/backend/licensing.py` sets `LICENSING_ENABLED = False`, which stops every request to that server before anything is collected or sent. Nothing else in the dashboard depends on registration, so all features keep working, and the licence page simply shows the install as unregistered.
+
+### Install from this repository to keep these protections
+
+The Docker Hub images in Method 1 and the `npx` installer in Method 2 both fetch the upstream project, which does not include either change. To keep the protections, clone this repository and run `make setup` (Method 3), or build the Docker images from this checkout with `docker compose build` rather than pulling the published ones.
+
+---
+
 ## AI Providers
 
 EvoNexus runs on **Anthropic's Claude** by default. For OpenAI, Gemini, Bedrock, OpenRouter, Vertex AI, or Codex Auth, it switches to [OpenClaude](https://www.npmjs.com/package/@gitlawb/openclaude).

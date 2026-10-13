@@ -56,7 +56,7 @@ services:
   telegram:
     image: evoapicloud/evo-nexus-runtime:latest
     container_name: evonexus-telegram
-    command: ["claude", "--channels", "plugin:telegram@claude-plugins-official", "--dangerously-skip-permissions"]
+    command: ["claude", "--channels", "plugin:telegram@claude-plugins-official"]
     environment:
       - TZ=America/Sao_Paulo
       - REQUIRE_ANTHROPIC_KEY=1

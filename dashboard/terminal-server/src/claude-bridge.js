@@ -93,7 +93,6 @@ class ClaudeBridge {
 
     const {
       workingDir = process.cwd(),
-      dangerouslySkipPermissions = false,
       agent = null,
       onOutput = () => {},
       onExit = () => {},
@@ -129,15 +128,10 @@ class ClaudeBridge {
       console.log(`Working directory: ${workingDir}`);
       console.log(`Agent: ${agent || 'none'}`);
       console.log(`Terminal size: ${cols}x${rows}`);
-      if (dangerouslySkipPermissions) {
-        console.log(`⚠️ WARNING: Skipping permissions with --dangerously-skip-permissions flag`);
-      }
-
-      // Don't use --dangerously-skip-permissions when running as root —
-      // Claude/OpenClaude block this flag for root users.
+      // The permission bypass flag is never passed, whatever the client
+      // requests, so every browser session asks before running tools.
       // The trust prompt is auto-accepted via PTY detection below instead.
-      const isRoot = process.getuid && process.getuid() === 0;
-      const args = (dangerouslySkipPermissions && !isRoot) ? ['--dangerously-skip-permissions'] : [];
+      const args = [];
       if (agent) {
         args.push('--agent', agent);
       }

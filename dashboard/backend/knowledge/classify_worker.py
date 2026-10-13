@@ -116,7 +116,6 @@ def _classify_document(content_sample: str) -> Optional[Dict[str, Any]]:
             [
                 claude_bin,
                 "--print",
-                "--permission-mode", "bypassPermissions",
                 "--model", "haiku",
                 "--output-format", "text",
             ],

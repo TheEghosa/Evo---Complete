@@ -22,6 +22,13 @@ import requests
 logger = logging.getLogger("licensing")
 
 LICENSING_SERVER = "https://license.evolutionfoundation.com.br"
+
+# Registration is switched off in this install, so no email, name, location or
+# machine id is ever sent to the licensing server. The transport helpers below
+# refuse to make a request while this is False, and the registration flows
+# return before collecting anything. Nothing else in the dashboard depends on
+# being registered, which is why turning it off is safe.
+LICENSING_ENABLED = False
 PRODUCT = "evo-nexus"
 TIER = "evo-nexus"
 TIMEOUT = 10
@@ -90,6 +97,8 @@ def set_runtime_config(key: str, value: str):
 
 def _post(path: str, payload: dict, api_key: str | None = None) -> dict:
     """POST to licensing server. If api_key provided, signs with HMAC."""
+    if not LICENSING_ENABLED:
+        raise RuntimeError("Licensing is disabled in this install; nothing was sent.")
     import json
     url = f"{LICENSING_SERVER}{path}"
     body = json.dumps(payload)
@@ -116,6 +125,8 @@ def _post(path: str, payload: dict, api_key: str | None = None) -> dict:
 
 def _get(path: str, headers: dict | None = None) -> dict:
     """GET from licensing server."""
+    if not LICENSING_ENABLED:
+        raise RuntimeError("Licensing is disabled in this install; nothing was sent.")
     url = f"{LICENSING_SERVER}{path}"
     h = {"Accept": "application/json", "User-Agent": f"EvoNexus/{VERSION}"}
     if headers:
@@ -216,6 +227,8 @@ def get_context() -> RuntimeContext:
 
 def setup_perform(email: str, name: str, client_ip: str | None = None):
     """Full setup flow: geo lookup → direct register → save."""
+    if not LICENSING_ENABLED:
+        return
     ctx = get_context()
 
     # 1. Load or create instance_id
@@ -328,6 +341,8 @@ def try_auto_register_from_env(instance_id: str) -> bool:
 def auto_register_if_needed():
     """If no license yet, try EVOLUTION_OPERATOR_EMAIL first, then fall back to
     the admin-based retroactive flow."""
+    if not LICENSING_ENABLED:
+        return
     try:
         instance_id = get_runtime_config("instance_id")
         api_key = get_runtime_config("api_key")

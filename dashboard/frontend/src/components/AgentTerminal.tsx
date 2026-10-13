@@ -266,7 +266,6 @@ export default function AgentTerminal({ agent, sessionId: externalSessionId, wor
               ws.send(JSON.stringify({
                 type: 'start_claude',
                 options: {
-                  dangerouslySkipPermissions: true,
                   agent,
                   cols: term!.cols,
                   rows: term!.rows,

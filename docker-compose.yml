@@ -37,7 +37,7 @@ services:
     build: .
     container_name: evonexus-telegram
     entrypoint: ["claude"]
-    command: ["--channels", "plugin:telegram@claude-plugins-official", "--dangerously-skip-permissions"]
+    command: ["--channels", "plugin:telegram@claude-plugins-official"]
     env_file: .env
     environment:
       - TZ=America/Sao_Paulo

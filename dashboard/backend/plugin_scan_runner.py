@@ -166,7 +166,7 @@ def _invoke_llm_scan(staged_path: Path, candidates: list[Path]) -> LLMResult:
 
     Pattern copied from heartbeat_runner.py:217-290:
       - shutil.which("claude"), subprocess.Popen with --print --max-turns N
-        --dangerously-skip-permissions --output-format json <prompt>
+        --output-format json <prompt> (permission bypass is never passed)
       - cwd=WORKSPACE, start_new_session=True
       - SIGKILL on TimeoutExpired
     """
@@ -186,7 +186,6 @@ def _invoke_llm_scan(staged_path: Path, candidates: list[Path]) -> LLMResult:
         claude_bin,
         "--print",
         "--max-turns", str(_LLM_MAX_TURNS),
-        "--dangerously-skip-permissions",
         "--output-format", "json",
         prompt,
     ]

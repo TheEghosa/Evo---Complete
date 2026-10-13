@@ -161,9 +161,9 @@ SCHEDULER_LOG = f"{WORKSPACE_STR}/ADWs/logs/scheduler.log"
 
 START_CMDS: dict[str, list[str]] = {
     "scheduler": ["uv", "run", "python", "-u", "scheduler.py"],
-    "telegram": ["screen", "-dmS", "telegram", "claude", "--channels", "plugin:telegram@claude-plugins-official", "--dangerously-skip-permissions"],
-    "discord-channel": ["screen", "-dmS", "discord-channel", "claude", "--channels", "plugin:discord@claude-plugins-official", "--dangerously-skip-permissions"],
-    "imessage": ["screen", "-dmS", "imessage", "claude", "--channels", "plugin:imessage@claude-plugins-official", "--dangerously-skip-permissions"],
+    "telegram": ["screen", "-dmS", "telegram", "claude", "--channels", "plugin:telegram@claude-plugins-official"],
+    "discord-channel": ["screen", "-dmS", "discord-channel", "claude", "--channels", "plugin:discord@claude-plugins-official"],
+    "imessage": ["screen", "-dmS", "imessage", "claude", "--channels", "plugin:imessage@claude-plugins-official"],
 }
 
 STOP_CMDS: dict[str, list[str]] = {

@@ -68,7 +68,6 @@ if [ ! -f /root/.claude.json ]; then
   "theme": "dark",
   "hasCompletedOnboarding": true,
   "hasSeenWelcome": true,
-  "bypassPermissionsModeAccepted": true,
   "telemetry": false
 }
 EOF
