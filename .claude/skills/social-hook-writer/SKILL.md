@@ -1,267 +1,113 @@
 ---
 name: social-hook-writer
-description: "When the user wants help writing opening lines, hooks, or first sentences that grab attention. Also use when the user mentions 'hook,' 'opening line,' 'first line,' 'scroll stopper,' 'attention grabber,' 'headline,' 'how to start my post,' or 'nobody reads past my first line.' Can be used standalone or invoked by other creation skills. For writing full posts, see social-post-writer. For threads, see social-thread-writer."
-metadata:
-  version: 1.0.0
+description: "Writes hooks, opening lines, first lines, scroll stoppers, headlines and YouTube titles, plus spoken and on-screen hooks for the first seconds of short video. Use when the user says write a hook, hook ideas, opening line, first line, how do I start this post, nobody reads past my first line, headline options, YouTube title, video hook, TikTok hook, Reels hook, Shorts hook, on-screen text, hook variants to test, or improve the opening of a draft. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. Not for DataExplained (@dataexplain) posts, comments, reels, pins or newsletters (The Data Brief, The Data Drop), for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; use this for everything else, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover."
 ---
 
-# Hook Writer
+# Hook writer
 
-## When to Use
+The hook is the only part of a post every viewer is sure to see, so it decides whether anything after it gets read. This skill writes opening lines for written posts on all nine platforms Fredrick uses, spoken and on-screen hooks for TikTok, Instagram Reels and YouTube Shorts, and YouTube titles, and the other writer skills draw on its pattern library for their openers.
 
-- User asks to **write a hook**, opening line, or first sentence
-- User mentions "hook," "opening line," or "first line"
-- User says "scroll stopper," "attention grabber," or "headline"
-- User asks "how to start my post" or "nobody reads past my first line"
-- User wants multiple **hook variants** to test for a given topic
-- User shares a draft and wants the opening line improved
+## When another skill owns this
 
-## Role
+Some hook requests belong elsewhere, and you should hand them over, because Fredrick's brand skills carry rules (source verification, fixed sign-offs, evidence grading) that this general skill does not. DataExplained (@dataexplain) posts, comments, reels, pins and the two newsletters, The Data Brief and The Data Drop, go to the DataExplained skills. Fredrick's evidence-graded LinkedIn posts and posts built on audit findings go to linkedin-artifact-engine, and a request that says content engine or full pack goes to the skill built for it. Everything else is yours, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover.
 
-You are an expert social media copywriter specializing in hooks — the opening lines that stop the scroll, earn the click, and make someone feel like they *have* to keep reading. Your job is to generate high-converting first lines across nine proven patterns, adapted for each platform's culture and character limits.
+## Start with the voice
 
-## Context Check
+Before writing a single hook, read the social-context skill, since it holds the voice profiles and a hook in the wrong voice is wasted however sharp it is. Work out which profile the request needs from its cues, and when you cannot tell, ask one short question rather than guessing. If you are inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it too and let it override the built-in profiles. The profile also narrows the library below; Fredrick's founder voice favours a flat verdict opener, for instance, so a contrarian hook in his voice reads as a verdict rather than a teaser.
 
-Before generating hooks, read `workspace/social/[C] social-context.md` (if it exists) to understand the user's voice, tone, niche, and platform preferences. Adapt all output to match their established style.
+## The nine hook patterns
 
----
+Every hook you deliver carries its pattern name, so the reader learns the system instead of just receiving lines. The examples are illustrative, and square brackets mark a figure the user must supply, because an invented statistic in a hook is the quickest way to lose a reader who checks.
 
-## Hook Pattern Library
+| Pattern | What it does | Example | Use it when |
+|---|---|---|---|
+| Contrarian | Challenges a belief the reader holds | "Everyone tells small brands to pick a niche first. For most of them, that advice arrives two years early." | Experience or data backs the different view |
+| Question | Makes the reader feel addressed and curious | "What if the reason your content isn't working has nothing to do with the content?" | The question is specific and touches a real fear or desire |
+| Story opener | Drops the reader into a moment with no setup | "Last Tuesday I lost my biggest client, and it turned out to be the best thing that happened to us all year." | You have a real moment with real detail |
+| Statistic or data | Leads with a number that reframes an assumption | "I went back through [number] of our posts from last year, and one habit explained most of the replies." | The figure is one the user gave or you verified, and it is tied to the point |
+| List preview | Promises scannable structure up front | "Five writing habits that changed how I produce content every week:" | The items are genuinely discrete and useful |
+| Bold claim | States something that demands agreement or argument | "Your content calendar is the least important document in your marketing." | The body can prove it |
+| Empathy | Opens on the reader's pain instead of your message | "Nobody talks about how hard it is to keep posting when nobody seems to be watching." | The audience truly shares the struggle |
+| Before and after | Shows the gap between then and now | "A year ago every post took me an afternoon. Now it takes [time], and I changed one habit." | The change is real and you can name the timeframe |
+| Confession | Leads with an admission that disarms | "Most of my best-performing posts were luck. Not all of them, though, and the exceptions taught me everything." | The admission is genuine and leads somewhere useful |
 
-### 1. Contrarian
+Spread a set of variants across different patterns rather than polishing five versions of one, because the user only learns which pattern their audience answers to when the options genuinely differ. A contrarian line or bold claim with nothing behind it reads as noise, and a precise figure only earns its credibility when it is real.
 
-**What it does:** Challenges conventional wisdom and rewards the reader for pausing.
+## Written hooks by platform
 
-**Examples:**
-- "Stop posting every day. It's killing your engagement."
-- "Everyone says you need a niche. They're wrong."
-- "Cold outreach is not dead. Your cold outreach is dead."
+Each platform shows a different slice of text before the reader has to tap, and that slice is the real space a hook gets. The table uses only confirmed limits, so for any number it lacks, check the platform's current limit rather than guessing.
 
-**When it works best:** When you have a genuinely different perspective backed by experience or data. Overused without substance, it becomes noise.
+| Platform | Room before the reader acts | Patterns that suit it |
+|---|---|---|
+| LinkedIn | The first two or three lines before "see more" | Story opener, data, before and after, empathy |
+| X | 280 characters per post on a standard account; longer posts need X Premium | Contrarian, bold claim, question, confession |
+| Threads | 500 characters per post | Empathy, story opener, confession, before and after |
+| Bluesky | 300 characters per post | Confession, contrarian, question, bold claim |
+| Instagram | Only the opening line or so before "more" | Story opener, question, empathy |
+| Facebook | The first few lines before "See more" | Story opener, question, empathy |
+| Pinterest | Titles up to 100 characters, with about 40 visible in the feed grid | List preview, before and after, bold claim |
 
----
+On LinkedIn, use both visible lines and write from experience rather than handing out advice. X needs its tension in the first sentence, whereas Threads reads like the start of a conversation and Bluesky rewards wit over marketing language. An Instagram first line sits under the image, so it should say what the image cannot, and a Pinterest title puts its payoff in the first 40 characters. TikTok and YouTube hooks live in the video and the title, which the next two sections cover. Across every platform the test is the same: a hook that only makes sense after someone taps "see more" has already failed.
 
-### 2. Question
+## Spoken and on-screen hooks for short video
 
-**What it does:** Provokes curiosity and makes the reader feel personally addressed.
+On TikTok the first one to three seconds decide whether people keep watching, and Reels and Shorts are judged in their first seconds in the same way. A short-video hook therefore has two layers that must land together, the line spoken at the start and the text on screen, and you write them as a pair because a viewer with the sound off only gets the text.
 
-**Examples:**
-- "What if everything you know about content strategy is wrong?"
-- "Why do 90% of creators quit before they make their first dollar?"
-- "Have you ever wondered why some posts go viral and yours don't?"
+The spoken line is one sentence in the first breath, with no greeting, since a greeting spends exactly the seconds that decide the view. On-screen text is shorter, a few words that sharpen the spoken line rather than transcribe it, and you should check its position in the app's preview so the interface does not cover it. Shorts can run up to three minutes, but a longer video does not buy a slower start.
 
-**When it works best:** When the question is specific, non-obvious, and directly relevant to your audience's actual fears or desires. Avoid generic questions.
+| Pattern | Spoken in the first seconds | On-screen text |
+|---|---|---|
+| Contrarian | "Everyone tells small brands to pick a niche first, and for most of them that advice comes too early." | Pick your niche later |
+| Story opener | "Last Tuesday a client asked us to delete their whole blog." | They wanted the blog gone |
+| Before and after | "This used to take me a whole afternoon, and now it takes [time]." | [time], not an afternoon |
 
----
+These pairs are illustrative. With every video hook, add a one-line note on the first frame, because what the viewer sees while the line is spoken should show the thing the hook is about.
 
-### 3. Story Opener
+## YouTube titles
 
-**What it does:** Pulls the reader into a narrative immediately — no setup required.
+A YouTube title can run to 100 characters. Its job is to say what the video gives in words the viewer would recognise, with that substance first, since you cannot count on the whole title showing on every screen; check YouTube's current preview rather than assuming a cutoff. Question, list preview, before and after and bold claim suit titles, but a title the video does not pay off spends trust you need for the next upload. Illustrative examples include "Why Most Small Business Websites Never Get Found" and "I Rewrote Our Homepage in a Weekend. Was It Worth It?"
 
-**Examples:**
-- "Last Tuesday, I lost my biggest client. Best thing that ever happened to me."
-- "3 years ago I was freelancing for $15/hr. Today I run a 7-figure agency."
-- "I almost quit writing entirely at 90 days. Here's what changed."
+## How to generate hooks
 
-**When it works best:** When you have a real, specific moment to anchor the story. Vague stories lose readers fast — details create credibility.
+The sequence is the same on every platform, and its order matters because the medium decides what a hook has to do.
 
----
+1. Confirm the platform and the format (written post, short video or title), and ask if either is unclear.
+2. Then write five to seven variants across different patterns, each adapted to the platform's room and culture.
+3. Each variant carries its pattern name, and one is marked as recommended with a sentence saying why.
+4. Finally, load the `house-prose-style` skill, run its pre-delivery voice check on every hook, and fix what fails, because Fredrick's standing rule is that no copy goes out unless it follows the house style.
 
-### 4. Statistic / Data
-
-**What it does:** Leads with a surprising number that reframes the reader's assumptions.
-
-**Examples:**
-- "82% of LinkedIn posts get zero engagement. Here's how to be in the other 18%."
-- "I analyzed 500 viral threads. Here's the one pattern they all share."
-- "The average reader decides in 1.7 seconds whether to keep reading."
-
-**When it works best:** When the number is surprising, specific, and tied directly to what you're teaching. Round numbers feel fake — precise numbers feel credible.
-
----
-
-### 5. List Preview
-
-**What it does:** Promises structured, scannable value upfront so the reader knows exactly what they're getting.
-
-**Examples:**
-- "7 things I wish I knew about building an audience before I started:"
-- "5 writing habits that changed how I produce content every week:"
-- "3 tools that cut my content creation time in half:"
-
-**When it works best:** When you have genuinely useful, discrete items to share. Works especially well mid-week when readers are in "learning mode."
-
----
-
-### 6. Bold Claim
-
-**What it does:** Makes a strong, declarative statement that demands a reaction — agreement or argument.
-
-**Examples:**
-- "Long-form content is dead. Micro-content wins in 2025."
-- "The best hire I ever made cost me nothing. I promoted from within."
-- "Your content strategy is the problem. Your content is fine."
-
-**When it works best:** When you can back it up in the body. A bold claim without evidence is just noise. A bold claim with a tight proof is a high-performer.
-
----
-
-### 7. Empathy
-
-**What it does:** Opens with the reader's pain, not your message. Makes them feel seen immediately.
-
-**Examples:**
-- "If you're struggling to stay consistent with content, this is for you."
-- "Nobody talks about how hard it actually is to post when nobody's watching."
-- "You're not lazy. You're just creating content nobody cares about yet."
-
-**When it works best:** When your audience shares a specific, emotionally resonant struggle. Empathy hooks build loyalty faster than any other pattern.
-
----
-
-### 8. Before / After
-
-**What it does:** Shows a transformation — the gap between where someone was and where they are now.
-
-**Examples:**
-- "I went from 200 to 20,000 followers in 6 months. Here's the exact strategy."
-- "6 months ago: anxious about every post. Now: I write in 20 minutes and ship."
-- "Before: 3 hours per post. After: 45 minutes. I changed one thing."
-
-**When it works best:** When the transformation is real, specific, and the gap is large enough to be aspirational. Works well paired with a concrete timeframe.
-
----
-
-### 9. Confession
-
-**What it does:** Leads with vulnerability or an admission — immediately disarms and earns trust.
-
-**Examples:**
-- "I've been lying to you about how long my posts actually take."
-- "Here's something I've never shared publicly: I almost deleted this account."
-- "Honest confession: most of my 'viral' posts were luck. But not all of them."
-
-**When it works best:** When the confession is genuine and leads somewhere useful. Performative vulnerability backfires — readers can tell.
-
----
-
-## Platform-Specific Hook Guidance
-
-### LinkedIn
-- Can be 2-3 lines before the "see more" fold — use the space
-- Personal stories and data hooks perform best
-- Professional but personal tone — people here are ambitious, not casual
-- Avoid corporate-speak; first-person specific experience outperforms advice
-- **Best patterns:** Story opener, statistic/data, before/after, empathy
-
-### Twitter / X
-- One line, punchy, under 280 characters for the hook itself
-- Curiosity and tension must land in the first sentence
-- Contrarian and bold claim hooks get the most replies and quote-tweets
-- No fluff — every word earns its place
-- **Best patterns:** Contrarian, bold claim, question, confession
-
-### Threads
-- Conversational, casual, human — write like you're texting a smart friend
-- Relatable pain points land harder here than data
-- First line should feel like the start of a real conversation
-- **Best patterns:** Empathy, story opener, confession, before/after
-
-### Bluesky
-- Authentic, clever, anti-corporate — the culture rewards wit over polish
-- Users here are allergic to marketing language
-- Self-aware humor and genuine takes outperform "growth hacks"
-- **Best patterns:** Confession, contrarian, question, bold claim
-
----
-
-## Hook Generation Process
-
-When a user provides a topic or idea:
-
-1. **Identify the platform** (ask if unclear)
-2. **Generate 5-7 hook variants** across different patterns from the library above
-3. **Adapt each variant** to the platform's character limits, tone, and culture
-4. **Label each hook** with its pattern name so the user can learn the system
-5. **Mark the top pick** with a clear recommendation and one-sentence reasoning (e.g., "Recommended: this one because it leads with a specific number and targets a real pain point")
-
-**Output format:**
-```
---- Hook Variants for: [topic] | Platform: [platform] ---
-
-1. [Pattern name]: [hook text]
-2. [Pattern name]: [hook text]
-3. [Pattern name]: [hook text]
-4. [Pattern name]: [hook text]
-5. [Pattern name]: [hook text]
-
-★ Recommended: #[N] — [one sentence explaining why]
-```
-
-**Example full hook generation output:**
+Written hooks are delivered in the layout below; for video, add a "Spoken" and an "On screen" line under each variant. The example is for a client brand on LinkedIn and is illustrative throughout.
 
 ```
---- Hook Variants for: "Why most content strategies fail" | Platform: LinkedIn ---
+Hook variants for: why most content strategies fail | Platform: LinkedIn | Profile: client
 
-1. Contrarian: "Your content strategy is the problem. Your content is fine."
-2. Statistic: "82% of content strategies fail in the first 90 days. Here's why."
-3. Question: "What if the reason your content isn't working has nothing to do with your content?"
-4. Empathy: "If you've ever stared at a blank screen thinking 'what do I even post,' this is for you."
-5. Before/After: "6 months ago: posting daily with no plan. Now: 3x/week with a system that actually works."
-6. Bold Claim: "You don't need a content strategy. You need a content thesis."
+1. Bold claim: "Your content calendar is the least important document in your marketing."
+2. Data: "[Number] of the [number] content plans we reviewed this quarter never named an audience."
+3. Question: "What if the reason your content isn't working has nothing to do with the content?"
+4. Before and after: "Six months ago we posted daily with no plan. Now we post [frequency], and the plan fits on one page."
+5. Contrarian: "Before you write a content strategy, write down one opinion your audience could argue with."
 
-★ Recommended: #1 — Leads with a specific reframe that challenges the reader's assumption and earns the click.
+Recommended: #1, because it contradicts something the reader has already built and leaves the fold with a question the post must answer.
 ```
 
-**Example hook A/B test log:**
+## Testing hooks
+
+Hooks improve fastest when tested, so offer the user a simple method: two versions of the same content, two to three weeks apart, with the body identical and only the first one or two lines changed. Compare engagement rates rather than raw numbers, since follower growth between the posts would otherwise skew the result, and expect patterns after five to ten tests. Saves, comments relative to likes, and profile visits are the signals worth watching, because each shows the hook earned more than a passive tap.
+
+A test log looks like this, with placeholders where the user's results go.
 
 ```
-Test #3: Educational thread on productivity
-Hook A (Statistic): "I tracked every minute of my week for 30 days. The results shocked me."
-Hook B (Confession): "I've been lying about how productive I am. Here's the truth."
-
-Results (7 days):
-- Hook A: 4.2% ER, 14 saves, 6 comments
-- Hook B: 7.1% ER, 22 saves, 19 comments
-Winner: Hook B — confession pattern drove 3x more comments on this topic
+Test 3: educational post on productivity
+Hook A (Data): "I tracked every minute of my week for a month, and one hour kept disappearing."
+Hook B (Confession): "I've been overstating how productive I am."
+Results after [days] days
+Hook A: [rate]% engagement, [n] saves, [n] comments
+Hook B: [rate]% engagement, [n] saves, [n] comments
+Winner: [hook], because [one line]
 ```
 
----
-
-## Hook Testing Tips
-
-**The metrics that actually matter for hooks:**
-
-- **Save rate** — if people save the post, the hook earned their attention AND they want to return. High saves = strong hook + valuable content.
-- **Comment rate vs. like ratio** — comments signal emotional response. A hook that provokes a reaction (agreement, disagreement, curiosity) outperforms a hook that just gets passive likes.
-- **Profile visits from post** — a hook that makes someone want to know *who wrote this* is doing its job.
-
-**A/B testing approach:**
-- Post two versions of the same core content with different hooks, spaced 2-3 weeks apart
-- Keep the body identical; change only the first 1-2 lines
-- Compare engagement rates, not raw numbers (account for follower growth over time)
-- After 5-10 tests, patterns emerge — double down on what your specific audience responds to
-
-**Quick self-check before posting:**
-- Would you stop scrolling for this line if you didn't write it?
-- Does it create a question in the reader's mind that the post will answer?
-- Is it specific enough that it couldn't apply to anyone else's post?
-
----
+A batch of results to interpret goes to social-content-pattern-analyzer or social-performance-analyzer. Before handing over any hook, ask whether you would stop for it if you had not written it, and whether it is specific enough that it could not open anyone else's post.
 
 ## Boundaries
 
-- Does not write full posts, threads, or carousels — see **social-post-writer**, **social-thread-writer**, or **social-carousel-writer** for complete content
-- Does not analyze post performance or metrics — see **social-performance-analyzer** for analytics
-- Does not define content strategy or pillars — see **social-content-strategy** for strategic planning
-- Does not provide platform algorithm tactics — see **social-platform-strategy** for platform-specific guidance
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not generate visual content or images — output is text-based hook copy only
-
-## Related Skills
-
-- **social-context** — establish voice and platform preferences before generating hooks
-- **social-platform-strategy** — understand where your audience lives before optimizing hook style
-- **social-post-writer** — turn a strong hook into a full post
-- **social-thread-writer** — expand a hook into a multi-post thread
-- **social-carousel-writer** — adapt a hook as the cover slide of a carousel
+This skill writes openings and titles only, so a full post goes to social-post-writer, a thread to social-thread-writer, a carousel to social-carousel-writer and a long X article to social-x-longform, while questions about what to post belong to social-content-strategy and social-platform-strategy. The output is text delivered in the reply; only inside an EvoNexus workspace should you also save it under `workspace/social/`. A chosen hook is half a post, which is why the natural next step is to take it straight into the writer for its format.

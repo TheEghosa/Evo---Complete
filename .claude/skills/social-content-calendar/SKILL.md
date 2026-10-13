@@ -1,255 +1,131 @@
 ---
 name: social-content-calendar
-description: "When the user wants to plan a posting schedule, create a content calendar, or organize when and what to post. Also use when the user mentions 'content calendar,' 'posting schedule,' 'when should I post,' 'weekly plan,' 'monthly plan,' 'batch content,' 'scheduling,' 'how often should I post,' or 'content cadence.' For deciding what topics to cover, see social-content-strategy. For writing the actual posts, see social-post-writer."
-metadata:
-  version: 1.0.0
+description: "Builds a social media content calendar across Fredrick's profiles (Fredrick as founder, DataExplained, TheSpark Digital Tech and client brands): weekly or monthly calendars, batching plans, flexible slots and a review cadence. Use when the user says content calendar, posting schedule, plan my week across accounts, monthly plan, what should we post this week, when should I post, how often should I post, content cadence, batch content, or schedule these posts. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. For DataExplained-specific posts defer to the DataExplained skills; not for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; use this for everything else, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover."
 ---
 
-## When to Use
+# Social content calendar
 
-- User asks to **plan a posting schedule** or create a content calendar
-- User mentions "content calendar," "posting schedule," or "when should I post"
-- User says "weekly plan," "monthly plan," or "batch content"
-- User wants to know **how often to post** or asks about "content cadence"
-- User mentions "scheduling" and wants to organize future posts
-- User asks "what should I post this week" or wants a structured plan
+This skill turns a content strategy into a schedule, so every profile knows what goes out, where, in which format and on which day. A good calendar takes the daily decision away, which is what protects consistency, while leaving deliberate room for what nobody can plan.
 
-## Role
+## When another skill owns this
 
-You are an expert social media content planner. Your job is to help the user build a practical, balanced posting schedule — mapping their content pillars to specific days, platforms, and formats so they always know what to post and when.
+Two rhythms in Fredrick's week are already designed elsewhere, and this calendar slots them in by reference instead of redesigning them. DataExplained's LinkedIn and X posts follow the weekly editorial rhythm in dataexplained-social-master, where each weekday has a purpose on each platform and the two platforms run independently, and the brand's daily visual runs on its own schedule. Fredrick's personal LinkedIn cadence, along with the alternation of post shapes, is set by linkedin-artifact-engine. Reserve those slots, label them with the skill that owns them, and leave their purposes, shapes and topics blank here, because a second copy of either rhythm in this skill would drift the moment the owning skill changed. The posts for those slots come from the owning skills, which carry verification, sign-off and evidence-grading rules this skill does not.
 
-This skill produces a **content calendar** the user can follow, schedule in advance, or hand off to a tool like ferramenta externa.
+If the request is only for DataExplained's week, or only for Fredrick's LinkedIn, hand it straight to the owning skill. Requests described as a content engine or full pack go to their own skill as well.
 
----
+## 1. Read the profiles and the strategy
 
-## Step 1 — Check for existing context
+Read the profiles in the social-context skill and work out which profiles the calendar covers, asking one short question if the request does not say. When you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it too and let it override the built-in profiles.
 
-Before asking any questions, check if `workspace/social/[C] social-context.md` exists.
+Social-context also records which platforms each profile is confirmed to use. Schedule only those, and ask before adding a slot for any other platform, because a slot for an account that may not exist creates work nobody can publish. For a client, the confirmed platforms are the ones in the client profile collected in the conversation.
 
-**If it exists:**
-1. Read the file in full.
-2. Note which calendar-relevant fields are already populated: platforms, posting frequency, content pillars, content mix, time availability.
-3. Also check for any saved content strategy document in the conversation or workspace.
-4. Skip any discovery questions already answered.
+Then look for a strategy from social-content-strategy in the conversation or, inside an EvoNexus workspace, under `workspace/social/`. Without one, collect the pillars in discovery, or suggest building the strategy first when there are no clear pillars at all, since a calendar without pillars only schedules improvisation.
 
-**If it does not exist:**
-Tell the user: "I don't have your social media context yet. Run the **social-context** skill first — it takes 5–10 minutes and makes scheduling much faster. Or answer a few quick questions and I'll build your calendar now."
+## 2. Discovery
 
----
+Ask only what social-context and the strategy have not already answered, and group the questions into one message rather than asking them one at a time.
 
-## Step 2 — Discovery questions
-
-Ask only what context and strategy files do not already answer. Group questions — do not ask one at a time.
-
-**Platforms and frequency**
-- Which platforms are you posting to? (LinkedIn, Threads, Twitter/X, Bluesky, other)
-- What is your target frequency per platform per week?
-- Are there platforms you want to prioritize vs. maintain at lower effort?
-
-**Content pillars and mix**
-- What are your 3–5 content pillars? (or reference content strategy if already defined)
-- What rough percentage of posts should each pillar represent?
-- Any pillar that must appear at least once per week?
-
-**Time and creation capacity**
-- How many hours per week can you dedicate to content creation?
-- Do you prefer to write content day-by-day or batch in advance?
-- Do you have existing assets (newsletter, podcast, long-form) to repurpose?
-
-**Key dates and events**
-- Are there product launches, events, campaigns, or seasonal moments in the next 4–8 weeks?
-- Any topics or themes that are off-limits or time-sensitive?
-
----
-
-## Step 3 — Calendar generation
-
-Choose **weekly** or **monthly** view based on the user's preference. Default to weekly for new users; monthly for users with an established strategy.
-
-Each calendar entry includes:
-- **Day** (e.g., Monday)
-- **Platform** (e.g., LinkedIn)
-- **Content pillar** (e.g., Educational)
-- **Topic / angle** (specific, not generic)
-- **Format** (standalone post / thread / carousel / poll)
-
-**Rules for a balanced calendar:**
-- Distribute pillars evenly — no pillar should dominate more than 40% of slots unless explicitly requested
-- No active platform goes more than 3 days without a post
-- Vary formats within each platform across the week
-- Reserve **20–30% of total slots** as open/flexible for reactive or timely content
-- Heavy content (threads, carousels) should not stack on the same day
-
-**Example weekly calendar** (adapt to user's actual pillars and platforms):
-
-| Day | Platform | Pillar | Topic / Angle | Format |
-|---|---|---|---|---|
-| Monday | LinkedIn | Educational | 3 hiring mistakes that cost you senior candidates | Thread |
-| Monday | Threads | Personal | What I learned from my worst product launch | Standalone post |
-| Tuesday | Twitter/X | Engagement | Hot take: async interviews are better for introverts | Poll |
-| Wednesday | LinkedIn | Storytelling | The conversation that changed how I think about leadership | Standalone post |
-| Wednesday | Threads | Educational | How to run a 30-min team retrospective that people actually like | Thread |
-| Thursday | Twitter/X | Personal | Behind the scenes: how I structure my week | Standalone post |
-| Friday | LinkedIn | Promotional | What we built this month — and why | Carousel |
-| Friday | Threads | Engagement | [Flexible slot — timely or reactive] | TBD |
-| Weekend | — | — | [Flexible slots — 2 open] | TBD |
-
-Show the calendar as a markdown table. After presenting, ask: "Does this reflect your platforms and pillars? Any days or slots to adjust?"
-
----
-
-## Step 4 — Batching strategy
-
-Batching content in advance reduces daily decision fatigue and protects posting consistency.
-
-**Recommended batching approach:**
-
-| Session | Duration | Output |
-|---|---|---|
-| Weekly planning (Monday AM) | 30 min | Review calendar, confirm topics, note any news to react to |
-| Platform batch (e.g., all LinkedIn for the week) | 90 min | 3–5 posts drafted and ready to schedule |
-| Platform batch (e.g., all Threads/Twitter for the week) | 60 min | 5–8 short posts drafted |
-| Review and schedule (Friday) | 30 min | Queue approved posts in ferramenta externa or scheduler |
-
-**Batching by platform vs. batching by pillar:**
-
-- **Batch by platform**: Switch into each platform's voice/style once per session. Best when platforms have very different tones (e.g., LinkedIn vs. Threads).
-- **Batch by pillar**: Write all Educational posts at once, regardless of platform. Best when topics require deep thinking or research; reformat for each platform after drafting.
-
-Recommend **batch by platform** as the default — it is faster for most solo creators.
-
-**Repurposing tip**: If the user has a newsletter, podcast, or blog, map one long-form piece to 3–5 short posts per week and note that in the calendar as a source.
-
-**Example batching session output:**
-
-```
-Batch Session: LinkedIn (Week of March 24)
-Duration: 90 minutes
-Posts drafted: 4
-
-1. Monday — Thread: "3 hiring mistakes that cost you senior candidates"
-2. Wednesday — Standalone: leadership story post
-3. Friday — Carousel: "What we built this month"
-4. [Flexible] — TBD based on industry news
-```
-
----
-
-## Step 5 — Scheduling with ferramenta externa
-
-**If the ferramenta de agendamento is available:**
-
-1. Call `list_time_slots` to retrieve optimal posting windows for each platform.
-2. Map calendar entries to the best available slots.
-3. For each entry ready to post, call `create_post` with the draft content, platform, and scheduled time.
-4. Confirm with the user before scheduling any post: show the draft, slot, and platform.
-5. After scheduling, summarize: "Scheduled X posts across Y platforms for the week of [date]."
-
-**If ferramenta externa is not available:**
-
-Output the complete calendar as a markdown table with an additional **Suggested time** column based on general best practices:
-
-| Platform | Suggested Time Window |
+| Area | What to find out |
 |---|---|
-| LinkedIn | Tuesday–Thursday, 8–10 AM or 12–1 PM (audience's local time) |
-| Threads | Morning (7–9 AM) or evening (7–9 PM) |
-| Twitter/X | Morning (8–10 AM), lunch (12–1 PM), or evening (6–8 PM) |
-| Bluesky | Morning (8–10 AM) or mid-afternoon (2–4 PM) |
+| Platforms and frequency | Which confirmed accounts each profile will post to, the target posts per week on each, and which platforms get priority versus maintenance effort |
+| Pillars and mix | The three to five pillars, the rough share of each, and any pillar that must appear every week |
+| Capacity | Hours per week for content, whether they prefer to batch or write day by day, and any long-form assets to repurpose |
+| Key dates | Launches, events, campaigns or seasonal moments in the next four to eight weeks, and any topics that are off limits or time sensitive |
 
-Tell the user: "Connect ferramenta externa to schedule directly from this calendar. For now, use this table to schedule manually in your tool of choice."
+When someone asks how often they should post, answer from their capacity rather than a benchmark, because no frequency figure available here is verified and a cadence they can keep is worth more than one they abandon in the third week. The owned rhythms above are not up for discussion in this step, so take them as given.
 
----
+## 3. Build the calendar
 
-## Step 6 — Flexibility buffer
+Default to a weekly view for a profile that is new to planning and a monthly view for one with an established strategy. Each entry needs a day, a profile, a platform, a pillar, a specific topic or angle, a format, and an owner, meaning the skill that will write it.
 
-**Always protect 20–30% of weekly slots as open.**
+The rules below keep a calendar balanced, and each one exists to stop a particular way calendars go wrong.
 
-Open slots serve three purposes:
-1. **Reactive content**: Respond to trending topics, news, or conversations in your niche while they are relevant.
-2. **Overflow**: If a planned post is not ready, an open slot absorbs the gap without breaking the calendar.
-3. **Experiments**: Try a new format or pillar without committing it to the plan.
+1. No pillar takes more than 40% of the slots unless the user asks for that, since one dominant pillar makes a profile read as a one-topic account.
+2. No platform that a profile posts on several times a week goes more than three days without a post. Slower formats such as long YouTube videos and pins can follow their own steadier cadence.
+3. Formats vary within each platform across the week, so the feed does not settle into one shape.
+4. Between 20% and 30% of slots stay open for timely or reactive content (section 6 explains why).
+5. Heavy pieces such as threads, carousels and videos do not stack on the same day for the same profile, because one person cannot do them all justice in an afternoon.
+6. Two profiles do not post the same idea on the same day. When Fredrick and TheSpark share a topic, one goes first and the other adds to it later in the week.
 
-Mark open slots in the calendar as `[Flexible — timely or reactive]`. Do not fill them during planning — they are intentionally empty.
+The example below is illustrative and assumes social-context confirms each account shown.
 
-If the user resists leaving slots open, explain: "The creators who seem most 'in the moment' usually have empty slots reserved for exactly this. It is not wasted capacity — it is strategic agility."
+| Day | Profile | Platform | Pillar | Topic or angle | Format | Owner |
+|---|---|---|---|---|---|---|
+| Per that skill | DataExplained | LinkedIn and X | Rhythm slots | Set by dataexplained-social-master | Per that skill | dataexplained-social-master |
+| Per that skill | Fredrick | LinkedIn | Engine slots | Number and shapes set by linkedin-artifact-engine | Per that skill | linkedin-artifact-engine |
+| Mon | TheSpark | Instagram | Educational | What a real location page contains | Carousel | social-carousel-writer |
+| Tue | TheSpark | X | Engagement | Do you check your Google Business Profile every week? | Poll | social-post-writer |
+| Wed | TheSpark | TikTok | Educational | One question to ask before paying for a backlink audit | Short video | social-hook-writer, then social-post-writer |
+| Thu | Client | Facebook | Storytelling | [Story the client has approved] | Post | social-post-writer |
+| Fri | TheSpark | LinkedIn page | Promotional | What the team shipped this month, with client approval | Carousel | social-carousel-writer |
+| Fri | TheSpark | X | Open | [Flexible: timely or reactive] | To be decided | |
+| Weekend | Any | Any | Open | [Flexible: two open slots] | To be decided | |
 
----
+The owned rows hold a place and nothing more, which is why their topics stay blank: when you reach those days, run the owning skill.
 
-## Step 7 — Review cadence
+After presenting the calendar, ask whether it reflects their accounts and pillars and whether any day or slot needs to move.
 
-A calendar without a review loop drifts. Recommend a lightweight weekly rhythm:
+## 4. Batching
 
-**Example weekly review checklist:**
+A calendar only survives a busy week if the writing happens in batches, so it should come with a batching plan. The sessions below are a starting shape to adjust to the person's week.
+
+| Session | Length | Output |
+|---|---|---|
+| Weekly planning (Monday morning) | 30 minutes | Confirm the week's topics and note any news worth reacting to |
+| Long-post batch, one platform | 90 minutes | Three to five longer posts drafted and ready to schedule |
+| Short-post batch (X, Threads, Bluesky) | 60 minutes | Five to eight short posts drafted |
+| Review and schedule (Friday) | 30 minutes | Approved posts queued for the following week |
+
+Short video is harder to time in advance, so plan one filming session for several clips and let the editing set its own length. There are two ways to group the writing. Batching by platform means switching into each platform's register once per session, which suits work across very different platforms such as LinkedIn and Threads. Batching by pillar means writing everything on one topic together and reformatting afterwards, which suits topics that need research. Default to batching by platform, but across several profiles batch by profile first, because switching between "I", "we" and DataExplained's voice mid-session is the mistake that costs most, and a draft in the wrong voice is thrown away whole.
+
+When the profile has a newsletter, podcast or long article, map one long piece to three to five short posts across the week, mark the source in the calendar, and use social-content-repurposer to do the adapting.
+
+## 5. Posting times and scheduling
+
+This skill gives no benchmark posting times, because none could be verified and the right time depends on where a profile's audience lives and works. Start instead with two windows per platform that make sense for the audience's time zone and working day (a Lagos audience and a London audience will not share them), keep them for a few weeks, and compare the results with social-performance-analyzer once the numbers are pasted in. Add a planned time column to the calendar so manual scheduling is straightforward.
+
+If a scheduling tool is connected in the session, show each draft with its account, platform and time and get an explicit yes before scheduling anything, since a scheduled post goes out under someone's name without a second look. If no tool is connected, the calendar table is the hand-off for scheduling by hand.
+
+## 6. The flexibility buffer
+
+Protect 20% to 30% of the week's slots as open, and mark them `[Flexible: timely or reactive]` instead of filling them during planning. Open slots let a profile respond to news while it still matters, absorb a planned post that is not ready without breaking the week, and give a new format or pillar a trial run without committing it to the plan. A profile can only look in the moment if its week has room for it, so if the user resists leaving gaps, explain that the gaps are where the timely posts come from.
+
+## 7. Review cadence
+
+A calendar without a review loop drifts, so pair it with a light routine. The weekly review takes 15 to 20 minutes each Monday: note which posts beat expectations (pillar, format and angle), consider dropping the format or angle of an underperformer rather than its pillar, check whether any open slots are needed, and confirm the week still reflects current priorities. The monthly recalibration takes 30 to 45 minutes on the first Monday, when you check whether one pillar is dominating or another is neglected, adjust frequency per platform if engagement has shifted, and update the template for the next month.
+
+Both reviews work only from numbers the user pastes, so ask for them, and pass any real analysis to social-performance-analyzer. A review note should look like this, with placeholders until real figures arrive:
 
 ```
-Weekly Review — March 24
-- Top performer: Tuesday thread on hiring (8.4% ER) — replicate format
-- Underperformer: Friday promotional carousel (1.2% ER) — try Wednesday instead
-- Open slots needed: 1 (industry report dropped Thursday)
-- Calendar confirmed for next week: Yes
+Weekly review, week of [date]
+Above expectations: [post], [metric and value from the pasted data]
+Below expectations: [post], [metric and value]; try [format or day change]
+Open slots needed this week: [number and reason]
+Next week confirmed: [yes or no]
 ```
 
-**Weekly review (15–20 min, every Monday):**
-- Which posts performed above expectations last week? Note the pillar, format, and angle.
-- Which posts underperformed? Consider dropping the format or angle, not the pillar.
-- Are any open slots needed for timely topics this week?
-- Confirm the week's calendar still reflects current priorities.
+## 8. The calendar document
 
-**Monthly recalibration (30–45 min, first Monday of the month):**
-- Review pillar balance — is one pillar dominating? Is another being neglected?
-- Adjust frequency per platform if engagement trends shifted.
-- Update the calendar template for the next month.
-
-Use the **post-analytics** data (via ferramenta externa `get_post_analytics`) to guide these decisions when available.
-
----
-
-## Step 8 — Output: Content calendar
-
-Present the final calendar in this format:
+Present the final calendar in this shape, so it can be followed as written or handed to whoever schedules.
 
 ```
-# Content Calendar
+# Content calendar
 
-**Period**: [Week of / Month of] [date]
-**Platforms**: [list]
-**Total planned posts**: [N]  |  **Flexible slots**: [N]
+Period: [week of or month of] [date]
+Profiles and platforms: [confirmed accounts per profile]
+Planned posts: [N]   Flexible slots: [N]
+Owned slots: [DataExplained and Fredrick LinkedIn slots, by skill]
 
----
+## Calendar
+[Calendar table with planned times]
 
-## Weekly Calendar
-
-[Calendar table]
-
----
-
-## Batching Plan
-
+## Batching plan
 [Session table]
 
----
-
-## Open Slots
-
-[List of flexible slots and their purpose]
+## Open slots
+[Each flexible slot and its purpose]
 ```
 
-After presenting: "Ready to start filling in post drafts? Use **social-post-writer** to write content for any of these slots. Or connect ferramenta externa to schedule directly."
+## 9. Before you hand it over
 
----
-
-## Boundaries
-
-- Does not write the actual post content — see **social-post-writer** for drafting posts
-- Does not define content pillars or strategy from scratch — see **social-content-strategy** for that
-- Does not analyze past post performance — see **social-performance-analyzer** for analytics
-- Does not provide platform-specific algorithm tactics — see **social-platform-strategy** for platform guidance
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not manage cross-posting or content adaptation — see **social-content-repurposer** for reformatting across platforms
-
-## See also
-
-**social-content-strategy** — defines your pillars and content mix before building the calendar
-**social-context** — foundational profile this skill reads from
-**social-post-writer** — writes the actual posts for each calendar slot
-**social-platform-strategy** — informs platform-specific frequency and format decisions
+Load the `house-prose-style` skill and run its pre-delivery voice check on the calendar, including every topic line and any posts drafted for the slots, then fix whatever fails. Fredrick's standing rule is that no copy goes out unless it follows the house style, and a topic line in a calendar usually becomes the hook of the post. Deliver the calendar in your reply, and only when working inside an EvoNexus workspace also save it under `workspace/social/`. From there, social-post-writer, social-thread-writer and social-carousel-writer write the general slots, while the owned slots go back to their own skills.

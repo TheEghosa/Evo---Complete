@@ -1,302 +1,139 @@
 ---
 name: social-carousel-writer
-description: "When the user wants to write content for a LinkedIn carousel, slide deck, or swipeable multi-slide format. Also use when the user mentions 'carousel,' 'slides,' 'LinkedIn carousel,' 'swipe post,' 'slide deck,' or 'visual content.' Outputs slide-by-slide text content (not visual design). For single posts, see social-post-writer. For threads, see social-thread-writer."
-metadata:
-  version: 1.0.0
+description: "Writes slide-by-slide carousel copy and its caption for LinkedIn document carousels and Instagram carousels (up to 20 slides): cover, context slide, one-point body slides and closing action slide, in listicle, framework, before and after, data story or case study formats. Text only, not design. Use when the user says write a carousel, carousel post, LinkedIn carousel, Instagram carousel, swipe post, slides for this post, or turn this into a carousel. Not for DataExplained (@dataexplain) posts, comments, reels, pins or newsletters (The Data Brief, The Data Drop), for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; use this for everything else, including TheSpark, client brands, Fredrick on Instagram, and formats those skills do not cover."
 ---
 
-# Carousel Writer
+# Carousel writer
 
-## When to Use
+This skill writes carousel copy slide by slide, with the caption that sits above it, for LinkedIn document carousels and Instagram carousels. The output is text rather than design, ready to drop into Canva or whatever tool builds the slides. A carousel lives or dies on whether people keep swiping, which means every slide has two jobs at once: it has to say one thing clearly, and it has to make the next slide feel necessary.
 
-- User asks to **write a carousel** or create slide-by-slide content
-- User mentions "carousel," "slides," or "LinkedIn carousel"
-- User says "swipe post," "slide deck," or "visual content"
-- User wants to turn an idea into a **multi-slide format**
-- User shares a topic and asks for a swipeable breakdown
-- User mentions "carousel format" or "carousel post"
+## When another skill owns this
 
-## Role
+Some carousel requests belong to other skills, and you should hand those over rather than write them here, because Fredrick's brand skills carry rules this general skill does not, such as source verification, fixed sign-offs and evidence grading. Fredrick's own LinkedIn document posts built from evidence (checklists, scorecards, teardowns, audit findings) belong to linkedin-artifact-engine, which grades every item and names its source. DataExplained carousels belong to the DataExplained skills. Anything described as content engine or full pack goes to the skill built for that. This skill takes the rest: TheSpark company carousels, client carousels, Fredrick's Instagram carousels, and any LinkedIn carousel he explicitly wants outside the artifact format.
 
-You are an expert at writing carousel content for social media — slide-by-slide text that educates, frameworks a process, or tells a story in a swipeable format. You know how to write cover slides that earn the swipe, body slides that sustain momentum, and closing slides that convert readers into followers.
+## Platform facts
 
-You output text content only, not visual design. Each slide is a unit of clear, scannable copy.
+Only two platforms run the swipeable format this skill writes for, so the facts you need are short.
 
-## Context Check
+| Platform | What to know |
+|---|---|
+| LinkedIn document carousel | Shown as swipeable pages from an uploaded document. The caption follows LinkedIn's post rules: up to 3,000 characters, with only the first two or three lines visible before "see more". This skill's working range is 7 to 12 slides, which gives depth without fatigue. |
+| Instagram carousel | Up to 20 slides. Captions run up to 2,200 characters, and only the opening line or so shows before "more". |
 
-Before writing, read `workspace/social/[C] social-context.md` to understand the user's voice, tone, content pillars, and platform preferences. Match vocabulary, sentence structure, and emotional register.
+Both captions are cut off almost immediately, so the caption's first line has to earn attention on its own. For any other platform, check its current multi-image options before promising a carousel.
 
-If the file does not exist, say:
+## Workflow
 
-> "I don't see a social media context file yet. Run the `social-context` skill first to capture your voice — it makes every carousel I write sound like you."
+1. Your first step is to read the profiles in the social-context skill and work out from the request whose voice this is (Fredrick, TheSpark, a client). When you cannot tell, ask one short question, because a carousel in the wrong voice has to be rewritten slide by slide. If you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it too and let it override the built-in profiles.
+2. Next, collect only what the user has not already given you: the topic or key message, the platform, the goal (teach, share a framework, list tips, tell a story, present data) and a slide count. A topic alone is enough to start drafting, since over-asking stalls the work for no gain.
+3. With the inputs in hand, choose a format from the table below, because the format decides how the body slides progress.
+4. The body slides get drafted first, then the context slide, and the cover comes last, since you can only write a cover that earns the swipe once you know what the carousel delivers.
+5. Once the slides hold up, write the caption and run the voice check described at the end of this skill.
+6. The slides and caption go in your reply, and only when working inside an EvoNexus workspace also save them under `workspace/social/`.
 
----
+## The four zones of a carousel
 
-## Input Gathering
+The **cover** is the hook. It carries one bold, specific headline that promises value and one subtitle that makes the promise concrete, in two or three lines at most. If the cover would not earn attention as a standalone post, social-hook-writer can generate stronger options.
 
-Ask only for what the user has not already provided:
+> Headline: Seven signs your content plan is quietly broken
+> Subtitle: And the fix for each one, in the order you should make them.
 
-- **Topic or key message** — the idea, framework, or insight the carousel will teach
-- **Target slide count** — recommend 7–12 slides for LinkedIn (sweet spot for depth without fatigue)
-- **Goal** — educate, share a framework, list tips, tell a story, or present data
+> Headline: I went from [number] to [number] followers in [number] days
+> Subtitle: What worked was less interesting than what I stopped doing.
 
-If the user gives you a topic, start drafting. Don't over-ask.
+The **context slide** bridges the hook and the value. One or two sentences address the reader's pain, gap or curiosity directly, and skipping this slide is a mistake because it is what tells the reader the next eight swipes are about their problem.
 
----
+> Most people post consistently for a month, see nothing, and quit. The ones who keep going are usually doing one thing differently.
 
-## Carousel Structure
+The **body** carries one point per slide, without exception, since a slide holding two points gets read as neither. Each slide gets a bold header of eight words or fewer and supporting text of no more than 30 words. The patterns that work best are listed below.
 
-Every carousel has four zones: the **cover**, the **context**, the **body**, and the **CTA**.
+| Pattern | Shape |
+|---|---|
+| Tip slide | Bold header plus one or two lines of context or example |
+| Step slide | "Step [N]:" plus what to do and why it works, in one sentence |
+| Contrast slide | The wrong way, then the right way, as a two-line contrast |
+| Stat slide | One real figure plus a one-sentence insight about it |
 
-### Slide 1 — Cover
+The stat slide is the one to treat carefully, because it only works with a figure the user supplied or a source they can name. When no real number exists, leave a placeholder such as [number] and ask, rather than inventing a statistic.
 
-The cover slide must earn the swipe. It is your hook.
+The **closing slide** carries one summary line and one specific action (follow, save, share, comment or message), optionally with the author's name or handle so a shared slide still points home. A menu of actions hands the reader a decision at the exact moment you want them to act, so pick the one that suits the goal.
 
-- **Bold headline** — one punchy, specific line that promises value
-- **Subtitle** — one sentence that makes the promise concrete (what will they learn or get?)
-- Keep it clean and scannable — two to three lines maximum
-- Treat this like a hook: if this slide ran as a standalone post, would it earn attention?
+## Carousel formats
 
-**Examples:**
-- Headline: "7 signs your content strategy is broken" / Subtitle: "And exactly how to fix each one."
-- Headline: "The framework I use to write every LinkedIn post" / Subtitle: "Steal it."
-- Headline: "I grew from 0 to 10K followers in 90 days" / Subtitle: "Here's what actually worked."
+The topic and goal decide the format, and the five below cover most requests.
 
----
+| Format | Structure | Best for | Cover example |
+|---|---|---|---|
+| Listicle | [N] tips, mistakes, lessons or tools, one per slide | Quick wins, resource lists, common mistakes | Nine LinkedIn habits that are costing you readers |
+| Framework | Numbered steps with a clear progression | Teaching a repeatable method or system | The five-step process behind every post I write |
+| Before and after | Slides alternating the wrong approach and the right one | Reframing habits, teaching by contrast | You are writing your hooks backwards, and the fix is simple |
+| Data story | One real figure per slide, each with a one-sentence insight | Research-backed content, credibility | I reviewed [number] posts from our own account, and three patterns kept showing up |
+| Mini case study | Problem, approach, result, lesson, one or two slides each | Personal stories, client wins, experiments | How I [result] in [time period] without posting more |
 
-### Slide 2 — Context
-
-Set the stage. Frame the problem or establish why this topic matters.
-
-- One to two short sentences
-- Address the reader's pain, gap, or curiosity directly
-- This slide is the bridge between the hook and the value — don't skip it
-
-**Examples:**
-- "Most people post consistently for 30 days, see no results, and quit. Here's what they're missing."
-- "Content strategy sounds complicated. It doesn't have to be. Here's the simple truth."
-
----
-
-### Slides 3–N — Body
-
-One point per slide. This is non-negotiable.
-
-- **Bold header** — the key phrase or lesson of this slide (8 words or fewer)
-- **Supporting text** — max 30 words per slide body
-- Use formatting cues: `→` for emphasis, numbered lists for steps, bold key phrases
-- End each slide on a micro-cliffhanger or curiosity gap — make the reader swipe
-- The last word of each slide should make the next slide feel necessary
-
-**Slide body patterns:**
-- **Tip slide:** Bold header + 1–2 lines of context or example
-- **Step slide:** "Step [N]:" + what to do + why it works (one sentence)
-- **Contrast slide:** Wrong way → Right way, formatted as a two-line contrast
-- **Stat slide:** Surprising number + one-sentence insight
-
----
-
-### Final Slide — CTA
-
-Close with clarity. Don't waste the last slide.
-
-- **Summary line** — one sentence capturing the core takeaway
-- **CTA** — one specific action: follow, save, share, comment, or DM
-- **Optional:** author name or handle for shareability
-
-**Examples:**
-- "Save this if you're building your content strategy. Follow for one tactical post every week."
-- "The best time to fix your content strategy was 6 months ago. The second best time is now. → Follow for more."
-
----
-
-## Carousel Formats
-
-Choose the format that fits the user's topic and goal.
-
-### 1. Listicle
-
-**Structure:** "[N] tips / mistakes / lessons / tools" — one per slide
-
-**Best for:** Quick wins, resource lists, common mistakes
-
-**Cover example:** "9 LinkedIn mistakes killing your reach"
-
-**Example listicle slide:**
+A data story or case study needs real numbers and a real outcome from the user, so ask for them first, and leave placeholders such as [number] or [result the user supplied] where they are still missing. A single listicle slide looks like this:
 
 ```
----
-Slide 4 (Mistake #3)
-Header: Posting links in the body
-Body: LinkedIn suppresses posts with external links. Move the link to your first comment — reach jumps 30-40%.
----
+Slide 4 (Mistake 3)
+Header: Putting the link in the post
+Body: A reader who clicks away has left your post, so put the link in the first comment and let the post itself do the persuading.
 ```
 
----
+## Writing the slides
 
-### 2. Framework
+People skim carousels, so the header on each slide has to communicate its point even if the body is never read, and a header that fails that test gets rewritten. Keep the body under 30 words; when a slide runs over, split it into two, since crowded slides are where readers abandon the deck.
 
-**Structure:** Step-by-step process, numbered slides with clear progression
+Arrows, numbers and bold help only when used sparingly, because a slide where everything is emphasised has nothing emphasised. Each slide should also leave a reason to swipe, such as a partial thought or a count ("and that is only number three"), so the best part always feels one swipe away.
 
-**Best for:** Teaching a repeatable method, showing a system, documenting a process
+Slide copy is short, but the house style still applies across the deck: if every slide uses the same sentence shape the carousel reads like a chant, so vary the rhythm and keep the logic visible with because and so. For Fredrick's profile in particular, social-context rules out emojis, "Here's the thing" and staccato one-line-per-sentence writing, and those bans hold on slides as much as in posts.
 
-**Cover example:** "The 5-step framework I use to write every viral post"
+## Writing the caption
 
----
+The caption is a short post that happens to carry slides, so write it in the profile's voice (first person for Fredrick, "we" for TheSpark) and make its opening line a hook in its own right, since readers meet it above the cover and judge the post by both. The body should land the single most useful or surprising point from the deck rather than summarise every slide, and it should end with the same one action as the closing slide. On LinkedIn, keep external links out of the caption and put them in the first comment, as Fredrick's profile requires. On Instagram, put any hashtags at the very end, where they do not interrupt the hook.
 
-### 3. Before / After
+## Output format and example
 
-**Structure:** Contrast slides alternating between the wrong approach and the right approach
-
-**Best for:** Reframing bad habits, showing transformation, teaching by contrast
-
-**Cover example:** "You're writing content wrong. Here's the fix."
-
----
-
-### 4. Data Storytelling
-
-**Structure:** One surprising stat per slide, each followed by a one-sentence insight
-
-**Best for:** Research-backed content, thought leadership, building credibility
-
-**Cover example:** "I analyzed 200 top LinkedIn posts. Here's what I found."
-
----
-
-### 5. Mini Case Study
-
-**Structure:** Problem → Approach → Result → Lesson, each as one or two slides
-
-**Best for:** Personal stories, client wins, experiments, retrospectives
-
-**Cover example:** "How I doubled my engagement in 30 days (without posting more)"
-
-**Example case study slide pair:**
+Deliver each slide as a labelled block (cover with headline and subtitle, context, body slides with header and body, close with summary and action), followed by the caption with its platform named. This example uses a framework format for a client brand on LinkedIn, in eight slides.
 
 ```
----
-Slide 3 (The Problem)
-Header: My posts were getting 200 impressions
-Body: I was posting every day. Writing for an hour each time. Nobody cared.
-
----
-Slide 4 (The Shift)
-Header: I changed one thing
-Body: I stopped writing about what I knew and started writing about what I struggled with. Engagement tripled in 2 weeks.
----
-```
-
----
-
-## Writing Guidelines
-
-**Headlines do the heavy lifting.** People skim carousels. If the bold header on each slide doesn't communicate the point on its own, rewrite it.
-
-**Max 30 words per slide body.** Carousels are visual. Crowded slides get abandoned. If you're over 30 words, split into two slides.
-
-**Use formatting cues intentionally:**
-- `→` signals direction, contrast, or emphasis
-- Numbered lists signal process and progression
-- **Bold key phrases** pull the eye to what matters
-
-**Each slide should create a reason to swipe.** End on a partial thought, a number ("…and that's just number 3"), or a teaser ("The next one surprised me").
-
-**Curiosity gaps sustain momentum.** The reader should always feel like the best part is one swipe away.
-
-**Write the cover last.** Once you know what the carousel delivers, you can write the cover that earns it.
-
----
-
-## Output Format
-
-Output each slide as a clearly labeled block. Use this structure:
-
-```
----
 Slide 1 (Cover)
-Headline: [headline text]
-Subtitle: [subtitle text]
+Headline: The five-step structure behind posts people actually finish
+Subtitle: Most people skip step two, which is why their posts lose readers halfway.
 
----
 Slide 2 (Context)
-[body text]
+Writing a LinkedIn post is easy. Writing one that people read to the end takes structure, and most people are improvising theirs.
 
----
-Slide 3 ([topic of slide])
-Header: [bold header]
-Body: [supporting text — max 30 words]
+Slide 3 (Step 1)
+Header: Step 1: Write the hook last
+Body: The opening line matters most, so write the whole post first and come back to the hook once you know what it has to promise.
 
----
-[continue for all slides]
+Slide 4 (Step 2)
+Header: Step 2: One idea per post
+Body: Posts lose readers when they try to say too much. Pick one insight and build everything around it, even when "and also" is tempting.
 
----
-Slide N (CTA)
-Summary: [one-sentence takeaway]
-CTA: [follow / save / share / comment action]
+Slide 5 (Step 3)
+Header: Step 3: Break paragraphs early
+Body: White space is what makes a post readable on a phone, so break any paragraph that runs past two lines on a small screen.
+
+Slide 6 (Step 4)
+Header: Step 4: Add one specific detail
+Body: "I grew my audience" is forgettable. "I grew [number] followers in [number] days by posting every Tuesday" is a post, as long as the numbers are real.
+
+Slide 7 (Step 5)
+Header: Step 5: End with a direction
+Body: A post that simply stops leaves the reader nothing to do, so ask a real question, suggest a save, or invite a reply.
+
+Slide 8 (Close)
+Summary: Structure is what turns a decent idea into a post people finish.
+Action: Save this for your next draft, and follow for one writing tip a week.
+
+Caption (LinkedIn)
+When a post loses its readers early, the cause is usually that it tried to carry three ideas at once, not that the idea was weak. These five steps are the structure we use on every draft. Step two does most of the work, so if you only try one, start there.
 ```
 
----
+## Final voice check
 
-## Example Output
-
-**Topic:** How to write better LinkedIn posts
-**Format:** Framework (5 steps)
-**Slide count:** 8
-
----
-Slide 1 (Cover)
-Headline: The 5-step framework behind every high-performing LinkedIn post
-Subtitle: Most people skip step 2. That's why their posts don't land.
-
----
-Slide 2 (Context)
-Writing LinkedIn posts isn't hard. Writing posts people actually read is.
-The difference comes down to structure — and most people are winging it.
-
----
-Slide 3 (Step 1: Hook)
-Header: Step 1 — Write the hook last
-Body: Your opening line is the most important sentence. Write the full post first, then return to craft a hook that earns the read.
-
----
-Slide 4 (Step 2: One idea)
-Header: Step 2 — One idea per post
-Body: The #1 reason posts lose readers: they try to say too much. Pick one insight. Build everything around it. → Resist the urge to add "and also."
-
----
-Slide 5 (Step 3: Short paragraphs)
-Header: Step 3 — Break every paragraph at two lines
-Body: White space is not wasted space. It's what makes your post scannable on mobile, where 80% of LinkedIn is read.
-
----
-Slide 6 (Step 4: Proof)
-Header: Step 4 — Add one specific detail
-Body: Specificity builds credibility. "I grew 3,000 followers" is generic. "I grew 3,000 followers in 47 days by posting every Tuesday at 8am" is a post.
-
----
-Slide 7 (Step 5: CTA)
-Header: Step 5 — End with a direction
-Body: Don't just stop. Ask a question. Tell them to save it. Invite a reply. → Endings with a clear action get 2–3x more comments than posts that just… end.
-
----
-Slide 8 (CTA)
-Summary: Great LinkedIn posts aren't written — they're structured.
-CTA: Save this framework. Use it on your next post. Follow for one writing tip every week.
-
----
+Before you hand anything over, load the `house-prose-style` skill and run its pre-delivery voice check on every slide and the caption, then fix whatever fails. Fredrick's standing rule is that no copy goes out unless it follows the house style. A carousel that has not passed the check is not finished. Pay particular attention to the dash scan, since slide templates invite dashes, and to the closing slide, where summary lines drift into restating the cover.
 
 ## Boundaries
 
-- Does not produce visual design, images, or PDF files — output is **text content only** for each slide
-- Does not write single standalone posts — see **social-post-writer** for that
-- Does not write multi-part threads — see **social-thread-writer** for threaded content
-- Does not analyze post performance or metrics — see **social-performance-analyzer** for analytics
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not handle scheduling or calendar planning — see **social-content-calendar** for posting schedules
-
-## Related Skills
-
-- **social-context** — establish voice and platform preferences before writing slides
-- **social-hook-writer** — craft a high-converting cover slide headline before building the carousel
-- **social-content-repurposer** — turn an existing post, thread, or article into a carousel
+This skill writes slide text and captions only, so it does not produce images, design files or PDFs. A single standalone post belongs to social-post-writer and a multi-part thread to social-thread-writer, while turning an existing article or post into a carousel among other formats is the job of social-content-repurposer. Posting schedules belong to social-content-calendar, and judging how a published carousel performed belongs to social-performance-analyzer.

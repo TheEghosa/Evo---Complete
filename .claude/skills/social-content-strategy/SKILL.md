@@ -1,255 +1,161 @@
 ---
 name: social-content-strategy
-description: "When the user wants to plan a social media content strategy, decide what to post, or figure out topic clusters and content mix. Also use when the user mentions 'content strategy,' 'what should I post,' 'content ideas,' 'topic clusters,' 'content pillars,' 'content planning,' 'content mix,' 'I don't know what to post,' or 'social media strategy.' Use this to define the what and why of posting. For writing actual posts, see social-post-writer. For scheduling, see social-content-calendar. For platform-specific tactics, see social-platform-strategy."
-metadata:
-  version: 1.0.0
+description: "Builds a social media content strategy across Fredrick's profiles (Fredrick as founder, DataExplained, TheSpark Digital Tech and client brands): goals, content pillars and angles, topic clusters, pillar balance, content mix by platform, differentiation and a strategy document. Use when the user says content strategy, social media strategy, content pillars, topic clusters, content mix, content planning, what should we post about, I don't know what to post, content gaps, or plan content across my accounts. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. For DataExplained-specific posts defer to the DataExplained skills; not for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; use this for everything else, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover."
 ---
 
-## When to Use
+# Social content strategy
 
-- User asks to **plan a content strategy** or figure out what to post
-- User mentions "content strategy," "what should I post," or "content ideas"
-- User says "topic clusters," "content pillars," or "content planning"
-- User wants to define their **content mix** or balance of post types
-- User says "I don't know what to post" or "social media strategy"
-- User asks about topic selection, content differentiation, or niche positioning
+This skill decides what a profile should post and why, before anyone settles when it goes out or writes a word of it. The output is a strategy document that names the pillars, the angle on each, the mix of content types and the gaps the profile can own, which gives every later post a reason to exist. Without it, a calendar is just a list of dates waiting to be filled with whatever came to mind that morning.
 
-## Role
+## When another skill owns this
 
-You are an expert social media content strategist. Your job is to help the user build a structured content strategy — defining what they should post, why those topics serve their goals, and how to balance content types across platforms.
+DataExplained posts, comments, reels, pins and newsletters belong to the DataExplained skills, which already define that brand's editorial pipelines and verification rules. Fredrick's personal LinkedIn has its own topic engine inside linkedin-artifact-engine, and anything described as a content engine or full pack has its own skill too. Hand those requests over, because those skills carry rules (verification, sign-offs, evidence grading) that this general skill does not. A strategy that spans several profiles can still include DataExplained and Fredrick's LinkedIn, but only as fixed inputs: say where they sit in the wider plan and how the other profiles avoid overlapping them, and leave their pillars and rhythms to the skills that own them.
 
-This skill produces a **content strategy document** the user can reference when planning posts, briefing collaborators, or deciding what to create next.
+## 1. Read the profiles first
 
----
+Read the profiles in the social-context skill and work out which profile, or which set of profiles, the strategy is for. Ask one short question when the request does not make that clear, because a strategy written for TheSpark's company page and one written for Fredrick personally differ in pronoun, audience and what each is allowed to claim. When you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it as well and let it override the built-in profiles.
 
-## Step 1 — Check for existing context
+Take the audience, voice, recurring topics and confirmed platforms from social-context rather than asking for them again. Where social-context says a profile is not yet defined, follow its instruction to ask Fredrick on first use, and for a client collect the client profile it describes before going further.
 
-Before asking any questions, check if `workspace/social/[C] social-context.md` exists.
+## 2. Discovery
 
-**If it exists:**
-1. Read the file in full.
-2. Note which strategy-relevant fields are already populated: content pillars, audience, platforms, voice, goals.
-3. Skip any discovery questions already answered by the context file.
-4. Proceed to Step 2 with that information pre-loaded.
+Ask only what social-context and the conversation have not already answered, and group the questions into one message so the user is not interrogated one line at a time. The areas below are the ones a strategy cannot be built without.
 
-**If it does not exist:**
-Tell the user: "I don't have your social media context yet. Run the **social-context** skill first to set up your profile — it takes 5–10 minutes and makes every other skill much faster. Or, answer a few quick questions and I'll build your strategy from scratch."
+| Area | What to find out |
+|---|---|
+| Goals | The primary goal (awareness, leads, community or thought leadership), any secondary goal such as newsletter sign-ups or speaking invitations, and what success would look like in 90 days |
+| Current performance | What has worked, what flopped, and which posts they were proud of that underperformed, with numbers pasted in where they exist |
+| Competitive landscape | Which accounts they admire, what specifically they admire (topics, format, voice or frequency), and what those accounts are not covering |
+| Time and resources | Realistic hours per week, whether they work alone or with an editor or designer, and any long-form assets (newsletter, podcast, articles) that could be repurposed |
 
-If they want to proceed without context, collect the minimum needed: identity, audience, platforms, and rough content areas.
+When performance numbers are missing, say so in the strategy rather than filling the gap with a guess, since a pillar justified by invented engagement data will be defended long after it should have been dropped.
 
----
+## 3. Content pillars
 
-## Step 2 — Discovery questions
+Map three to five pillars per profile from the goals and the discovery answers. A pillar is a topic plus a specific take on it, so "SEO tips" is not a pillar, whereas "which SEO tasks a small business can safely stop paying for" is. For each one, record the details below.
 
-Ask only what the context file does not already answer. Group questions logically — do not ask one at a time unless the user seems to prefer that pace.
+| Field | What it holds |
+|---|---|
+| Name | A short, memorable label |
+| Angle | The profile's specific take, rather than the subject alone |
+| Why they own it | The experience or perspective that gives the profile credibility here |
+| Subtopics | Four to six specific ideas that live under the pillar |
+| Best formats | Which formats suit it: standalone post, thread, carousel, poll, short video, long video or pin |
 
-**Business goals for social media**
-- What is the primary goal: brand awareness, lead generation, community building, or thought leadership?
-- Is there a secondary goal? (e.g., drive newsletter signups, get speaking gigs, recruit talent)
-- What does success look like in 90 days?
+Present a summary table (pillar, share, topics, best formats) and then the detail for each pillar, since the calendar reuses the summary and the writers reuse the detail.
 
-**Current content performance**
-- What content has performed best so far? (topics, formats, or specific posts)
-- What has flopped or been ignored?
-- Are there any posts they're proud of that underperformed?
+The balance of content types is the next decision, and the defaults below are a starting point to adjust against the goals rather than a benchmark.
 
-**Competitive landscape**
-- Which competitors or creators do they admire in their space?
-- What specifically do they admire: the topics, the format, the voice, the frequency?
-- What are those creators NOT covering that the user could own?
-
-**Time and resource constraints**
-- How many hours per week can they realistically dedicate to content creation?
-- Do they have support (editor, designer, VA) or is it solo?
-- Are there content assets they already have (newsletter, podcast, long-form articles) that could be repurposed?
-
----
-
-## Step 3 — Content pillar development
-
-Map **3–5 content pillars** from the user's context, goals, and discovery answers.
-
-For each pillar:
-- **Name**: a short, memorable label
-- **Unique angle**: their specific take, not just the topic (e.g., not "leadership" but "why most leadership advice ignores the manager's emotional labor")
-- **Why they own it**: experience, expertise, or perspective that gives them credibility
-- **Subtopics**: 4–6 specific ideas that live under this pillar
-- **Best formats**: which content types (standalone post, thread, carousel, poll) suit this pillar
-
-Present pillars in a table followed by per-pillar detail:
-
-| Pillar | % of Content | Topics | Best Formats |
-|---|---|---|---|
-| [Name] | [%] | [Topic 1, Topic 2, Topic 3] | [Formats] |
-
-**Suggested pillar balance** (adjust to fit the user's goals):
-
-| Content Type | Target % | Purpose |
+| Content type | Default share | Purpose |
 |---|---|---|
-| Educational | 30% | Build authority and searchability |
-| Storytelling | 25% | Build connection and shareability |
-| Personal | 20% | Build trust and distinctiveness |
-| Engagement | 15% | Grow reach and community |
-| Promotional | 10% | Drive action and conversions |
+| Educational | 30% | Authority and searchability |
+| Storytelling | 25% | Connection and shareability |
+| Personal | 20% | Trust and distinctiveness |
+| Engagement | 15% | Reach and community |
+| Promotional | 10% | Action and conversion |
 
-Promotional content should not exceed 15%. If the user's primary goal is lead generation, shift budget from engagement to storytelling and educational — not to promotional.
+Promotional content should stay at or below 15%. When the primary goal is lead generation, move share from engagement into storytelling and educational content rather than into promotion, because an offer lands far better on someone who has already watched the profile prove it knows the work. The categories also bend to the profile: a data-context brand will rename or drop Personal, and a company page tends to turn it into a look at the work and the team.
 
----
+When one strategy covers several profiles, give each pillar a home. Fredrick and TheSpark both talk about SEO, so decide that Fredrick speaks as "I" with verdicts and opinions while TheSpark speaks as "we" about services, process and the work, and when both want the same topic, let one go first and the other add to it later. Client work stays on client accounts, and it appears on Fredrick's or TheSpark's accounts only under the naming rules in social-context.
 
-## Step 4 — Topic cluster framework
+## 4. Topic clusters
 
-For each pillar, build a **topic cluster** that maps subtopics to content formats and depth.
-
-Classify each topic as:
-- **Cornerstone**: deep, authority-building content — positions them as a go-to expert (best as threads, long-form, or carousels)
-- **Supporting**: quick, engagement-driven content — generates conversation and reach (best as standalone posts or polls)
-
-Example cluster for a pillar on "Startup hiring":
+Each pillar gets a cluster that sorts its subtopics by depth. Cornerstone pieces are deep and authority-building, so they suit threads, carousels, LinkedIn document posts, YouTube videos and pins that point to a guide. Supporting pieces are quick and conversational, which suits standalone posts, polls, short video, and Threads or Bluesky posts. The example below is illustrative, for a local SEO agency.
 
 | Topic | Type | Format | Notes |
 |---|---|---|---|
-| How to write a job description that attracts senior talent | Cornerstone | Thread | High search value |
-| The worst hiring mistake I made (and what it cost) | Cornerstone | Thread | Story-driven, high share |
-| One question I ask in every interview | Supporting | Standalone post | Easy to engage with |
-| Async vs. in-person interviews — what the data says | Supporting | Poll + reply | Controversy drives replies |
+| What a real location page contains that a copied one lacks | Cornerstone | Instagram or LinkedIn carousel | Evergreen, worth repurposing as a pin |
+| What a "toxic backlink" clean-up actually buys you | Cornerstone | X thread | Opinion-led, carries the agency's stance |
+| One question to ask before you pay for a backlink audit | Supporting | Short video | Spoken hook in the first seconds |
+| Do you check your Google Business Profile every week? | Supporting | Poll | Invites replies and shows what the audience does |
 
-Build one cluster table per pillar, or summarize if the user's pillars are well-defined.
+Build one table per pillar, or summarise when the pillars are already well defined, so every pillar has both deep pieces that build authority and quick ones that keep the conversation going.
 
-**Example pillar with topic cluster:**
+## 5. Content mix by platform
 
-```
-Pillar: Startup Hiring (30% of content)
-Angle: "Why most hiring advice ignores the manager's emotional labor"
+Each platform leans on some content types more than others. The table describes those leanings qualitatively, and social-platform-strategy has the fuller tactics.
 
-Topics:
-- Cornerstone: How to write a JD that attracts senior talent (thread)
-- Cornerstone: The worst hiring mistake I made (story thread)
-- Supporting: One question I ask in every interview (standalone post)
-- Supporting: Async vs. in-person interviews (poll + reply)
-- Supporting: "We're like a family" is a red flag (hot take post)
-```
+| Platform | Leans on |
+|---|---|
+| LinkedIn | Educational and storytelling |
+| X | Engagement, educational and personal |
+| Threads | Personal and engagement |
+| Bluesky | Educational and engagement |
+| Instagram | Educational carousels and personal |
+| Facebook | Storytelling and engagement |
+| TikTok | Educational in quick form and personal |
+| YouTube | Educational cornerstone pieces, with Shorts as supporting |
+| Pinterest | Evergreen educational material |
 
----
+Frequency comes from capacity rather than from a benchmark, because no number here would be verified and a schedule the profile keeps beats an ambitious one it abandons. Pick the lowest frequency per platform that can be sustained for 90 days. Fredrick's LinkedIn cadence and DataExplained's weekly rhythm are set by their own skills, so the strategy records them as given.
 
-## Step 5 — Content mix ratios
+The primary goal then shifts the mix, as follows.
 
-Define the **weekly content mix** across platforms based on time constraints and goals.
+| Goal | Adjustment |
+|---|---|
+| Thought leadership | More educational and storytelling, less engagement and promotion |
+| Lead generation | More storytelling and educational, promotion still capped at 15% |
+| Community building | More engagement and personal, promotion at 5% or less |
+| Audience growth | More engagement and supporting pieces, fewer cornerstone pieces |
 
-**Default ratios by platform:**
+Those adjustments are why the goal question comes first in discovery: change the goal and most of the mix changes with it.
 
-| Platform | Tone Skew | Frequency Sweet Spot | Best Pillar Mix |
-|---|---|---|---|
-| LinkedIn | Professional, insight-driven | 3–5x/week | Educational 40%, Storytelling 30%, Promotional 15%, Engagement 10%, Personal 5% |
-| Twitter/X | Conversational, reactive | 5–10x/week | Engagement 30%, Educational 25%, Personal 25%, Storytelling 15%, Promotional 5% |
-| Threads | Casual, community-first | 3–7x/week | Personal 30%, Engagement 25%, Educational 25%, Storytelling 15%, Promotional 5% |
-| Bluesky | Niche, interest-driven | 3–5x/week | Educational 35%, Engagement 30%, Storytelling 20%, Personal 10%, Promotional 5% |
+## 6. Differentiation
 
-Adjust these ratios based on the user's primary goal:
-- **Thought leadership**: increase Educational and Storytelling; reduce Engagement and Promotional
-- **Lead generation**: increase Storytelling and Promotional; maintain Educational
-- **Community building**: increase Engagement and Personal; reduce Promotional to 5% or less
-- **Audience growth**: increase Engagement and Supporting content; reduce Cornerstone frequency
+The strategy has to say what makes this profile different from everyone else covering the same topics, and three questions get there.
 
----
-
-## Step 6 — Differentiation analysis
-
-Answer three questions that define the user's strategic edge:
-
-**1. Unique voice positioning**
-What combination of identity, expertise, and communication style makes this person different from others covering the same topics? Write 2–3 sentences they could use as a north star when deciding what to post.
-
-**Example voice positioning statement:**
+The first is voice positioning, written as two or three sentences the profile can use as a north star when deciding what to post. For Fredrick and DataExplained, start from the positioning already in social-context rather than inventing a new one. An illustrative statement for a client might read like this:
 
 ```
-"You are the pragmatic operator in a sea of motivational speakers. Your content
-cuts through theory with specific, battle-tested playbooks from building a
-B2B SaaS company from $0 to $5M ARR. Your audience trusts you because you
-share the messy parts, not just the wins."
+You are the accountant who explains a tax change in plain English before
+your competitors have finished reading it. Your audience trusts you because
+you show the working, including the times the honest answer is "it depends".
 ```
 
-**2. Content gaps in the niche**
-Identify 3–5 topics or angles their competitors and peers are NOT covering — or covering poorly. These are underserved opportunities. Be specific: not "nobody talks about X" but "most content on X focuses on [common angle] — nobody is covering [missing angle]."
+The second is content gaps: three to five topics or angles that peers cover poorly or not at all. Make each one specific, so instead of "nobody talks about X", write "most content on X covers [common angle], and nobody is covering [missing angle]".
 
-**3. Underserved audience segments**
-Is there a subset of the user's audience that nobody is speaking to directly? (e.g., "founders who are not technical," "marketers at nonprofits," "senior ICs who don't want to become managers")
+The third is the underserved segment, a part of the audience nobody speaks to directly, such as founders who are not technical, marketers at nonprofits, or in-house leads who have to justify SEO spend to a finance director.
 
----
+## 7. The strategy document
 
-## Step 7 — Output: Content strategy document
-
-Compile everything into a structured document the user can save and reference. Use this structure:
+Compile everything into one document the user can keep and brief collaborators from. When it covers more than one profile, repeat the pillar, cluster and differentiation sections per profile and add the coordination notes once.
 
 ```
-# Content Strategy
+# Content strategy
 
-**Created**: [date]
-**Goals**: [primary and secondary goals]
-**Platforms**: [list]
+Created: [date]
+Profiles: [list]
+Goals: [primary and secondary]
+Platforms: [confirmed accounts per profile]
 
----
+## Content pillars
+[Pillar table, then detail per pillar]
 
-## Content Pillars
+## Pillar balance
+[Balance table, adjusted]
 
-[Pillar table + per-pillar detail]
+## Topic clusters
+[One cluster per pillar]
 
----
-
-## Pillar Balance
-
-[Balance ratio table]
-
----
-
-## Topic Clusters
-
-[One cluster table per pillar]
-
----
-
-## Weekly Content Mix
-
-[Platform mix table with adjusted ratios]
-
----
+## Content mix by platform
+[Platform table and chosen frequencies]
 
 ## Differentiation
+Voice positioning: [two or three sentences]
+Content gaps to own: [three to five, each specific]
+Underserved segment: [description]
 
-**Voice positioning**: [2–3 sentences]
-
-**Content gaps to own**:
-- [Gap 1]
-- [Gap 2]
-- [Gap 3]
-
-**Underserved audience segment**: [Description]
-
----
+## Coordination across profiles
+[Which profile owns which pillar, and the fixed inputs from other skills]
 
 ## Constraints
-
-**Time budget**: [hours/week]
-**Support**: [solo / with help]
-**Repurposable assets**: [list if any]
+Time budget: [hours per week]
+Support: [solo or with help]
+Repurposable assets: [list]
 ```
 
-After presenting the document, ask: "Does this match your direction? Any pillars to rename, ratios to adjust, or gaps you want to explore further?"
+After presenting it, ask whether it matches their direction and whether any pillar should be renamed, any ratio adjusted or any gap explored further, then apply the revisions. The natural next steps are social-content-calendar to turn the strategy into a schedule, social-platform-strategy for platform tactics, and social-post-writer to start drafting from the pillars.
 
-Apply revisions, then confirm: "Strategy saved. Use **social-content-calendar** to turn this into a posting schedule, or **social-post-writer** to start creating content from these pillars."
+## 8. Before you hand it over
 
----
-
-## Boundaries
-
-- Does not write individual posts or threads — see **social-post-writer** or **social-thread-writer** for content creation
-- Does not build a posting schedule or calendar — see **social-content-calendar** for scheduling
-- Does not analyze past post performance — see **social-performance-analyzer** or **social-content-pattern-analyzer** for analytics
-- Does not provide platform-specific algorithm tactics — see **social-platform-strategy** for platform guidance
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not set up the user's voice profile or identity — see **social-context** for foundational setup
-
-## See also
-
-**social-context** — establishes the foundational profile this skill reads from
-**social-platform-strategy** — develops platform-specific tactics from your content pillars
-**social-content-calendar** — turns your strategy into a scheduled posting plan
+Load the `house-prose-style` skill and run its pre-delivery voice check on the whole document, including the positioning statement, the pillar angles and every example topic, then fix whatever fails. Fredrick's standing rule is that no copy goes out unless it follows the house style, and the angles written here become the opening lines of real posts later. Deliver the strategy in your reply, and only when working inside an EvoNexus workspace also save it under `workspace/social/`.

@@ -1,278 +1,124 @@
 ---
 name: social-audience-growth-tracker
-description: "When the user wants to track follower growth, understand what drives new followers, or analyze audience development. Also use when the user mentions 'follower growth,' 'followers,' 'audience growth,' 'gaining followers,' 'losing followers,' 'who follows me,' or 'grow my audience.' Uses BlackTwist follower data when available. For post-level metrics, see social-performance-analyzer. For content patterns, see social-content-pattern-analyzer."
-metadata:
-  version: 1.0.0
+description: "Tracks follower and subscriber growth from pasted counts, CSV exports, screenshots or descriptions, asks for the figures each platform needs, calculates net growth and growth rate, finds spikes and stalls and the content behind them, separates engagement from follows, checks progress toward a follower goal, labels each conclusion well supported, thin or a hypothesis to test with its sample size, and ranks next actions. Use when the user says follower growth, audience growth, losing followers, why am I not growing, subscriber growth or grow my audience. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. Not for client analytics reports from GSC, GA4 or Meta (spark-analytics), for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; for DataExplained-specific posts defer to the DataExplained skills, and use this for everything else."
 ---
 
-# Audience Growth Tracker
+# Social audience growth tracker
 
-## When to Use
+This skill connects content decisions to audience outcomes: what brings new followers in, what stalls growth or loses people, and what to do about it next. It has no live connection to any platform, so it works only from the follower counts and post lists supplied in the conversation. That constraint matters more here than anywhere else in the set, because growth data invites storytelling, and a spike lining up with a post is a coincidence until the data says otherwise.
 
-- User asks to **track follower growth** or analyze audience development
-- User mentions "follower growth," "followers," or "audience growth"
-- User says "gaining followers," "losing followers," or "who follows me"
-- User wants to **grow their audience** or understand what drives new followers
-- User asks "why am I not growing" or "what's working for growth"
-- User shares follower data and wants a growth analysis
-- User mentions "grow my audience" or "follower milestones"
+## When another skill owns this
 
-## Role
+Client analytics reports built from Google Search Console, Google Analytics 4 or Meta data belong to spark-analytics, which reads those sources live, so hand those over, along with any request to pull Facebook or Instagram follower figures from the connector. DataExplained-specific posts go to the DataExplained skills, Fredrick's evidence-graded LinkedIn posts and audit-finding posts go to linkedin-artifact-engine, and anything called a content engine or a full pack has its own skill. Those skills carry verification, sign-off and evidence-grading rules that this one does not, which is why they take priority.
 
-You are an expert audience growth analyst. Your job is to turn follower data into clear, actionable insight — identifying what drives new followers, what causes stalls or drops, and exactly what the user should do next. You connect content decisions to audience outcomes. Every analysis ends with specific recommendations, not generic growth advice.
+Within this set, per-post metrics belong to social-performance-analyzer, patterns by topic or format to social-content-pattern-analyzer, and a combined action plan to social-optimization-advisor.
 
-## Context Check
+## Start with the profile
 
-Before analyzing anything, read `workspace/social/[C] social-context.md` (if it exists). This file contains the user's niche, platforms, goals, and growth targets. Use it to make every insight specific to their situation — including their milestone goals if captured.
+Read the social-context skill first and work out which profile the account belongs to (Fredrick as founder, DataExplained, TheSpark Digital Tech, or a client), asking one short question when the request leaves it open. The profile tells you the platforms, the audience and any growth goal, and a growth number only means something next to the audience the account is trying to reach. If you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it too and let it override the built-in profiles.
 
----
+## Ask for the right data
 
-## Data Collection
+The minimum for a useful analysis is a follower count at weekly intervals for at least four weeks, plus the posts published in that period with their dates. Two data points show the change but nothing about its shape, and with fewer than two there is nothing to analyse, so explain why and ask for more. Any post the user already knows drove follows is worth noting, since that is the closest thing to direct evidence most exports offer.
 
-### Path A — With BlackTwist
+Platforms count audiences differently, so the most useful figures differ by platform. Ask for the ones below where the platform or scheduling tool shows them, under whatever name the export uses.
 
-When BlackTwist tools are available, pull data in this order:
+| Platform | Most useful figures |
+|---|---|
+| LinkedIn | Followers over time; for a personal profile, connections separately, since they are a different relationship; newsletter subscribers if there is a newsletter; follows attributed to posts if shown |
+| X | Followers over time, follows attributed to posts if shown, reply activity, and accounts followed back, since follow-backs inflate the count |
+| Instagram | Followers over time, follows and unfollows if shown, follows per post, profile visits |
+| Threads | Followers over time, and when the account was promoted from Instagram |
+| Bluesky | Followers over time, and the dates of any starter pack or custom feed the account was added to, since both are discovery routes |
+| Facebook | Page followers over time, and whether the figure is followers or page likes, since some pages show both |
+| TikTok | Followers over time, follows per video, and where views came from if the export shows it |
+| YouTube | Subscribers over time, and subscribers gained and lost per video, which ties growth to a specific video |
+| Pinterest | Followers over time beside saves and outbound clicks, and whether followers are the goal at all |
 
-1. **`get_follower_growth`** — retrieve follower counts over time (use the maximum available window, minimum 30 days)
-2. **`get_metric_timeseries`** — pull follower count as a time series alongside engagement rate to identify correlation patterns
-3. **`list_posts`** — retrieve posts from the same window to correlate content with growth events
-4. **`get_consistency`** — check posting frequency and whether consistency correlates with growth rate shifts
-5. **`get_daily_recap`** — surface any anomaly days (unusual spikes or drops in followers)
+Those figures turn "growth went up" into a reason. On Pinterest in particular, if the account exists to send traffic, read saves and outbound clicks before followers. Screenshots of follower graphs need reading into a table and showing back first, since a graph read by eye is easy to misread.
 
-Collect all data before beginning analysis. Do not present raw numbers — interpret them.
+## Growth analysis
 
-### Path B — Without BlackTwist
+Work through the four parts below before writing any recommendation, because a recommendation drawn from the spike alone usually ignores the stall that followed it.
 
-If BlackTwist is unavailable, ask the user to provide their follower data directly:
+### Net growth per period
 
-> "To analyze your audience growth, I need your follower count over time. You can share:
-> - A screenshot of your analytics dashboard (follower graph)
-> - Manual data using the template below
->
-> **Data Collection Template:**
-> | Date | Follower Count | Notable Content That Day |
-> |------|---------------|--------------------------|
->
-> The minimum needed for useful analysis: **follower counts at weekly intervals for at least 4 weeks**, plus a list of posts from the same period.
->
-> If you know specific posts that drove follows (e.g., a post blew up), include those too."
-
-Do not attempt analysis with fewer than 2 data points — explain why and ask for more.
-
----
-
-## Growth Analysis
-
-Work through all four dimensions before generating recommendations.
-
-### 1. Net Growth Per Period
-
-Calculate for each available period (daily, weekly, monthly):
-
-- **Net new followers** = ending count − starting count
-- **Gross follows vs. unfollows** — if available, distinguish between new followers gained and existing followers lost
-- **Best and worst growth periods** — identify the top and bottom 3 periods by net growth
-
-State the trend plainly: "You gained 340 followers over 30 days — an average of 11 per day. Growth was uneven: 60% of new followers came in a single 5-day window."
-
-**Example net growth summary:**
+Net new followers for each period is the ending count minus the starting count. Where gross follows and unfollows are both available, report them separately, since a flat line can hide heavy churn underneath. Then name the best and worst three periods by net growth, and say plainly how even the growth was, as in "you gained 340 followers over 30 days, about 11 a day, but 60% of them arrived in one five-day window." The block below shows the shape of the summary, with invented figures.
 
 ```
-Period: March 1–31
-Starting followers: 2,410
-Ending followers: 2,750
+Period: 1 to 31 March
+Followers at start: 2,410
+Followers at end: 2,750
 Net growth: +340 (14.1%)
-Daily average: +11.3 followers/day
-Best week: March 11–17 (+198 followers)
-Worst week: March 25–31 (+22 followers)
+Daily average: +11.0
+Best week: 11 to 17 March (+198)
+Worst week: 25 to 31 March (+22)
 ```
 
-### 2. Growth Rate (%)
+### Growth rate and projection
 
-Calculate:
-- **Period growth rate** = (new followers / starting followers) × 100
-- **Trend direction** — is the rate accelerating, decelerating, or flat?
-- **Compounding effect** — project forward if the current rate holds (e.g., "at this rate, you reach 5,000 followers in ~8 weeks")
+Period growth rate is new followers divided by starting followers, multiplied by 100. Compare it with earlier periods to say whether growth is accelerating, slowing or flat. A projection is allowed only as a straight line from the current rate, labelled as such ("if the current rate holds, 5,000 is about eight weeks away"), because nothing guarantees the rate holds and a projection presented as a forecast is an invented number.
 
-Use the user's goal from context (if set) to frame projections as progress-toward-milestone.
+### Spikes
 
-**Example growth rate output:**
+A spike is any period with at least twice the average daily growth. For each one, identify what was posted during or just before it and offer the likely mechanism: reach spreading through reposts, an authority post drawing followers from the niche, social proof from an active comment thread, or discovery through hashtags, search, replies to larger accounts or a feed the account was added to. Note how long the spike lasted, since a one-day burst and a week of lift call for different responses. The mechanism is a hypothesis unless the platform attributes the follows to that post.
 
-```
-Growth rate: 14.1% this month (vs. 8.3% last month)
-Trend: Accelerating — rate nearly doubled month-over-month
-Projection: At this rate, you reach 5,000 followers in ~8 weeks
-```
+### Stalls
 
-### 3. Growth Spikes — Correlation with Content
+For flat or falling periods, check whether posting frequency dropped, whether the content shifted from formats that reach non-followers to formats that mostly reach existing ones, and whether an unfollow spike suggests a post disappointed the existing audience. A platform-wide change can cause a stall as well, though without evidence from outside the account that stays a hypothesis rather than an explanation. Treat stalls as findings rather than failures.
 
-For each notable growth spike (any period with 2× or more the average daily growth):
+## Content and growth together
 
-- Identify **what content was posted** during or just before the spike
-- Diagnose **why it likely drove follows**: virality (reposts spreading reach), authority signal (expert content attracting niche followers), social proof (community engagement), or discovery (hashtags, replies to large accounts)
-- Note **how long the spike lasted** — single-day burst vs. multi-day sustained growth
+Where follows per post are available, group the posts by format and topic and calculate average new followers per post for each group. That usually splits the content into posts that bring new followers, posts that earn engagement from existing followers without bringing new ones, and posts with no visible effect.
 
-"Your largest growth spike (47 followers in one day) coincided with a thread posted Tuesday morning that received 23 reposts. Repost-driven reach is your most reliable growth mechanism."
+The distinction between engagement and follows is the central idea of this skill. Engagement measures how well a post lands with people who already follow the account, whereas follows measure whether a stranger decided the account was worth tracking, which means high-engagement, low-follow content serves the current audience and follow-driving content answers "why should I follow this account?" Both have value for different goals, so say which kind each group is.
 
-### 4. Growth Stalls — Diagnosis
+Growth also comes in two shapes. Spike-driven growth arrives in bursts tied to breakout posts and depends on landing them again, while compound growth is a steadier weekly gain from reliable output. Say which shape the account has and whether it suits the goal and the time available.
 
-For periods of flat or negative growth:
+## Label every conclusion
 
-- **Was posting frequency lower?** Reduced output often precedes stalls.
-- **Did content type shift?** Moving from high-discovery formats to low-discovery formats reduces exposure to non-followers.
-- **Was there an unfollow spike?** A sudden drop suggests content that disappointed existing followers.
-- **Platform algorithm change?** Note if the stall was broad-based (affects many creators) vs. account-specific.
+Each conclusion carries its evidence label and the sample size behind it.
 
-Frame stalls as diagnostic findings, not failures.
+| Label | When it applies |
+|---|---|
+| Well supported | The platform attributes the follows to the content, or the same link between a content type and growth repeats across at least five posts or periods |
+| Thin | A link shows across a few periods, or one spike accounts for most of the growth |
+| Hypothesis to test | A single coincidence in timing, or a cause from outside the account such as a platform change |
 
----
+Never compare the account with an industry growth rate or a "typical" follower count, because no verified figure is available here and the account's own history is the baseline. If Fredrick supplies a target or a baseline of his own, use it and name its source.
 
-## Content-Growth Correlation
+## Recommendations and milestones
 
-Analyze the relationship between content and audience growth across three dimensions.
+Finish with three to five ranked actions, each tied to a named finding, labelled with its evidence, and concrete enough to act on this week. Two examples show the standard, using invented figures: "Your three posts that brought the most follows were all threads explaining a framework (thin, n = 3), so write one framework thread a week and compare follows per post after a month," and "your breakout post drew 200 reposts but only 30 follows, so end high-reach posts with a direct reason to follow." When an action calls for new copy, name the skill: social-thread-writer for threads, social-post-writer for single posts, social-hook-writer for openers, social-carousel-writer for carousels, and social-content-calendar for fitting the change into the schedule.
 
-### Which Content Types Drive Follows?
+If the profile or the user gives a follower goal, frame the analysis against it: where the account stands, the weekly rate needed to hit the goal on time, the rate the data actually shows, and what would have to change to close the gap. If there is no goal, ask whether there is one, since a growth rate means more against a target.
 
-Group posts by format and topic, then calculate **average new followers per post** for each group:
+## The report
 
-- **High-follow content** — posts that consistently generate new followers (typically: educational threads, strong takes, viral storytelling)
-- **High-engagement but low-follow content** — posts that get likes and comments from existing followers without attracting new ones
-- **Neutral content** — posts with no measurable growth signal
-
-### Engagement vs. Follows — The Key Distinction
-
-**Engagement** (likes, comments, reposts) and **follows** measure different things:
-
-- **Engagement** signals resonance with your existing audience — they already follow you and respond to your content
-- **Follows** signal discovery and first impressions — new people are deciding whether your account is worth tracking
-
-Content that drives high engagement but few follows is **entertainment for current followers**. Content that drives follows is **authority-building or discovery-optimized** — it answers "why should I follow this person?"
-
-Identify which of the user's content falls into each category. Both have value, but they serve different growth goals.
-
-### Viral Moments vs. Consistent Growth
-
-Distinguish between two growth patterns:
-
-- **Spike-driven growth** — the account grows in bursts tied to individual breakout posts; flat between spikes. Requires consistently hitting on high-virality content.
-- **Compound growth** — steady daily/weekly gains from consistent, reliable output. Less exciting but more sustainable.
-
-Identify which pattern the user currently has, and whether it matches their goals and capacity.
-
----
-
-## Platform-Specific Growth Dynamics
-
-Apply platform context from `workspace/social/[C] social-context.md`. Focus analysis on the platforms the user actually uses.
-
-### LinkedIn
-
-- **Connections vs. followers** — connections are mutual (both parties opt in); followers are one-way. Track both separately. Most growth strategies target followers, not connections.
-- **Newsletter subscribers** — if the user has a LinkedIn newsletter, subscriber growth is a separate and often faster signal. Include if data is available.
-- **Discovery mechanisms**: comments on large accounts' posts, original research/data, and contrarian professional takes drive the most follower growth on LinkedIn.
-- **Growth ceiling**: LinkedIn's algorithm heavily favors accounts with existing engagement. Early growth is slow; it accelerates after crossing ~1,000 engaged followers.
-
-### Twitter / X
-
-- **Follow-back culture** — a meaningful portion of follows on Twitter/X come from follow-back behavior, not content quality. Segment organic (content-driven) follows from follow-back follows where possible.
-- **Thread virality** — long threads with strong hooks and sequential value are Twitter/X's highest-leverage growth format. A single breakout thread can drive more followers than months of regular posting.
-- **Reply strategy** — consistently high-quality replies to large accounts is often underrated as a growth mechanism. Track whether the user's reply activity correlates with follower spikes.
-
-### Threads
-
-- **Early-platform dynamics** — Threads is still establishing algorithmic norms. Discovery is more volatile and less predictable than mature platforms. Growth patterns here may not yet be reliable signals.
-- **Cross-platform carry** — many Threads users arrive from Instagram. If the user has an Instagram following, cross-promotion may be a faster growth lever than native content strategy.
-- **Engagement-first algorithm** — Threads currently surfaces content with high comment activity. Posts that generate conversation (questions, takes, debates) outperform polished broadcasts.
-
-### Bluesky
-
-- **Starter packs** — getting included in a relevant starter pack can drive significant follower spikes. These are curated lists shared across the community. Track whether any growth spikes correlate with starter pack additions.
-- **Custom feeds** — Bluesky's custom feed system means posts can be surfaced to niche audiences via topic feeds. Posts that appear in popular feeds drive discovery follows.
-- **Community-driven growth** — Bluesky growth is more organic and community-referral-based than algorithm-driven. Active participation in topic conversations matters more than post optimization.
-- **Early adopter dynamics** — the platform skews toward tech, journalism, and creator communities. Niche authority matters more here than on scale platforms.
-
----
-
-## Growth Recommendations
-
-Generate **3–5 specific, prioritized actions** based on the analysis. Each recommendation must:
-
-- Reference a specific finding (not generic advice)
-- Be concrete enough to act on this week
-- Be ranked by expected growth impact
-
-**Example format:**
-
-1. **Double down on educational threads** — Your 3 highest-follower-generating posts were all threads explaining a framework. Write one thread per week targeting non-followers searching your topic.
-2. **Add a follow CTA to breakout posts** — Your viral post drove 200 reposts but only 30 follows. End high-reach posts with a direct invitation: "Follow for more on [topic]."
-3. **Post more on Tuesdays and Wednesdays** — 71% of your follower growth happened on posts published Tuesday–Wednesday. Shift your highest-effort content to those days.
-4. **Reply to 3 large accounts per day in your niche** — Your reply activity correlates with your two best growth weeks. Increase reply volume before publishing your next thread.
-
----
-
-## Milestone Tracking
-
-If the user's context file includes growth goals (e.g., "reach 10,000 followers by Q3"), frame the analysis relative to those milestones:
-
-- **Current position** — where they are relative to the goal
-- **Required rate** — the daily/weekly growth rate needed to hit the milestone on time
-- **Current rate** — what the data shows they're actually achieving
-- **Gap analysis** — what needs to change to close the gap, stated specifically
-
-"Your goal is 10,000 followers by June 30. You currently have 6,240 and need to gain 3,760 more in 14 weeks — approximately 269 per week. Your current average is 87 per week. To hit your goal, you need to roughly 3× your growth rate. The most direct lever based on your data: increase thread output from 1 to 3 per week and engage in reply-driven discovery daily."
-
-If no growth goal is captured in context, ask: "Do you have a follower target or timeline in mind? I'll track your progress against it."
-
----
-
-## Reporting Format
-
-Deliver findings in this structure:
+The report uses the structure below.
 
 ```
-## Audience Growth Report — [Date Range]
+## Audience growth report for [date range]
 
-**Followers at start:** [N]
-**Followers at end:** [N]
-**Net growth:** [+N] ([X%])
-**Daily average:** [N followers/day]
+Profile: [which social-context profile]
+Followers at start and end: [n] to [n]
+Net growth: [+n] ([x%]), daily average [n]
 
----
+### Growth trend
+[2 to 3 sentences on direction and rate, with labels]
 
-### Growth Trend
-[2–3 sentences on direction and rate]
+### What drove growth, and the stalls
+[Content or behaviour lined up with the best and worst periods, with labels]
 
-### Top Growth Drivers
-[Content or behaviors correlated with the best growth periods]
+### What to do next
+[3 to 5 ranked actions, each with its label and the skill that writes the copy]
 
-### Growth Stalls
-[Diagnosis of flat/negative periods, if any]
-
-### Platform Dynamics
-[Platform-specific notes relevant to their situation]
-
-### What to Do Next
-[3–5 ranked, specific actions]
-
-### Milestone Progress
-[If a goal exists: current position vs. target, required vs. actual rate]
+### Milestone progress
+[Current position, required rate and actual rate, if a goal exists]
 ```
 
-Write in active voice throughout. Bold key terms. Keep the report scannable — no walls of text.
+## Before you deliver
 
----
+Every number in the report must come from the data supplied or be calculated from it, so remove any figure that does not. Deliver the report in your reply, and only when working inside an EvoNexus workspace also save it under `workspace/social/`.
 
-## Boundaries
-
-- Does not write or draft social media posts — see **social-post-writer** for that
-- Does not analyze individual post metrics — see **social-performance-analyzer** for per-post breakdowns
-- Does not identify content patterns across topics or formats — see **social-content-pattern-analyzer** for pattern detection
-- Does not generate a content strategy or recommendations plan — see **social-optimization-advisor** for action plans
-- Does not execute code or access external APIs unless BlackTwist MCP is connected
-- Does not provide vanity metric comparisons against industry benchmarks — all analysis uses the user's own data as the baseline
-
-## Related Skills
-
-- **social-context** — establish niche, platforms, and growth goals before analyzing
-- **social-performance-analyzer** — analyze post-level metrics (impressions, engagement rate, saves)
-- **social-optimization-advisor** — translate growth findings into a concrete improvement plan
+The final step is the voice check: load the `house-prose-style` skill, run its pre-delivery voice check on the report and on any suggested line of copy, and fix what fails. Fredrick's standing rule is that no copy goes out unless it follows the house style, and a growth report he forwards to a client is copy too.

@@ -1,335 +1,75 @@
 ---
 name: social-context
-description: "When the user wants to set up or update their social media profile, voice, audience, content pillars, or platform preferences. Also use when the user mentions 'set up context,' 'my voice,' 'my audience,' 'content pillars,' 'brand voice,' 'who I'm writing for,' 'social media profile,' or wants to avoid repeating foundational information across social media tasks. Use this at the start of any new project before using other social media skills — it creates workspace/social/[C] social-context.md that all other skills reference."
-metadata:
-  version: 1.0.0
+description: "Holds Fredrick's social media voice profiles (Fredrick as founder of TheSpark, DataExplained @dataexplain, TheSpark Digital Tech Ltd, and a template for client or other brands) and decides which profile a request needs. Read by every social-* skill before writing, planning or analysing. Use when the user says set up my voice, update my profile, who am I writing for, my audience, content pillars, brand voice, which voice, add a client profile, or when any social media task needs to know whose voice to use. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. For DataExplained posts, comments, reels, pins and newsletters, and for Fredrick's evidence-graded LinkedIn posts, the dedicated DataExplained skills and linkedin-artifact-engine take priority; this skill only supplies the profile."
 ---
 
-## When to Use
+# Social context
 
-- User wants to **set up or update** their social media profile, voice, or audience
-- User mentions "set up context," "my voice," or "my audience"
-- User says "content pillars," "brand voice," or "who I'm writing for"
-- User mentions "social media profile" or wants to avoid repeating foundational info
-- User is starting a **new project** and needs to configure their identity before using other skills
-- User wants to update their platforms, voice adjectives, or example posts
+This skill is the single source of truth for whose voice a social media draft is written in, who it is written for, and which rules that voice carries. Every other social-* skill reads it first, because a post in the wrong voice has to be thrown away no matter how good the hook is. Keeping the profiles here, rather than copying them into each skill, means a change to a profile only has to be made once.
 
-## Purpose
+## How to choose a profile
 
-You are an expert social media strategist and content coach. Your job is to help the user define their social media identity once — so every other skill can write in their voice, for their audience, without them repeating themselves.
+Start by working out which profile the request needs, using the cues below, and ask one short question when the request does not make it clear. Guessing is the expensive option, since a TheSpark company post and a personal founder post differ in pronoun, audience and claim rules, and the difference is not something you can edit in afterwards.
 
-This skill creates or updates `workspace/social/[C] social-context.md`, a persistent context file that all other social media skills read before doing anything. It is the single source of truth for who the user is, who they write for, and how they sound.
+| Cue in the request | Profile |
+|---|---|
+| "my post", "for me", "my X", "my Instagram", eghosa.me, founder story, SEO opinions in the first person | Fredrick (founder) |
+| DataExplained, @dataexplain, dataexplained.com, data behind a headline | DataExplained |
+| TheSpark, The Spark Digital, @thesparkdigital, our agency, our services, company page | TheSpark Digital Tech |
+| A client's name, "for a client", another brand | Client or other brand |
 
----
+Once you know the profile, check whether another skill owns the request before writing anything. DataExplained posts, comments, reels, Pinterest pins and the two newsletters each have their own DataExplained skill, and Fredrick's LinkedIn posts built on audit findings or evidence belong to linkedin-artifact-engine, so hand those requests over. The social-* skills take everything else, including DataExplained formats no dedicated skill covers (Threads, Bluesky and YouTube, for example), in which case use the DataExplained profile below and follow its verification rules exactly.
 
-## Step 1 — Check for existing context
+If you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it as well and let it override what is written here, because that file is where local updates are kept.
 
-Before doing anything else, check if `workspace/social/[C] social-context.md` already exists.
+## Profile 1: Fredrick (founder)
 
-**If it exists:**
-1. Read the file in full.
-2. Summarize what is already captured (2–3 sentences).
-3. Ask: "What would you like to update? You can update a specific section, add missing information, or review the whole file."
-4. Apply only the requested changes — do not regenerate sections the user did not ask to change.
-5. Update the `last_updated` field at the top of the file.
+Fredrick Eghosa is the founder of TheSpark Digital Tech Ltd, an SEO practitioner whose market is SEO, AEO, GEO and reputation management, and whose edge is real client audit volume combined with the discipline to say when the data shows something does not work. He describes the persona he wants as "a tech operator who looks completely nondescript, is in fact very widely read, has built serious things, and is properly eccentric." His personal site is eghosa.me.
 
-**If it does not exist:**
-Proceed to Step 2.
+He writes for brand owners and in-house marketing leads rather than agency peers, and the test for any post is whether a marketing lead who has to explain it to a CFO on Monday would find it useful. That audience is why he writes like a practitioner talking to a client rather than a thought leader addressing a feed.
 
----
+His tone carries operator certainty, so findings are stated as findings rather than softened into suggestions. He runs hot, with hard words such as scam, lie, garbage and lazy available, but never profanity and never punching down at a named person or competitor. Recurring topics include toxic-backlink myths, copy-paste local landing pages, crawl limits and AI visibility ("Share of Model"). His signature moves are a flat verdict opener ("'Toxic backlinks' is a scam."), a short one-line hammer after a long setup, a question answered at once ("The reality?"), a named mini-framework, a closing inversion, crediting the source of an idea, and real Nigerian geography such as Lagos, Abuja and Port Harcourt where it fits.
 
-## Step 2 — Choose a setup path
+Several rules are fixed for this profile. He never names a client, a client's domain, an agency or a colleague, and he never ships a claim about results unless he supplied it, since an invented result would damage the credibility his whole positioning rests on. He uses no emojis, no "Here's the thing", no "Unpopular opinion", no "Let that sink in", and no staccato one-sentence-per-line posts. External links go in the comments rather than the post body. His other roles, such as Head of Search at RankGrow SEO, are not mentioned unless he asks.
 
-Offer two paths:
+LinkedIn is the only platform his files confirm for his personal brand, so for any other platform ask him which accounts he runs before you plan around them.
 
-**Path A — Quick setup:** The user provides a brain dump of key information (a paragraph, bullet list, or existing bio), and you draft the full context file from it. Follow up with targeted questions to fill gaps.
+## Profile 2: DataExplained (@dataexplain)
 
-**Path B — Conversational walkthrough:** You ask diagnostic questions one at a time, building up the context file section by section. Recommended for users who haven't thought through their strategy yet.
+DataExplained is a data context account rather than a news account: it finds the statistical and economic layer beneath major global headlines, and its own line is that the news is the canvas and the data is the paint. The brand voice is "the smartest person in the room who makes complicated things feel obvious, and always has a number to back it up." Its audience is professionals and decision makers, business owners, investors, policy stakeholders, students and academics, the tech community, media professionals and the curious educated public worldwide.
 
-Ask: "Would you like to give me a quick overview and I'll draft the context file — or would you prefer I walk you through it section by section?"
+Its niches are economics, AI and tech, energy, climate, geopolitics, health and science, demographics, sports business, consumer behaviour, labour markets, housing, food security and Africa. Tone shifts by surface (forensic and neutral in comments, conversational in newsletters), and sensitive stories switch to a measured, factual register that bans words like shocking, insane and wild.
 
----
+Verification is the non-negotiable part of this profile, because the brand's value is that its numbers are right. Every figure must trace to a credible source, preferring the primary source, with currency, units, preliminary versus final status and the event date checked, and the Rule of Two (two independent credible sources) applies to anything load-bearing. Never give investment or medical advice, never post political advocacy, and use American English. Exclamation marks and em dashes are banned across the brand.
 
-## Step 3 — Gather information
+The handle is @dataexplain and the site is dataexplained.com. The sign-off depends on the surface, so copy the right one exactly:
 
-Work through all 8 sections below. In Path A, extract what you can from the user's input before asking follow-up questions. In Path B, cover each section with targeted questions.
+| Surface | Sign-off |
+|---|---|
+| X posts | Get the data behind the headlines: @dataexplain |
+| Reels and short video | Follow DataExplained for the numbers behind the headlines. |
+| Pinterest | Follow DataExplained for more, and save this pin for later. |
 
-Do not move through all sections at once. Ask, receive, confirm — then move to the next.
+For surfaces that are not in this table, ask Fredrick which line to use rather than inventing one, since a wrong sign-off is visible on every post.
 
----
+## Profile 3: TheSpark Digital Tech Ltd
 
-### Section 1: Identity
+TheSpark Digital Tech Ltd (marketed as The Spark Digital) is Fredrick's SEO agency, based in Lagos, Nigeria, with the tagline "Proven, ROI-Driven SEO Strategies." Its website is thesparkdigital.net, and its social accounts are linkedin.com/company/thesparkdigital, @thesparkdigital on X, and @thesparkdigital01 on Instagram and TikTok. The company also runs webdesigncompanynigeria.com as its own lead generation site for Nigerian buyers, who, according to that site's notes, prefer to start conversations on WhatsApp.
 
-Who is this account?
+Company posts speak as "we", because they represent the agency rather than Fredrick personally. The house prose style applies in full, and no claim about a client, a person or a result goes into a TheSpark post unless Fredrick provided it, for the same credibility reason as his personal profile.
 
-- **Creator or brand?** (Personal account / company / client account)
-- **Name and handle(s)** — full name, preferred name, username(s) per platform
-- **Role or title** — how they describe what they do (use their own words)
-- **Industry or niche** — the space they operate in; be specific (e.g., "B2B SaaS growth" not just "tech")
-- **One-line positioning** — what makes them different from others in the same space
+The files do not yet describe TheSpark's social audience, content pillars or posting voice beyond those rules. The first time this profile is used, ask Fredrick who the company account is for, what it should post about, and how it should sound, then offer him the updated profile text so he can add it to this skill.
 
-Example questions to ask:
-- "How do you introduce yourself at the start of a post?"
-- "What do you do that most people in your field don't?"
+## Profile 4: client or other brand
 
----
+Fredrick runs an agency, so some requests will be for a client. Before writing in a client's voice, collect the brand name, its audience, three to five content pillars, voice and tone (with one example post they like, if possible), the platforms they use, and any words, claims or topics they forbid. Keep that profile in the conversation rather than in this skill, because client details should not sit inside Fredrick's own account skills unless he asks for that.
 
-### Section 2: Target audience
+## Rules every profile shares
 
-Who is this content for?
+All copy follows Fredrick's house prose style, which means loading the `house-prose-style` skill and running its pre-delivery voice check before anything is handed over. His standing rule is that no copy goes out unless it passes that style, so a draft that fails the check is not finished. In particular there are no em dashes or en dashes in any profile, and the stock machine phrases on the house denylist are banned everywhere.
 
-- **Primary audience** — job title, life stage, or identity that best describes them
-- **What they struggle with** — the specific problems or frustrations the user's content addresses
-- **What they want** — goals, ambitions, outcomes they're chasing
-- **What they already know** — sophistication level; avoid over-explaining or under-explaining
-- **Where they hang out** — which platforms they're most active on, and in what context
+No skill may invent a statistic, a result, a follower count or a platform limit. When a number is needed and has not been provided, ask for it or leave a clearly marked placeholder, since an invented figure is worse than a missing one.
 
-Example questions to ask:
-- "Who is the ideal person who reads your post and immediately hits follow?"
-- "What's a frustration your audience has that you've experienced yourself?"
+## Updating a profile
 
----
-
-### Section 3: Voice & tone
-
-How does this person sound?
-
-- **3–5 voice adjectives** — words that describe the writing style (e.g., direct, warm, irreverent, precise, conversational)
-- **Phrases they use** — actual words, expressions, or sentence structures that feel authentic to them (capture verbatim language wherever possible)
-- **Phrases to avoid** — corporate jargon, buzzwords, tones that feel fake or off-brand
-- **Formality level** — casual / semi-formal / professional
-- **Humor level** — none / dry / occasional / frequent
-
-Example questions to ask:
-- "Give me a sentence or two you'd actually write in a post. Don't polish it."
-- "What's something you'd never say in a post, even if it's technically accurate?"
-
-**Example voice capture:**
-
-```
-Voice adjectives: direct, warm, slightly irreverent, specific, anti-corporate
-Formality: Semi-formal
-Humor: Dry / occasional
-Phrases to use: "the unsexy truth is," "here's what actually happened," "nobody talks about this"
-Phrases to avoid: "synergy," "leverage," "excited to announce," "thought leader"
-```
-
-> Capture verbatim language. If the user says "I hate the word 'synergy'" — write that down. If they write "the unsexy truth is..." — note that phrase. Their actual words are more valuable than a summary.
-
----
-
-### Section 4: Content pillars
-
-What topics does this person own?
-
-- **3–5 content pillars** — the core topics they return to consistently
-- **Unique angle per pillar** — their specific take, not just the topic (e.g., not "marketing" but "why most marketing advice is wrong for early-stage founders")
-- **Why they own this topic** — experience, expertise, or lived perspective that gives them credibility or distinctiveness
-
-Example questions to ask:
-- "If someone followed you for 6 months, what 3–5 topics would they expect you to cover?"
-- "What's your most contrarian or distinctive take in your field?"
-
----
-
-### Section 5: Platform configuration
-
-Where do they post, and what are they trying to do?
-
-For each platform they use, capture:
-
-- **Platform name** (LinkedIn, Twitter/X, Threads, Bluesky)
-- **Primary goal** — grow audience / build authority / drive leads / engage community / stay visible
-- **Current posting frequency** — how often they actually post
-- **Target posting frequency** — how often they want to post
-- **Connected via ferramenta externa?** — yes / no (used by other skills for tool integration)
-
-Example questions to ask:
-- "Which platforms are you currently active on?"
-- "What do you want each platform to do for you — are they all serving the same goal, or different ones?"
-
----
-
-### Section 6: Content formats
-
-How do they like to communicate?
-
-- **Formats they use** — standalone posts, threads/tweet storms, carousels, polls, long-form articles
-- **Preferred format per platform** — what tends to work well for them
-- **Formats they avoid** — formats they've tried and don't like, or don't fit their style
-
-Example questions to ask:
-- "Do you prefer writing short punchy posts or longer threads?"
-- "Any formats you've tried and never want to do again?"
-
----
-
-### Section 7: Example posts
-
-The most important section for voice matching.
-
-Ask the user to share **3–5 real posts** that represent their best or most authentic work. These are used by all creation skills to match their style.
-
-- Copy them verbatim — do not summarize or clean them up.
-- Note which platform each is from.
-- Note what made each one good (in the user's words, if they say).
-
-If they can't share posts yet:
-- Ask for a rough draft of something they'd write
-- Or proceed without examples and note this section is incomplete
-
----
-
-### Section 8: Anti-patterns
-
-What to avoid.
-
-- **Topics off limits** — subjects they won't touch (competitors, politics, personal life, etc.)
-- **Tones that don't fit** — styles that feel wrong (preachy, hype-y, vulnerable, motivational-poster, etc.)
-- **Content types they won't create** — formats or content categories they actively want to avoid
-
-Example questions to ask:
-- "Is there anything I should never write for you, no matter the topic?"
-- "What's a post you've seen in your niche that made you cringe?"
-
-**Example anti-patterns section:**
-
-```
-Topics to avoid: Competitor comparisons, partisan politics, personal health
-Tones to avoid: Preachy, hype-y, motivational-poster, "rise and grind"
-Content types to avoid: Memes, engagement-bait polls, "agree?" one-liners
-```
-
----
-
-## Step 4 — Write the context file
-
-Once you have enough information (at minimum: identity, audience, voice, and at least one platform), create or update `workspace/social/[C] social-context.md` using this exact template:
-
-```markdown
-# Social Media Context
-
-last_updated: YYYY-MM-DD
-
----
-
-## Identity
-
-- **Type**: [Creator / Brand / Client account]
-- **Name**: [Full name or brand name]
-- **Handle(s)**: [Platform handles, e.g. @handle on LinkedIn]
-- **Role**: [How they describe what they do]
-- **Industry/niche**: [Specific space they operate in]
-- **Positioning**: [One-line differentiator]
-
----
-
-## Target Audience
-
-- **Primary audience**: [Description]
-- **Pain points**: [What they struggle with]
-- **Goals**: [What they want]
-- **Sophistication level**: [Beginner / Intermediate / Expert]
-- **Where they hang out**: [Platforms and context]
-
----
-
-## Voice & Tone
-
-- **Voice adjectives**: [3–5 words]
-- **Formality**: [Casual / Semi-formal / Professional]
-- **Humor**: [None / Dry / Occasional / Frequent]
-- **Phrases to use**: [Actual phrases/expressions from the user]
-- **Phrases to avoid**: [Jargon, tones, expressions that feel off]
-
----
-
-## Content Pillars
-
-1. **[Pillar name]** — [Unique angle]
-2. **[Pillar name]** — [Unique angle]
-3. **[Pillar name]** — [Unique angle]
-[Add more as needed]
-
----
-
-## Platform Configuration
-
-| Platform | Goal | Current Frequency | Target Frequency | ferramenta externa |
-|---|---|---|---|---|
-| [Platform] | [Goal] | [e.g. 3x/week] | [e.g. 5x/week] | [Yes / No] |
-
----
-
-## Content Formats
-
-- **Preferred formats**: [List]
-- **Per-platform preferences**: [Any platform-specific notes]
-- **Formats to avoid**: [List]
-
----
-
-## Example Posts
-
-### Example 1 — [Platform]
-[Verbatim post text]
-
-### Example 2 — [Platform]
-[Verbatim post text]
-
-[Add more as needed]
-
----
-
-## Anti-Patterns
-
-- **Topics to avoid**: [List]
-- **Tones to avoid**: [List]
-- **Content types to avoid**: [List]
-```
-
----
-
-## Step 5 — Confirm and save
-
-After drafting:
-
-1. Show the user the full file contents.
-2. Ask: "Does this capture your context accurately? Any sections to adjust?"
-3. Apply revisions.
-4. Save to `workspace/social/[C] social-context.md`.
-5. Confirm: "Context saved. All other social media skills will now read from this file."
-
----
-
-## Maintenance
-
-The user can update any section at any time by running this skill again. When updating:
-
-- Read the existing file first.
-- Ask which section needs updating.
-- Edit only that section — leave the rest untouched.
-- Update the `last_updated` date.
-
-Common update triggers:
-- Expanding to a new platform → update **Platform Configuration**
-- Refining their voice after seeing what works → update **Voice & Tone** and **Example Posts**
-- Shifting their niche or audience → update **Identity** and **Target Audience**
-- Dropping a topic → update **Content Pillars** and **Anti-Patterns**
-
----
-
-## Boundaries
-
-- Does not write posts, threads, or carousels — see **social-post-writer**, **social-thread-writer**, or **social-carousel-writer** for content creation
-- Does not build a content strategy or define topic clusters — see **social-content-strategy** for strategic planning
-- Does not analyze performance or metrics — see **social-performance-analyzer** for analytics
-- Does not schedule or plan a content calendar — see **social-content-calendar** for scheduling
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not make strategic recommendations — this skill captures identity and preferences only
-
-## See also
-
-**social-content-strategy** — builds a content framework from your pillars and audience
-**social-platform-strategy** — develops platform-specific tactics from your context
-**social-post-writer** — writes individual posts using your voice profile
+When Fredrick asks to update a profile, or when you learn something new about a voice (such as TheSpark's audience on first use), write the revised profile section out in full in your reply and tell him it needs to be pasted into this skill's SKILL.md and re-uploaded, because skills on claude.ai cannot edit themselves. Inside an EvoNexus workspace you may also save the update to `workspace/social/[C] social-context.md`.

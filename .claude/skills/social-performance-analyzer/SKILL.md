@@ -1,230 +1,133 @@
 ---
 name: social-performance-analyzer
-description: "When the user wants to analyze how their social media posts are performing. Also use when the user mentions 'analytics,' 'performance,' 'how did my posts do,' 'engagement,' 'impressions,' 'what's working,' 'post metrics,' 'my best posts,' or 'why isn't this post performing.' Uses BlackTwist analytics when available, works from user-provided data otherwise. For audience growth specifically, see social-audience-growth-tracker. For pattern detection, see social-content-pattern-analyzer. For actionable next steps, see social-optimization-advisor."
-metadata:
-  version: 1.0.0
+description: "Analyses how social media posts performed from pasted tables, CSV exports, screenshots or descriptions, asks for the exact columns each platform needs, measures engagement rate against the account's own baseline, diagnoses top and bottom posts, reads trends, labels each conclusion well supported, thin or a hypothesis to test with its sample size, and ends with ranked actions. Use when the user says analyse my posts, how did my posts do, post performance, post metrics, engagement, impressions, my best posts or why did this post flop. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. Not for client analytics reports from GSC, GA4 or Meta (spark-analytics), for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; for DataExplained-specific posts defer to the DataExplained skills, and use this for everything else."
 ---
 
-# Performance Analyzer
+# Social performance analyzer
 
-## When to Use
+This skill turns post metrics into a plain account of what worked, what did not and why, ending with actions specific enough to try this week. It has no live connection to any platform, so everything it says comes from data supplied in the conversation, whether a pasted table, a CSV export, screenshots or a description. That is the discipline rather than a limitation, because an analysis resting on a number nobody supplied is worse than none.
 
-- User asks to **analyze how their posts are performing** or review analytics
-- User mentions "analytics," "performance," or "how did my posts do"
-- User says "engagement," "impressions," or "what's working"
-- User asks about "post metrics," "my best posts," or "why isn't this post performing"
-- User shares post data and wants a performance breakdown
-- User wants to compare recent posts against their own baseline
+## When another skill owns this
 
-## Role
+Client analytics reports built from Google Search Console, Google Analytics 4 or Meta data belong to spark-analytics, which reads those sources live, so hand those over, along with any request to pull Facebook or Instagram figures from the connector. DataExplained-specific posts go to the DataExplained skills, Fredrick's evidence-graded LinkedIn posts and audit-finding posts go to linkedin-artifact-engine, and anything called a content engine or a full pack has its own skill. Those skills carry verification, sign-off and evidence-grading rules that this one does not, which is why they take priority.
 
-You are an expert social media analytics advisor. Your job is to turn raw post data into clear, prioritized insights — identifying what is working, what is not, and exactly why. You communicate findings in plain language, not dashboards. Every analysis ends with specific actions, not vague suggestions.
+Within this set, follower growth belongs to social-audience-growth-tracker, patterns across many posts to social-content-pattern-analyzer, and a prioritised plan to social-optimization-advisor. This skill covers individual posts and the trend across one window.
 
-## Context Check
+## Start with the profile
 
-Before analyzing anything, read `workspace/social/[C] social-context.md` (if it exists). This file contains the user's niche, voice, platforms, and goals. Use it to make every insight relevant to their specific situation, not generic advice.
+Before you look at a number, read the social-context skill and work out which profile the account belongs to: Fredrick as founder, DataExplained, TheSpark Digital Tech, or a client. When the request does not make it clear, ask one short question, since a diagnosis such as "the topic missed your audience" means nothing until you know who that audience is. If you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it as well and let it override the built-in profiles.
 
----
+## Ask for the right data
 
-## Data Collection
+The default window is the last 14 to 30 days, or the last 20 posts if the account posts rarely. Every row needs the first line of the post, the date and time it went up (with the time zone), the format, and the date the figures were exported, because a two-day-old post has not finished collecting engagement and will look weaker than it is.
 
-### Path A — With BlackTwist
+Beyond those shared columns, the most useful figures differ by platform, so ask for the ones below wherever the platform or scheduling tool reports them, under whatever name the export uses.
 
-When BlackTwist tools are available, pull data in this order:
+| Platform | Most useful columns |
+|---|---|
+| LinkedIn | Impressions, reactions, comments, reposts, clicks, follows from the post if shown |
+| X | Impressions, likes, replies, reposts, bookmarks, link clicks, profile visits |
+| Instagram | Reach, views, likes, comments, shares, saves, profile visits, follows; average watch time for Reels |
+| Threads | Views, likes, replies, reposts, quotes |
+| Bluesky | Likes, reposts, replies, quotes, and views if the tool in use reports them |
+| Facebook | Reach, views, reactions, comments, shares, link clicks |
+| TikTok | Views, average watch time, the share of viewers who watched to the end, likes, comments, shares, saves, follows |
+| YouTube | Impressions, impressions click-through rate, views, average view duration, average percentage viewed, likes, comments, subscribers gained; for Shorts, how many viewers kept watching rather than swiping away |
+| Pinterest | Impressions, saves, pin clicks, outbound clicks |
 
-1. **`list_posts`** — retrieve recent posts to establish the analysis window (default: last 30 days or last 20 posts, whichever is larger)
-2. **`get_post_analytics`** — pull per-post metrics: impressions, likes, comments, reposts, saves, link clicks, profile visits
-3. **`get_live_metrics`** — check current real-time performance for any posts still gaining traction
-4. **`get_metric_timeseries`** — pull engagement rate and impressions over time to identify trends (weekly view recommended)
-5. **`get_daily_recap`** — surface any anomaly days (unusually high or low performance)
-6. **`get_consistency`** — check posting frequency and whether consistency correlates with performance shifts
+The minimum is one reach measure (impressions, reach or views) plus likes and comments for at least five posts; with fewer, explain why the result would mislead and ask for more. When a platform reports no reach measure, no rate can be calculated, so say so and compare raw counts only between posts of similar age. Screenshots need one extra step: read the figures into a table and show it back before analysing, since a misread digit survives into every conclusion.
 
-Collect all data before beginning analysis. Do not present raw numbers to the user — interpret them.
+## How to read the metrics
 
-### Path B — Without BlackTwist
+Grouping the metrics before you analyse keeps a high like count from being mistaken for success. The three groups are these.
 
-If BlackTwist is unavailable, ask the user to provide their data. Use this prompt:
+| Group | Metrics | What they tell you |
+|---|---|---|
+| Reach | Impressions, reach, views, profile visits | How many people saw it; impressions include repeat views, reach counts unique accounts |
+| Engagement | Likes, comments, reposts and shares, saves and bookmarks | Likes are passive, comments are active, reposts carry the post to new people, saves show intent to return |
+| Conversion | Link clicks, follows from the post, DMs | Whether anyone acted; DMs rarely appear in an export, so ask |
 
-> "To analyze your performance, I need your post metrics. You can share:
-> - A screenshot of your analytics dashboard
-> - A CSV export from your platform
-> - Manual input using the template below
->
-> **Data Collection Template:**
-> For each post (last 14–30 days), collect:
-> | Post | Date | Impressions | Likes | Comments | Reposts | Saves | Link Clicks | Profile Visits |
-> |------|------|-------------|-------|----------|---------|-------|-------------|----------------|
->
-> The minimum needed for a useful analysis: **impressions + likes + comments** for at least 5 posts."
+Engagement rate is likes plus comments plus reposts plus saves, divided by impressions, multiplied by 100. Where a platform reports reach or views instead, use that as the denominator and name it, since a rate means nothing until you know what it is a rate of. Compare rates rather than raw counts: 50 likes from 500 impressions (10%) beats 200 likes from 10,000 impressions (2%). Rates on different denominators cannot be compared across platforms, so keep comparisons within one platform unless they match.
 
-Do not attempt analysis with fewer than 5 posts — tell the user why and ask for more.
+For video on TikTok, Reels and Shorts, judge the opening by retention, because the first one to three seconds decide whether people keep watching. Strong retention with modest likes suggests the hook worked and the payoff did not, which needs a different fix from a video nobody watched past the start.
 
----
+## The baseline is the account's own history
 
-## Metrics Framework
+Calculate the account's average engagement rate, reach and comments per post across the window, with the median beside each, since one breakout post can drag an average far from what a typical post does. Every "top" and "bottom" label is relative to that baseline, because a rate that is excellent for one account is ordinary for another.
 
-Organize all metrics into three categories before analyzing:
+Never cite an industry average, a platform-wide benchmark or a "good engagement rate" figure. If the user asks for one, say that no verified figure is available here and offer the account's own history instead. When Fredrick supplies a baseline of his own, such as last quarter's averages or a client target, use it and name its source in the report.
 
-### Reach
-- **Impressions** — total times the post appeared in feeds (includes repeats)
-- **Reach** — unique accounts who saw the post
-- **Profile visits from post** — how many viewers clicked through to learn more
+## Label every conclusion
 
-### Engagement
-- **Likes** — passive positive signal
-- **Comments** — active engagement; higher weight than likes
-- **Reposts / shares** — distribution signal; the most valuable organic action
-- **Saves** — intent to return; strong indicator of lasting value
-- **Engagement rate** — calculate as: `(likes + comments + reposts + saves) / impressions × 100`
+Each finding carries one of three labels and the sample size behind it, so the reader knows how much weight it can bear.
 
-### Conversion
-- **Link clicks** — traffic signal; only relevant when a link is present
-- **DMs from post** — often untracked but worth asking the user about
-- **Follows from post** — net new audience directly attributable to the content
+| Label | When it applies |
+|---|---|
+| Well supported | The difference holds across at least five posts on each side of the comparison and is not carried by a single outlier |
+| Thin | The direction is visible, but a group has fewer than five posts or one post accounts for most of the difference |
+| Hypothesis to test | One or two posts, or an explanation the numbers cannot confirm on their own |
 
-**Important:** Always compare engagement rate, not raw engagement numbers. A post with 50 likes from 500 impressions (10% ER) outperforms a post with 200 likes from 10,000 impressions (2% ER).
+Write the sample sizes into the sentence, as in "Tuesday posts (n = 6) averaged 4.1% against 2.9% for other days (n = 14), which is thin because one Tuesday post carries most of the gap." Explanations of why something worked start as hypotheses, because metrics record what happened rather than why, and they rise only when the same feature recurs across several top posts.
 
----
+## The four parts of the analysis
 
-## Analysis Outputs
+The report always has four parts, since a list of winners without the trend and the actions leaves the reader nothing to do.
 
-Produce all four outputs below. Do not skip any section.
+### Top performers
 
-### 1. Top Performers
-
-Identify the **top 3–5 posts by engagement rate**. For each:
-
-- State the engagement rate and the raw numbers behind it
-- Diagnose **why it worked** — be specific across these dimensions:
-  - **Topic**: Was it timely, controversial, educational, personal?
-  - **Format**: Thread, single post, list, story, data-driven?
-  - **Hook**: What did the first line do? Which hook pattern?
-  - **Timing**: Day of week, time of day — any pattern?
-  - **Call to action**: Did it invite a specific response?
-
-Do not just say "this performed well." Say: "This post's engagement rate of 8.4% was 3x your average. The hook led with a specific number, the topic addressed a pain point your audience frequently comments about, and you posted on Tuesday at 9am — your historically strongest slot."
-
-**Example top performer diagnosis:**
+Take the three to five posts with the highest engagement rate, give the rate and the raw numbers behind it, and diagnose each across topic (timely, contrarian, educational, personal), format, hook, timing and call to action. "This post performed well" is not a diagnosis. The block below shows the expected depth, with figures invented only to show the format.
 
 ```
-Post: "7 writing habits that doubled my output" (March 12, 9:14 AM)
-ER: 8.4% (vs. 2.8% baseline) — 3x your average
-Impressions: 4,200 | Likes: 189 | Comments: 47 | Reposts: 31 | Saves: 86
+Post: "7 writing habits that doubled my output" (12 March, 9:14am)
+Engagement rate: 8.4% against a 2.8% baseline, three times the average
+Impressions 4,200, likes 189, comments 47, reposts 31, saves 86
 
-Why it worked:
-- Hook: List preview pattern ("7 habits...") — your strongest hook type
-- Topic: Productivity + writing — overlaps two of your top pillars
-- Timing: Tuesday morning — your historically strongest slot
-- CTA: "Which one surprised you?" — drove 47 comments
+Why it seems to have worked:
+Hook: a list preview ("7 habits"), the opener on all three top posts (thin, n = 3)
+Topic: productivity and writing, two of the strongest pillars
+Timing: Tuesday morning, the best slot in this window (hypothesis to test)
+Call to action: "Which one surprised you?", which drew 47 comments
 ```
 
-### 2. Bottom Performers
+### Bottom performers
 
-Identify the **bottom 3–5 posts by engagement rate**. For each:
-
-- State the engagement rate
-- Diagnose **what went wrong** — be specific:
-  - Weak or generic hook?
-  - Topic misaligned with audience interest?
-  - Posted at an off-peak time?
-  - Format mismatch for the platform?
-  - Too promotional or self-serving?
-
-Frame diagnoses as learnings, not failures.
-
-### 3. Trend Analysis
-
-Look across the full dataset and answer:
-
-- **Engagement trend**: Is the average engagement rate going up, down, or flat over the analysis window?
-- **Impressions trend**: Is organic reach growing, shrinking, or holding steady?
-- **Consistency impact**: Does posting frequency correlate with performance? (More posts = more reach, or does quality drop when volume increases?)
-- **Content type trends**: Are certain formats (threads, single posts, lists) consistently outperforming others?
-
-State the trend clearly — "Your engagement rate has declined 22% over the last 3 weeks, while impressions held steady. This suggests your content is reaching people but not resonating." — then explain what it likely means.
-
-**Example trend analysis output:**
-
-```
-Trend Summary (March 1–31):
-- Engagement rate: 2.8% avg (down 22% from February's 3.6%)
-- Impressions: 2,100/post avg (stable — no change from February)
-- Posting frequency: 4.2x/week (up from 3.1x/week in February)
-- Diagnosis: Increased volume diluted quality. Impressions held but
-  resonance dropped — content is reaching people but not connecting.
-```
-
-### 4. Actionable Insights
-
-Close every analysis with **3–5 specific, prioritized actions** based on the findings. Each action must:
-
-- Reference a specific finding from the analysis (not generic advice)
-- Be concrete enough to act on this week
-- Be ranked by expected impact
-
-**Example format:**
-1. **Replicate your Tuesday hook pattern** — Your top 3 posts all opened with a specific number. Write your next 5 hooks using the statistic/data pattern.
-2. **Stop posting on Fridays** — Your Friday posts average 1.8% ER vs. 5.2% on other days. Shift that content to Wednesday.
-3. **Add a save CTA to educational posts** — Your how-to content gets high impressions but low saves. End with "Save this for later" and retest.
-
----
-
-## Benchmarking
-
-**Always benchmark against the user's own averages, not platform-wide vanity metrics.**
-
-Calculate the user's baseline from the analysis window:
-- **Average engagement rate** across all posts
-- **Average impressions** per post
-- **Average comments** per post
-
-Use these baselines when labeling a post as a "top performer" or "underperformer." A 3% engagement rate may be excellent for one creator and mediocre for another.
-
-Do not cite industry benchmarks ("the average Threads engagement rate is X%") unless the user specifically asks for external comparison. Their history is the only relevant benchmark.
-
----
-
-## Reporting Format
-
-Deliver findings in this structure — not as a wall of numbers:
-
-```
-## Performance Analysis — [Date Range]
-
-**Posts analyzed:** [N]
-**Your baseline engagement rate:** [X%]
-**Impressions trend:** [Up / Down / Flat] [X%]
-
----
-
-### Top Performers
-[3–5 posts with diagnosis]
-
-### Bottom Performers
-[3–5 posts with diagnosis]
+For the three to five lowest posts, say what went wrong: a generic hook, a topic that missed the audience, an off-peak slot, a format unsuited to the platform, or copy that read as promotional. These are lessons rather than verdicts, because the point is the next post.
 
 ### Trends
-[3–5 sentences on directional patterns]
 
-### What to Do Next
-[3–5 ranked, specific actions]
+Say whether engagement rate and reach are rising, falling or flat, whether posting frequency lines up with any shift, and whether one format keeps winning, then give the likely meaning: "engagement rate fell from 3.6% to 2.8% while impressions held steady, so the posts are reaching people without landing."
+
+### Actions
+
+You close with three to five ranked actions, each tied to a named finding, labelled with its evidence and concrete enough to act on this week. Most lead to new copy, so name the skill that writes it: social-hook-writer for openers, social-post-writer for single posts, social-thread-writer for threads, social-carousel-writer for carousels, social-x-longform for long X posts, social-content-repurposer for turning a top post into versions for other platforms, and social-content-calendar for scheduling the result.
+
+## Report format
+
+The structure below keeps the report readable, and its tables should stay under six columns because wider ones break in most chat windows.
+
+```
+## Performance analysis for [date range]
+
+Profile: [which social-context profile]
+Posts analysed: [n], on [platforms]
+Baseline engagement rate: [average], median [median], per [impressions, reach or views]
+Reach trend: [up, down or flat] by [x%]
+
+### Top performers
+[3 to 5 posts, each with its diagnosis and evidence label]
+
+### Bottom performers
+[3 to 5 posts, each with its diagnosis and evidence label]
+
+### Trends
+[3 to 5 sentences, with sample sizes]
+
+### What to do next
+[3 to 5 ranked actions, each with its label and the skill that writes the copy]
 ```
 
-Keep the report scannable. Use bold for key terms. Avoid tables with more than 5 columns — they are hard to read in most interfaces. Write in active voice throughout.
+## Before you deliver
 
----
+Every number in the report must appear in the data you were given or be calculated from it, so remove anything that does not, since an invented figure is the one error this skill exists to prevent. Deliver the report in your reply, and only when working inside an EvoNexus workspace also save it under `workspace/social/`.
 
-## Boundaries
-
-- Does not track follower growth or audience demographics — see **social-audience-growth-tracker** for growth analysis
-- Does not detect cross-post content patterns — see **social-content-pattern-analyzer** for pattern detection across many posts
-- Does not generate a prioritized action plan — see **social-optimization-advisor** for concrete next steps
-- Does not write or draft content — see **social-post-writer** for content creation
-- Does not execute code or access external APIs unless BlackTwist MCP is connected
-- Does not cite industry benchmarks unless explicitly requested — all comparisons use the user's own averages
-
-## Related Skills
-
-- **social-context** — establish niche, voice, and goals before analyzing
-- **social-content-pattern-analyzer** — go deeper on what content patterns drive performance
-- **social-optimization-advisor** — translate analysis findings into a concrete improvement plan
+The last step is the voice check: load the `house-prose-style` skill, run its pre-delivery voice check on the report and on any hook or line you have suggested, and fix what fails. Fredrick's standing rule is that no copy goes out unless it follows the house style, and an analysis whose suggested hook breaks that rule hands him a rewrite instead of an answer.

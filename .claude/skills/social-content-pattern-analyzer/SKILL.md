@@ -1,245 +1,123 @@
 ---
 name: social-content-pattern-analyzer
-description: "When the user wants to find patterns in what content works and what doesn't. Also use when the user mentions 'what's working,' 'content patterns,' 'best topics,' 'best format,' 'best time to post,' 'analyze my content,' 'do more of,' 'do less of,' or 'what should I change.' For raw metrics, see social-performance-analyzer. For audience-specific analysis, see social-audience-growth-tracker. For actionable recommendations, see social-optimization-advisor."
-metadata:
-  version: 1.0.0
+description: "Finds patterns in what social media content works from pasted post history, CSV exports, screenshots or descriptions, grouping posts by pillar, format, posting time, length, hook type, tone and platform, ranking each group against the account's own baseline with its sample size, labelling each pattern well supported, thin or a hypothesis to test, and delivering a Do More, Do Less, Experiment With report. Use when the user says content patterns, what's working, best topics, best format, best time to post, content audit, or what should I do more or less of. Covers LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. Not for client analytics reports from GSC, GA4 or Meta (spark-analytics), for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; for DataExplained-specific posts defer to the DataExplained skills, and use this for everything else."
 ---
 
-# Content Pattern Analyzer
+# Social content pattern analyzer
 
-## When to Use
+Single posts tell you what happened once, whereas patterns tell you what to do next, which is why this skill looks past individual metrics to the topics, formats, hooks, tones and timing that keep winning or keep losing. The output is a Do More, Do Less and Experiment With report that someone can act on the same day. There is no live connection to any platform here, so the skill works only from the post history supplied in the conversation and never fills a gap with an assumed figure.
 
-- User asks to **find patterns** in what content works and what does not
-- User mentions "what's working," "content patterns," or "best topics"
-- User says "best format," "best time to post," or "analyze my content"
-- User wants to know what to **do more of** or **do less of**
-- User asks "what should I change" about their content approach
-- User shares post history and wants a pattern-based breakdown
-- User mentions "content audit" or "what's my best-performing content type"
+## When another skill owns this
 
-## Role
+Client analytics reports built from Google Search Console, Google Analytics 4 or Meta data belong to spark-analytics, which reads those sources live, so hand those over. DataExplained-specific posts go to the DataExplained skills, Fredrick's evidence-graded LinkedIn posts and audit-finding posts go to linkedin-artifact-engine, and anything called a content engine or a full pack has its own skill. Those skills carry verification, sign-off and evidence-grading rules that this one does not, which is why they take priority.
 
-You are an expert at finding patterns in social media performance data. Your job is to move beyond individual post metrics and surface the underlying signals — which topics, formats, hooks, tones, and timing patterns consistently drive results, and which consistently underperform. You translate data into a clear "Do More / Do Less" report that the user can act on immediately.
+Within this set, a breakdown of individual posts belongs to social-performance-analyzer, follower growth to social-audience-growth-tracker, and a prioritised action plan to social-optimization-advisor.
 
-## Context Check
+## Start with the profile
 
-Before analyzing anything, read `workspace/social/[C] social-context.md` (if it exists). This file contains the user's niche, voice, platforms, and goals. Use it to make every pattern finding relevant to their specific situation — not generic content advice.
+Read the social-context skill first and work out which profile the account belongs to (Fredrick as founder, DataExplained, TheSpark Digital Tech, or a client), asking one short question if the request leaves it open. The profile supplies the pillars, the audience and the time zone, and without those you cannot tell a topic gap from a topic the account deliberately avoids. If you are working inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it too and let it override the built-in profiles.
 
----
+## Ask for enough posts
 
-## Data Collection
+Patterns need a bigger sample than a single-post review. Ask for 30 or more posts if the account has them. Between 15 and 30 the analysis can go ahead with its limits stated, below 15 most patterns will be thin at best, and below 10 you should explain that any pattern would be noise and ask for more before analysing.
 
-Pattern analysis requires a larger sample than single-post analysis. Aim for **30+ posts minimum**. With fewer than 15 posts, patterns are unreliable — tell the user and proceed with caveats.
+Each row needs the descriptive columns below, because the pattern dimensions are built from them rather than from the metrics.
 
-### Path A — With BlackTwist
+| Column | Why it is needed |
+|---|---|
+| Post text or first line | Hook type, tone and length are classified from it |
+| Date, time and time zone | Day and time patterns, and the age of each post |
+| Platform and format | Single post, thread, carousel, video, image, poll, pin |
+| Topic or pillar | Pillar patterns and gaps |
+| Hook type and tone, if already tagged | Saves classifying from scratch |
 
-When BlackTwist tools are available, collect data in this order:
+The metric columns follow the platform. LinkedIn and X need impressions, likes or reactions, comments or replies, reposts, and bookmarks where X shows them. Instagram, Facebook and Threads need reach or views, likes, comments, shares and saves, and Bluesky needs likes, reposts, replies and quotes, plus views if the tool reports them. For TikTok, Reels, YouTube and Shorts ask for views, watch time and the share who watched to the end, alongside likes, comments and shares, and for Pinterest ask for impressions, saves and outbound clicks.
 
-1. **`list_posts`** — retrieve the full post history, paginating until you have 30+ posts (use larger date ranges if needed)
-2. **`get_post_analytics`** — pull per-post metrics for every post: impressions, likes, comments, reposts, saves, link clicks, profile visits
-3. **`get_metric_timeseries`** — pull engagement rate over time to identify trend direction (weekly view recommended)
-4. **`get_consistency`** — check posting frequency and cadence to identify whether consistency correlates with pattern shifts
+When the user pastes post text without tags, you may classify format, hook type, tone and length yourself, but show the tags back as a table before analysing, since a pattern built on a mislabelled post is a pattern about your labels.
 
-Collect all data before beginning pattern analysis. Do not present raw numbers — interpret them as patterns.
+## The seven dimensions
 
-### Path B — Without BlackTwist
+Engagement rate here is likes plus comments plus reposts plus saves, divided by the platform's reach measure (impressions, reach or views), multiplied by 100. For every dimension, group the posts, calculate each group's average rate (and the median, since one breakout post distorts an average), count the posts in each group, and rank the groups from best to worst against the account's own baseline. The seven dimensions and what to look for in each are these.
 
-If BlackTwist is unavailable, ask the user to provide their post history with metrics. Use this prompt:
+| Dimension | Groups | What to look for |
+|---|---|---|
+| Topic or pillar | The profile's pillars | Pillars above and below baseline; high reach with low engagement (reach without resonance) against low reach with high engagement (a smaller audience that cares) |
+| Format | Single post, thread, list, question, poll, image, video, carousel, pin | Which format earns saves (lasting value) and which earns reposts (distribution); format and topic pairs that keep winning |
+| Posting time | Day of week; morning, midday, evening, night in the profile's time zone | Best slots and dead zones |
+| Length | Short, medium and long relative to the platform | Whether short posts win reposts while long posts win saves |
+| Hook type | Question, bold claim, specific number, personal story, contrarian take, how-to, list preview, direct address | The strongest hook, and whether the account leans on one pattern |
+| Tone | Educational, personal, storytelling, motivational, contrarian, promotional, conversational | Whether the dominant tone matches what the audience rewards |
+| Platform | Each platform the account uses | Return per post, and content that loses when cross-posted unchanged |
 
-> "To find content patterns, I need data across at least 15–30 posts. You can share:
-> - A CSV export from your analytics dashboard
-> - Screenshots of your post analytics
-> - Manual input using the template below
->
-> **Data Collection Template:**
-> For each post, capture:
-> | Post (summary) | Date | Format | Topic/Pillar | Hook type | Impressions | Likes | Comments | Reposts | Saves |
-> |----------------|------|--------|--------------|-----------|-------------|-------|----------|---------|-------|
->
-> The more posts you provide, the more reliable the patterns."
+A ranking only means something when its groups are big enough, so put the post count beside every group and treat any group of one or two posts as a hypothesis at most.
 
-Do not attempt pattern analysis with fewer than 10 posts — tell the user why and ask for more.
+Two traps need checking in every run. Recency comes first: posts from the last few days have not finished collecting engagement, so flag them and leave them out of time and format comparisons if they distort the result. Confounding is the second, because when two dimensions move together, such as every thread going out on a Tuesday, the data cannot say whether the thread or the Tuesday did the work. Say so plainly and turn it into an experiment rather than picking one.
 
----
+Received wisdom about tone deserves the same caution. The idea that educational posts earn saves, personal posts earn comments and contrarian posts earn reposts is a hypothesis to check against this account, not a rule to report as found.
 
-## Pattern Dimensions
+## Label every pattern
 
-Analyze performance across all seven dimensions below. For each dimension, calculate the average engagement rate per category and rank categories from best to worst.
+Every pattern carries its evidence label and the sample sizes behind it, so the reader can see how much weight it bears.
 
-### 1. By Topic / Pillar
+| Label | When it applies |
+|---|---|
+| Well supported | The group has at least five posts, the gap to baseline holds without its best post, and nothing obvious confounds it |
+| Thin | The direction is visible, but the group is small, one post carries the gap, or another dimension moves with it |
+| Hypothesis to test | One or two posts, an untested combination, or an explanation the numbers cannot confirm |
 
-Group posts by their content pillar or topic area. Identify:
+Never compare the account with an industry average or a "typical" engagement rate, because no verified figure is available here and the account's own history is the only fair baseline. If Fredrick supplies a baseline of his own, use it and name its source.
 
-- Which **pillars consistently outperform** the user's average engagement rate
-- Which **pillars consistently underperform** — is this a topic misalignment or an execution problem?
-- Whether any pillar has **high impressions but low engagement** (reach without resonance) vs. **low impressions but high engagement** (resonating with a smaller audience)
-- Any **pillar gaps** — topics the audience likely cares about (based on context file) that the user hasn't posted on yet
+## Cross-platform comparison
 
-**Example topic breakdown:**
+When the account posts on more than one platform, find the posts that went out on several of them and compare engagement, save and repost rates for the same or near-identical content. Rates only compare when they share a denominator, so state which measure each platform used, and read retention beside likes for TikTok, Reels and Shorts, since the first one to three seconds decide whether people keep watching. Then check whether the strongest platform matches the goal in the profile, and flag any platform that keeps trailing the account's other channels for the same effort, since that is time that could go elsewhere.
+
+## Gaps worth testing
+
+After the existing content, look for what has not been tried. Topic gaps are subjects next to the strongest pillars that the profile's audience would plausibly want. Format gaps are formats the account has never used, and untested combinations pair a winning pillar with a winning format that have never appeared together. If the account leans on one hook type, suggest two or three others from the hook list. Every gap is framed as an experiment rather than a failure, and none comes with a claim about how that format performs elsewhere, since no such figure is available. The example below shows the shape, with invented figures.
 
 ```
-Pillar: Productivity Tips
-Posts: 12 | Avg ER: 6.1% (vs. 3.8% baseline)
-Top post: "3 tools that cut my content time in half" (9.2% ER)
-Signal: Consistently outperforms — do more
-
-Pillar: Company Updates
-Posts: 8 | Avg ER: 1.4%
-Top post: "We just launched v2.0" (2.1% ER)
-Signal: Consistently underperforms — reframe or reduce
+Gap: productivity tips (top pillar) with carousels (top format), never combined
+Evidence: productivity posts average 6.1% (n = 12), carousels 5.8% (n = 6),
+  against a 3.8% baseline (hypothesis to test: the pair has no posts yet)
+Experiment: two productivity carousels over the next two weeks, compared
+  with the baseline seven days after each goes up
 ```
 
-### 2. By Format
+## The report
 
-Compare performance across post formats (single post, thread, list, question, poll, image, video, carousel). Identify:
-
-- Which **format drives the highest engagement rate** on average
-- Which format drives the most **saves** (lasting-value indicator) vs. **reposts** (distribution indicator)
-- Whether certain formats work better for certain topics — look for **format × topic combinations** that consistently overperform
-- Any formats the user hasn't tested that their audience typically responds to
-
-### 3. By Posting Time
-
-Group posts by day of week and time of day. Identify:
-
-- The **best-performing day(s)** by average engagement rate
-- The **best-performing time windows** (morning, midday, evening, night) — use the user's local timezone from the context file
-- Whether there is a **recency bias** (posts that went up recently look worse because they haven't had time to accumulate engagement) — flag this explicitly when it affects the analysis
-- Any **consistently dead zones** — days or times that reliably underperform
-
-### 4. By Length
-
-Group posts into buckets: short (1–3 sentences / under 280 chars), medium (4–8 sentences), long (9+ sentences or multi-post threads). Identify:
-
-- The **engagement rate sweet spot** for length across the user's audience
-- Whether length interacts with format — long threads vs. long single posts may perform very differently
-- Whether **short posts punch above their weight** on reposts (shareability) while long posts drive more saves (depth)
-
-### 5. By Hook Type
-
-Classify each post's opening line into hook patterns: question, bold claim, specific number/stat, personal story opening, contrarian take, how-to opener, list preview ("X things..."), direct address. Identify:
-
-- Which **hook patterns drive the most engagement** across the dataset
-- Whether certain hook types work better for certain topics or formats
-- The user's **most-used hook type** — if they default to one pattern, flag that variety may unlock more reach
-- Any **hook types not yet tested** that tend to perform well in their niche
-
-### 6. By Tone
-
-Classify posts by tone: educational/instructional, personal/vulnerable, storytelling, motivational, contrarian/opinion, promotional, conversational/playful. Identify:
-
-- Which **tone resonates most** with the user's audience by engagement rate
-- Whether **comments vs. saves vs. reposts** differ by tone (educational → saves; personal → comments; contrarian → reposts)
-- Whether the user's dominant tone aligns with what their audience responds to, or if there is a mismatch worth addressing
-
-### 7. By Platform
-
-If the user posts on multiple platforms (Threads, X/Twitter, LinkedIn, Instagram, etc.):
-
-- Compare **engagement rate for equivalent content** across platforms — same post or same topic
-- Identify which platform delivers **the highest return per post**
-- Flag **format mismatches** — content designed for one platform that underperforms when cross-posted without adaptation
-- Identify any **platform-specific patterns** (e.g., threads work better on X than Threads, educational posts outperform on LinkedIn)
-
----
-
-## Cross-Platform Comparison
-
-When the user posts across multiple platforms, run a dedicated cross-platform comparison after completing the dimension analysis:
-
-1. Identify posts that were published on more than one platform
-2. Compare engagement rate, save rate, and repost rate by platform for identical or near-identical content
-3. Identify whether the user's **strongest platform aligns with their stated primary goal** (growth, engagement, conversion)
-4. Flag if they are investing time in a platform that consistently underperforms relative to their other channels
-
----
-
-## Content Gap Identification
-
-After analyzing existing content, identify gaps — topics or formats the audience likely wants that the user has not tried:
-
-- **Topic gaps**: Based on the context file (niche, audience, goals), are there obvious topics the user hasn't covered? Look for topics adjacent to their top-performing pillars.
-- **Format gaps**: Are there formats the user hasn't tested (e.g., they only post threads but their audience saves image posts)? Check what performs in their niche generally.
-- **Untested combinations**: High-performing pillar + high-performing format combinations the user hasn't tried (e.g., if "productivity tips" and "list format" each perform well but the user hasn't combined them)
-- **Hook variety gaps**: If the user defaults to one hook type, flag 2–3 alternatives worth testing
-
-Frame gaps as **experiments**, not failures. The user hasn't tested them yet — they are opportunities.
-
-**Example content gap finding:**
+The report uses the structure below, with each pattern described in four sentences or fewer, because specific findings get acted on and long ones get skimmed.
 
 ```
-Gap: "Productivity tips" (top pillar) + "carousel" (top format) = untested
-Rationale: Your productivity content averages 6.1% ER and your carousels
-average 5.8% ER — but you have never published a productivity carousel.
-Experiment: Write 2 productivity carousels over the next 2 weeks and
-compare ER against your baseline.
+## Content pattern analysis for [date range]
+
+Profile: [which social-context profile]
+Posts analysed: [n], on [platforms]
+Baseline engagement rate: [average], median [median]
+
+### Do more
+Pattern: [name it, such as "Tuesday morning threads on productivity"]
+Evidence: [average rate, n, example posts, label]
+Why it seems to work: [the hypothesis, stated specifically]
+
+### Do less
+Pattern: [name it, such as "Friday promotional posts"]
+Evidence: [average rate, n, label]
+Why it underperforms: [direct, constructive diagnosis]
+
+### Experiment with
+Experiment: [the combination to test]
+Rationale: [the existing patterns that point to it]
+How to test: [such as three posts with hook X on topic Y, compared after seven days]
+Skill to write it: [the writing skill below]
+
+### The one change that matters most
+[One or two sentences naming the single biggest shift]
 ```
 
----
+Most findings lead to new copy, so point each one to the skill that writes it: social-hook-writer for new openers, social-post-writer for single posts, social-thread-writer for threads, social-carousel-writer for carousels, social-x-longform for long X posts, and social-content-repurposer for adapting a winner to other platforms. Changes to the pillar mix belong to social-content-strategy, platform focus to social-platform-strategy, and scheduling the experiments to social-content-calendar.
 
-## Output: Do More / Do Less Report
+## Before you deliver
 
-Deliver findings in this structure. Do not bury patterns in data tables.
+Every number in the report must come from the data supplied or be calculated from it, so remove any figure that does not. Deliver the report in your reply, and only when working inside an EvoNexus workspace also save it under `workspace/social/`.
 
-```
-## Content Pattern Analysis — [Date Range]
-
-**Posts analyzed:** [N]
-**Your baseline engagement rate:** [X%]
-**Analysis confidence:** [High / Medium / Low — based on sample size]
-
----
-
-### Do More
-
-[Top 3–5 patterns with specific evidence]
-
-**Pattern:** [Name the pattern clearly — e.g., "Tuesday morning threads on productivity"]
-**Evidence:** [Avg ER, number of posts, specific examples]
-**Why it works:** [Your interpretation — be specific, not generic]
-
----
-
-### Do Less
-
-[Bottom 3–5 patterns with specific evidence]
-
-**Pattern:** [Name the pattern — e.g., "Friday promotional posts"]
-**Evidence:** [Avg ER, number of posts]
-**Why it underperforms:** [Diagnosis — be direct but constructive]
-
----
-
-### Experiment With
-
-[2–4 untested combinations or gaps worth trying]
-
-**Experiment:** [Specific combination to test]
-**Rationale:** [Why this is likely to work, based on existing patterns]
-**How to test:** [Specific suggestion — e.g., "Write 3 posts using X hook on Y topic and compare ER after 7 days"]
-
----
-
-### Key Takeaway
-
-[1–2 sentence summary of the single most important pattern shift the user should make]
-```
-
-Use **bold for key terms**. Write in active voice. Keep each pattern description under 4 sentences — specificity beats length.
-
----
-
-## Boundaries
-
-- Does not provide per-post metric breakdowns — see **social-performance-analyzer** for individual post analysis
-- Does not track follower growth or audience demographics — see **social-audience-growth-tracker** for growth data
-- Does not generate a prioritized action plan — see **social-optimization-advisor** for concrete next steps
-- Does not write or draft new content — see **social-post-writer**, **social-thread-writer**, or **social-carousel-writer** for creation
-- Does not execute code or access external APIs unless BlackTwist MCP is connected
-- Does not work reliably with fewer than 10 posts — the skill requires a minimum sample size for pattern detection
-
-## Related Skills
-
-- **social-context** — establish niche, voice, and goals before pattern analysis
-- **social-performance-analyzer** — get raw post metrics and individual post diagnoses
-- **social-optimization-advisor** — translate pattern findings into a concrete improvement plan
+The final step is the voice check: load the `house-prose-style` skill, run its pre-delivery voice check on the report and on any example hook or line you suggest, and fix what fails. Fredrick's standing rule is that no copy goes out unless it follows the house style, which covers a suggested hook just as much as a finished post.

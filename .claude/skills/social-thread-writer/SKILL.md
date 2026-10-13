@@ -1,283 +1,129 @@
 ---
 name: social-thread-writer
-description: "When the user wants to write a multi-part thread for Twitter/X, LinkedIn, or other platforms. Also use when the user mentions 'thread,' 'Twitter thread,' 'tweetstorm,' 'multi-part post,' 'series of posts,' or has a long-form idea that needs breaking into parts. For single posts, see social-post-writer. For carousels, see social-carousel-writer."
-metadata:
-  version: 1.1.0
+description: "Writes multi-part threads and post series that open with a hook, carry one idea per post and close with a call to action. Use when the user says write a thread, X thread, Twitter thread, tweetstorm, Threads thread, Bluesky thread, LinkedIn series, multi-part post, series of posts, thread this, or turn this article or these notes into a thread. Covers X, Threads, Bluesky and LinkedIn; Instagram, TikTok, YouTube, Facebook and Pinterest have no thread format, so it points those requests to social-carousel-writer or social-post-writer. Not for DataExplained (@dataexplain) posts, comments, reels, pins or newsletters (The Data Brief, The Data Drop), for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; use this for everything else, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover."
 ---
 
-# Thread Writer
+# Thread writer
 
-## When to Use
+A thread is a sequence of connected posts that teaches, tells a story or walks through a framework, and it works only when the first post earns the click, every post after it keeps momentum, and the last one tells the reader what to do next. This skill writes threads for the four platforms where a multi-post format exists: X, Threads and Bluesky, which chain posts as replies, and LinkedIn, where a series is a run of separate posts tied together by their copy.
 
-- User asks to **write a thread** or create multi-part content
-- User mentions "thread," "Twitter thread," or "tweetstorm"
-- User says "multi-part post" or "series of posts"
-- User has a **long-form idea** that needs breaking into sequential parts
-- User shares an article or notes and wants them turned into a thread
-- User wants to write a numbered thread for Twitter/X or LinkedIn
+The other five platforms Fredrick uses have no thread format, and pretending otherwise produces something no one can post. Instagram content that needs several parts belongs in a carousel, written by social-carousel-writer, and LinkedIn carousels go there too when slides would serve the idea better than a series. A long Facebook post, a TikTok caption, a YouTube description or a Pinterest pin all come from social-post-writer, while the spoken hook for a TikTok, Reel or Short comes from social-hook-writer. A long single article on X belongs to social-x-longform.
 
-## Role
+## When another skill owns this
 
-You are an expert at writing social media threads — multi-part content sequences that educate, tell stories, share frameworks, and build audiences. You know how to open with a hook that demands attention, sustain momentum across every post, and close with a CTA that converts readers into followers.
+Some thread requests belong to another skill, and you should hand them over because Fredrick's brand skills carry rules (source verification, fixed sign-offs, evidence grading) that this general skill does not. DataExplained (@dataexplain) posts, comments, reels, pins and the two newsletters, The Data Brief and The Data Drop, go to the DataExplained skills. Fredrick's evidence-graded LinkedIn posts and series built on audit findings go to linkedin-artifact-engine, and a request that says content engine or full pack goes to the skill built for it. Everything else is yours, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover.
 
-## Context Check
+## Start with the voice
 
-Before writing, read `workspace/social/[C] social-context.md` to understand the user's voice, tone, content pillars, and platform preferences. Use this file to match vocabulary, sentence structure, punctuation habits, and emotional register.
+Begin by reading the social-context skill, which holds the voice profiles (Fredrick as founder, DataExplained, TheSpark Digital Tech and the client template). From the request's cues you can usually tell which profile applies, and when you cannot, ask one short question, since a ten-post thread in the wrong voice wastes far more work than a single post would. If you are inside an EvoNexus workspace and `workspace/social/[C] social-context.md` exists, read it too and let it override the built-in profiles, because that is where local updates are kept.
 
-If the file does not exist, say:
+## What to ask for
 
-> "I don't see a social media context file yet. Run the `social-context` skill first to capture your voice and preferences — it makes every thread I write sound like you."
+Only ask for what the user has not already given. You need the topic, key points or source material (an idea, a draft, an article or notes), the target platform, the goal (to educate, tell a story, share a framework or document a journey), and the length: short at three to five posts, medium at seven to ten, or long at ten or more. Once you have a topic and a platform, start drafting and choose the length from the material, because a thread should be as long as its ideas and no longer.
 
----
+## Thread architecture
 
-## Input Gathering
+Every thread has three zones, and each one has a different job.
 
-Ask only for what the user has not already provided:
+The hook post has to work as a standalone post and also make the reader want the whole thread, since most readers decide right there. Use the patterns from social-hook-writer, and make a promise about what the reader will know or be able to do by the end. On X, add a plain thread signal such as "A thread:" on the same line or just after the hook. The thread emoji is an option only for profiles that allow emojis, which Fredrick's does not.
 
-- **Topic, key points, or source material** — the idea, draft, article, or notes to thread-ify
-- **Target platform** — Twitter/X, LinkedIn, Threads, or another
-- **Thread length preference** — short (3-5 posts), medium (7-10 posts), or long (10+)
-- **Goal** — educate, tell a story, share a framework, or document a journey
+The body posts each carry one idea, one example or one step, so if a post needs an "and also", split it. A reader who lands in the middle should still follow any single post. Inside each post, never stack more than two or three lines without an empty line, because dense blocks lose readers in a feed, and end posts on a small payoff or an open question so the next one feels earned. For Fredrick's voice, keep the lines grouped rather than one sentence per line, since his profile bans the staccato style.
 
-If the user gives you a topic and a platform, start drafting — don't over-ask.
+The closer lands the thread in one sentence that distils what the reader learned, then gives a clear call to action: follow for more, repost the first post, reply with their own situation, or ask for a resource. A product, newsletter or service can appear here as long as it is not the main event. On X the closer is also the natural place to quote the opening post, which gives the thread a second chance to be seen.
 
----
+## Thread formats
 
-## Thread Architecture
+Choose the format before you write, because it sets the pacing, the shape of the body and the way the thread closes. The examples are illustrative, and square brackets mark figures the user has to supply.
 
-Every thread has three distinct zones: the **hook**, the **body**, and the **closer**.
+| Format | Best for | Structure | Example opener |
+|---|---|---|---|
+| Listicle | Tactical advice, tools, habits, mistakes, recommendations | State the list promise, give one post per item, and close with the lesson the list reveals | "Seven writing habits that changed how I work, one per post. A thread:" |
+| Story arc | A personal journey, a case study, lessons from failure or success | Setup (who, where, when), conflict, resolution, then the transferable lesson | "Three years ago I nearly closed the business. This is the thread I wish someone had written for me then." |
+| Framework | A step-by-step process, system or playbook | Name the framework, give one numbered post per step, and finish with the result of applying it | "The five-step process I use to plan a month of content in one afternoon. Save this one." |
+| Breakdown | Analysing a real example such as a post, a company strategy or an event | Say why the example deserves dissecting, walk through each component, and pull out a principle | "This post reached [number] people. I took it apart line by line to see why." |
+| Contrarian | Challenging a popular belief and starting a debate | State the claim, acknowledge the common belief, give your evidence, and restate the claim with nuance | "Most advice about posting every day skips the cost. This thread is about the cost." |
 
-### Post 1 — Hook
+Naming a framework makes it easier to remember and share, and a contrarian thread needs its nuance in the closer, because an absolute position reads as a performance rather than an insight.
 
-The hook post must do two jobs simultaneously: stand alone as a compelling post and compel the reader to click through the entire thread.
-
-- Apply social-hook-writer patterns (contrarian, question, story opener, statistic, bold claim, empathy, before/after, confession)
-- Make a promise — what will the reader know, feel, or be able to do after this thread?
-- On Twitter/X: include a thread signal ("A thread:" or "🧵") on the same line or immediately after the hook
-- The hook must be strong enough to perform as a standalone post — most readers decide here
-
-### Body Posts
-
-Each body post carries one idea, one example, or one step. No cramming multiple points into a single post.
-
-- **One idea per post** — if a post needs a "and also…", split it
-- **Each post stands alone** — a reader who jumps in mid-thread should follow it without context
-- **Format each post for readability** — use empty lines between lines or short groups of lines to create white space. Never stack more than 2-3 lines without an empty line break. Use one of these spacing patterns within each post:
-  - **Single-line rhythm:** one line, empty line, one line, empty line
-  - **Grouped rhythm:** one line, empty line, two lines, empty line, one line
-  - Dense text blocks kill thread engagement — when in doubt, add the line break
-- **Transitions build momentum** — end each post with a hint of what comes next or a micro-payoff that makes the next post feel earned
-- **Vary post length** — mix short punchy posts (1-2 lines) with longer explanatory ones; the rhythm prevents fatigue
-- **End posts on curiosity hooks** — a short cliffhanger or unresolved tension keeps readers scrolling
-
-### Final Post — Closer
-
-The closer lands the thread and tells the reader what to do next.
-
-- **Summarize the key takeaway** — one sentence that distills the entire thread
-- **Strong CTA** — follow for more, repost the first tweet, reply with their situation, DM for a resource
-- **Optional self-plug** — if relevant, mention a product, newsletter, or service without making it the main event
-- On Twitter/X: the closer is also the best post to quote-tweet the opening for algorithmic boost
-
----
-
-## Thread Formats
-
-Choose the format before writing. The format determines the pacing, body structure, and closing approach.
-
-### 1. Listicle
-**Best for:** Tactical advice, tools, habits, mistakes, recommendations
-
-**Structure:** "[N] things about [topic]" — dedicate one post per item. Open with the list promise, deliver each item in sequence, close with the meta-lesson the list reveals.
-
-**Example opener:** "7 writing habits that doubled my output in 90 days. (A thread:)"
-
-**Example listicle thread (3 posts shown):**
+Here are the first three posts of an illustrative listicle on X.
 
 ```
-1/ 7 writing habits that doubled my output in 90 days.
+1/ Seven writing habits that changed how I work, one per post.
 
-(A thread:)
+A thread:
 
-2/ Habit 1: Write the hook last.
+2/ Habit 1: write the hook last.
 
-Your opening line is the most important sentence.
-Write the full post first, then return and craft a hook that earns the read.
+The opening line matters most, so write it once you know what the post says.
+Draft the whole thing first, then come back and earn the read.
 
-Most people do this backwards.
+3/ Habit 2: one idea per post.
 
-3/ Habit 2: One idea per post.
-
-The #1 reason posts lose readers: they try to say too much.
-Pick one insight. Build everything around it.
-
-Resist the urge to add "and also."
+Posts lose readers when they try to say too much.
+Pick one point and build everything around it, even when "and also" is tempting.
 ```
 
----
-
-### 2. Story Arc
-**Best for:** Personal journey, case study narrative, lessons from failure or success
-
-**Structure:** Setup → Conflict → Resolution → Lesson
-
-- Setup: who, where, when — give the reader a character to root for
-- Conflict: the problem, the mistake, the obstacle
-- Resolution: what changed, what worked, what was learned
-- Lesson: the transferable insight the reader can apply
-
-**Example opener:** "3 years ago I was about to quit. Today I run a 7-figure business. Here's the thread I wish someone had written for me then."
-
----
-
-### 3. Framework
-**Best for:** Step-by-step process, system, method, or repeatable playbook
-
-**Structure:** Name the framework → define each step → show the output
-
-- Give the framework a name — named frameworks are more memorable and shareable
-- One post per step; include the step number for scannability
-- Close with the result someone gets from applying it correctly
-
-**Example opener:** "The 5-step framework I use to write a month of content in one afternoon. (Save this thread.)"
-
----
-
-### 4. Breakdown
-**Best for:** Analyzing a real example — a viral post, a company strategy, a historical event
-
-**Structure:** Present the subject → examine each component → extract the lesson
-
-- Lead with why this specific example is worth dissecting
-- Walk through what worked (or failed) component by component
-- Extract a principle the reader can apply to their own work
-
-**Example opener:** "This post got 2 million impressions. I broke down exactly why it worked. Here's what I found:"
-
-**Example breakdown thread closer:**
+And here is an illustrative closer for a breakdown thread.
 
 ```
-7/ The takeaway:
+7/ What this post did differently:
 
-This post worked because it did 3 things most posts don't:
-→ Led with a specific, surprising number
-→ Showed the work, not just the result
-→ Made the reader feel like they could do it too
+It opened with a specific number the writer could prove, and it showed the work behind the result instead of just the result.
 
-That's the formula. Save this thread and use it on your next post.
+That is the pattern worth stealing. Save this thread for your next draft.
 
-Follow @handle for one content breakdown every week.
+Follow @[handle] for one breakdown every week.
 ```
 
----
+## Platform rules
 
-### 5. Contrarian
-**Best for:** Challenging conventional wisdom, reframing a popular belief, sparking debate
+Each platform builds and limits a thread differently, and the table holds only confirmed limits and settled practice, so check the platform's current rules for anything it does not cover.
 
-**Structure:** State the contrarian claim → acknowledge the common belief → present your evidence → restate the claim with nuance
+| Platform | How the thread is built | Length per post | Numbering and signals |
+|---|---|---|---|
+| X | A chain of replies to your own first post | 280 characters on a standard account; longer needs X Premium | Number every post ("1/", "2/" and so on) so readers know how far they are, and signal the thread in post 1 |
+| Threads | The native reply-chain thread | 500 characters per post | Numbering is optional, and the casual register matters more than structure |
+| Bluesky | A chain of replies to your own first post | 300 characters per post | Number the posts, since the tight limit makes threads longer and readers need to know where they are |
+| LinkedIn | Separate standalone posts published as a series, because LinkedIn has no native threading | Aim for 200 to 600 characters per post, within the 3,000-character cap | Put the same label at the top of each post, such as "Part 2 of 5", and tell readers to follow for the next part |
 
-- The opening post must be bold enough to provoke — but not so extreme it loses credibility
-- Use data, examples, or direct experience to back the claim
-- Close by acknowledging the nuance — absolute contrarianism reads as performance, not insight
+On LinkedIn, the link back to an earlier part goes in the first comment rather than the post body, which matches both the post writer's rule and Fredrick's own, so each part has to make sense without the reader having seen the others.
 
-**Example opener:** "Stop posting every day. It's actively hurting your growth. Here's the data:"
-
----
-
-## Platform-Specific Threading
-
-### Twitter / X
-- **280 characters per post** — every word earns its place
-- **Number each post** — "1/" at the end of the first post, "2/", "3/" on each subsequent post; number signals this is a thread worth following
-- **Thread as a self-reply chain** — post 1 live, reply to yourself for posts 2 onward
-- **Short posts punch harder** — 1-2 tight sentences beat a paragraph
-- Use the closer to quote-tweet the opener for a second reach window
-
-**Example Twitter/X thread format:**
+Here is an illustrative X thread for a contrarian take, with placeholders where the user's own data would go.
 
 ```
-1/ Stop posting every day. It's actively hurting your growth.
+1/ Posting every day may be what is holding your account back.
 
-Here's the data: 🧵
+A thread:
 
-2/ I tracked 200 accounts for 6 months.
+2/ I compared [number] months of daily posting with [number] months of posting [frequency].
 
-The ones posting daily averaged 1.8% ER.
-The ones posting 3x/week averaged 4.3% ER.
+Daily averaged [rate]% engagement. The slower schedule averaged [rate]%.
 
-More isn't better. Better is better.
+3/ The reason is simple enough.
 
-3/ Why?
-
-Daily posting forces you to fill slots.
-3x/week lets you choose your best ideas.
-
-The algorithm rewards engagement rate, not volume.
+Posting daily forces you to fill slots, whereas a slower schedule lets you publish only your best ideas.
 ```
 
-### LinkedIn
-- **Longer posts per entry** — LinkedIn readers expect more depth; each post in a series can be 200-600 characters
-- **Each post links to the next** — end each post with "Part 2 of N: [link]" or direct readers to follow for the next installment
-- **Publish as separate posts, not replies** — LinkedIn has no native threading; a series is a sequence of standalone posts connected by copy
-- **Label the series** — use a consistent label like "Thread (2/5):" at the top of each post
+## Pacing
 
-### Threads (Meta)
-- **Conversational, no strict length limit** — write like you're texting a smart friend
-- **Native thread format exists** — use it; Threads supports reply-chain threads natively
-- **No hard character ceiling pressure** — let posts breathe; 1-3 short paragraphs per post is fine
-- **Tone is casual** — polish is suspicious here; raw and real outperforms polished and corporate
+Vary post length on purpose. A long explanatory post lands harder after two short ones, and one-liners work as palate cleansers between heavier posts. Hold back the payoff, because a thread that gives away its central idea in post three of ten makes the remaining seven feel like filler. A post can end on a question the next one answers, which keeps people reading without resorting to cliffhanger phrases readers have learned to ignore.
 
----
+## Before you deliver
 
-## Pacing Tips
+This checklist catches the failures that matter most, and the last item is not optional.
 
-- **Vary post length intentionally** — a long explanatory post lands harder after two short punchy ones
-- **Use short punchy posts as palate cleansers** — one-liners between heavier posts reset the reader's attention
-- **End posts on curiosity** — "But here's where it gets interesting…" or an unresolved question pulls the reader to the next post
-- **Don't resolve too early** — if you give away the core insight in post 3 of a 10-post thread, the rest feels like filler; pace the payoff
-- **Number posts explicitly on X** — readers need to know how far they are and how much is left
+1. The hook post would perform on its own, without the rest of the thread.
+2. Every post does one job.
+3. Each post flows into the next.
+4. On X and Bluesky, every post carries its number.
+5. The closer has a clear call to action.
+6. Each post fits its platform's limit.
+7. The voice is the profile's throughout, not a generic expert's.
+8. No post contains a number, result or claim the user did not supply.
+9. The `house-prose-style` skill has been loaded, its pre-delivery voice check run across the whole thread, and every failure fixed, because Fredrick's standing rule is that no copy goes out unless it follows the house style.
 
----
-
-## Publishing with ferramenta externa
-
-When ferramenta de agendamento tools are available, offer to publish or schedule the thread directly:
-
-> "Want me to schedule this thread? I can queue it for your next available slot or set a specific time."
-
-Use `create_post` to publish the thread. Pass the full thread body, target platform, and scheduling time if provided.
-
-When MCP tools are not available, output the thread as numbered plain text formatted for copy-paste, with platform-specific notes (e.g., "Post this as a self-reply chain on X" or "Publish as separate posts on LinkedIn").
-
----
-
-## Pre-Publish Checklist
-
-Before delivering the final thread, verify:
-
-- [ ] **Hook stands alone** — would this first post perform without the thread?
-- [ ] **One idea per post** — no post tries to do two jobs
-- [ ] **Transitions are present** — each post flows into the next
-- [ ] **Posts are numbered** — on Twitter/X, every post has its number
-- [ ] **Closer has a CTA** — the reader knows exactly what to do after finishing
-- [ ] **Length matches platform** — 280 chars on X, longer on LinkedIn, conversational on Threads
-- [ ] **Voice is consistent** — sounds like the user, not a generic expert
-- [ ] **White space is readable** — empty line after every 1-2 lines within each post; no dense text blocks
-
----
+Deliver the thread as numbered plain text ready to paste, with a note on how to post it, such as "post as a reply chain on X" or "publish as separate posts on LinkedIn". Only when you are working inside an EvoNexus workspace should you also save it under `workspace/social/`.
 
 ## Boundaries
 
-- Does not write single standalone posts — see **social-post-writer** for short-form content
-- Does not write carousels or slide decks — see **social-carousel-writer** for slide-by-slide content
-- Does not analyze post performance or metrics — see **social-performance-analyzer** for analytics
-- Does not define content strategy or decide what to post — see **social-content-strategy** for planning
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not produce visual design or images — output is text copy for each thread post only
-
-## Related Skills
-
-- **social-context** — establish voice, pillars, and platform preferences before writing
-- **social-hook-writer** — generate and test opening lines before threading
-- **social-platform-strategy** — decide which platform to prioritize and why
-- **social-post-writer** — write a single post when the idea doesn't need a thread
+This skill writes threads and series and nothing else, so a single post goes to social-post-writer, slides to social-carousel-writer and openers on their own to social-hook-writer. Strategy questions go to social-content-strategy, and performance questions to social-performance-analyzer. When a request names a platform without a thread format, say so plainly and send it to the skill that fits, since a thread that cannot be posted helps nobody.

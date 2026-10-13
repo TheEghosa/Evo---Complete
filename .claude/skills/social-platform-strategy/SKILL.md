@@ -1,333 +1,141 @@
 ---
 name: social-platform-strategy
-description: "When the user wants platform-specific tactical guidance for LinkedIn, Twitter/X, Threads, or Bluesky. Also use when the user mentions 'LinkedIn strategy,' 'Twitter strategy,' 'Threads strategy,' 'Bluesky strategy,' 'algorithm,' 'what works on LinkedIn,' 'cross-posting,' 'platform differences,' 'adapt my content,' or 'which platform should I focus on.' For overall content strategy, see social-content-strategy. For writing posts, see social-post-writer."
-metadata:
-  version: 1.0.0
+description: "Platform tactics, platform choice and cross-posting rules for LinkedIn, X, Instagram, Threads, Bluesky, Facebook, TikTok, YouTube and Pinterest. Use when the user says platform strategy, LinkedIn, X, Instagram, TikTok, YouTube, Pinterest, Threads, Bluesky or Facebook strategy, what works on this platform, why is my reach down, cross-posting, adapt my content for another platform, which platform should I focus on, or tone by platform. For DataExplained-specific posts defer to the DataExplained skills; not for Fredrick's evidence-graded LinkedIn posts and audit-finding posts (linkedin-artifact-engine), or for requests that say content engine or full pack, which have their own dedicated skills; use this for everything else, including TheSpark, client brands, Fredrick on platforms other than LinkedIn, and formats those skills do not cover."
 ---
 
-## When to Use
+# Social platform strategy
 
-- User asks for **platform-specific tactical guidance** for LinkedIn, Twitter/X, Threads, or Bluesky
-- User mentions "LinkedIn strategy," "Twitter strategy," "Threads strategy," or "Bluesky strategy"
-- User says "algorithm," "what works on LinkedIn," or "cross-posting"
-- User asks about "platform differences" or wants to **adapt content** across platforms
-- User asks "which platform should I focus on" or wants a platform comparison
-- User wants to understand how a specific platform's algorithm or culture works
+This skill answers the platform question: how a platform behaves, which platforms a profile should be on, and how one idea changes as it moves between them. The value lives in the differences, because a post that reads naturally on LinkedIn sounds stiff on Threads, and a video that holds attention on TikTok can vanish in a Pinterest grid.
 
-## Role
+Platforms change their ranking systems without notice and rarely publish them, so everything below is practice and reasoning rather than algorithm fact. The only hard numbers you may quote are the limits in section 2. Posting times, frequency, and how much a link costs in reach are questions to test on the profile's own data, which social-performance-analyzer can read once the numbers are pasted in, since Fredrick does not accept unverified claims and neither will his clients.
 
-You are an expert social media platform strategist. Your job is to give the user actionable, platform-specific tactics — not generic advice. Every recommendation should reflect how each platform's algorithm, culture, and audience actually behave.
+## When another skill owns this
 
----
+DataExplained posts, comments, reels, pins and newsletters belong to the DataExplained skills, Fredrick's evidence-graded LinkedIn posts and audit-finding posts belong to linkedin-artifact-engine, and anything described as a content engine or full pack has its own skill. Hand those requests over, because those skills carry verification, sign-off and evidence-grading rules that this one does not. Platform-level questions about those profiles (whether DataExplained should start on Bluesky, say) are still fine here, provided the writing goes to the owning skill. Once a request turns into drafting, pass it to social-post-writer, social-thread-writer, social-carousel-writer, social-hook-writer or social-x-longform.
 
-## Step 1 — Check for existing context
+## 1. Start with the profile and the real question
 
-Before asking any questions, check if `workspace/social/[C] social-context.md` exists.
+Read the profiles in the social-context skill and work out which one the request is about, asking one short question if you cannot tell, because a TheSpark company page and Fredrick's personal account need different advice on the same platform. Inside an EvoNexus workspace, also read `workspace/social/[C] social-context.md` if it exists and let it override the built-in profiles. Note which platforms social-context confirms for the profile, since advice for a platform it does not yet use is a selection question.
 
-**If it exists:** Read the file. Note the user's platforms, goals, voice, and audience. Skip discovery questions already answered.
+Four kinds of question arrive here: a deep dive on one platform, cross-posting, platform selection, and reach troubleshooting. The last is the one most often answered badly, because it invites a confident story about the algorithm. So ask for the numbers first, check the causes the profile controls (a change in cadence, format, hook quality or topic), and label each conclusion by how well the pasted data supports it.
 
-**If it does not exist:** Say — "I don't have your social media context yet. Run the **social-context** skill first for best results. Or tell me which platforms you're using and what you're trying to achieve, and I'll give you tactical guidance now."
+## 2. Platform facts you can rely on
 
----
+These are the only limits this skill states as fact, and they are deliberately few.
 
-## Step 2 — Identify the focus
+| Platform | Facts you may state |
+|---|---|
+| LinkedIn | Posts up to 3,000 characters, with 1,200 to 1,500 recommended for feed posts. Only the first two or three lines show before "see more". |
+| X | 280 characters per post on a standard account; longer posts need X Premium. |
+| Threads | 500 characters per post. |
+| Bluesky | 300 characters per post. |
+| Instagram | Captions up to 2,200 characters, and only the opening line or so shows before "more". Carousels hold up to 20 slides. |
+| Facebook | Long posts are allowed, but only the first few lines show before "See more". |
+| TikTok | The first one to three seconds decide whether people keep watching, so the hook is spoken and shown as on-screen text. Check the current caption limit before writing long captions. |
+| YouTube | Titles up to 100 characters, descriptions up to 5,000. Shorts can run up to three minutes. |
+| Pinterest | Titles up to 100 characters, about 40 of which show in the grid. Fredrick's Pinterest practice keeps descriptions under 800 characters. |
 
-Determine what the user needs:
-- Tactics for a **specific platform** (deep dive)
-- **Cross-posting guidance** (adapting across platforms)
-- **Platform selection** (which platform to prioritize)
-- **Algorithm troubleshooting** (why reach is down or engagement is low)
+For any other number, check the platform's current help pages rather than guessing, because a wrong limit in a client deliverable is an avoidable embarrassment.
 
-Ask if unclear. Then deliver the relevant section(s) below.
-
----
-
-## Platform Tactics
+## 3. How each platform behaves
 
 ### LinkedIn
 
-**Algorithm signals** (ranked by impact):
-1. **Dwell time** — the algorithm measures how long people pause on your post; long posts with clear value encourage this
-2. **Comments** — weighted more than likes; replies to your own comments count and extend the engagement window
-3. **Early engagement** — the first 60–90 minutes are critical; a slow start suppresses distribution
-4. **Saves** — signal high-value content; prompt saves with "save this for later" CTAs
+The practice that works is writing for the reader who stops and replies rather than the one who taps like. Since only the opening lines show, they carry the whole post, much like an email subject line. Short paragraphs keep a long post readable, and the formats that fit are a story with a lesson, a clear opinion, a tactical breakdown, a document post and a look behind the scenes. Moving external links into the first comment is common practice and Fredrick's profiles already do it, so follow the habit without claiming a measured mechanic behind it. Three to five hashtags at the end is the working practice. Reply to comments and comment with substance on other posts in the niche, because conversation is what you want anyway. For Fredrick's own LinkedIn, linkedin-artifact-engine overrides all of this.
 
-**Post length:**
-- Feed posts: **1,200–1,500 characters** is the sweet spot — enough to deliver value, short enough to show "see more" which increases dwell time
-- Never post a wall of text; break every 1–2 sentences with a line break
-- The first line must stop the scroll — treat it like a subject line
+### X
 
-**Formatting rules:**
-- Short paragraphs (1–2 lines max)
-- No links in the post body — LinkedIn suppresses reach on posts with external links; **put links in the first comment**
-- Use bold sparingly for emphasis (via third-party formatters if needed)
-- Numbered or bulleted lists perform well for how-to content
-
-**Best content types:**
-| Format | Why It Works |
-|---|---|
-| Personal story with a lesson | High emotional resonance, high comment rate |
-| Industry take / hot opinion | Drives replies and quote engagement |
-| How-to / tactical breakdown | High saves and shares |
-| Carousel (PDF) | High dwell time, shareable, algorithm-favored |
-| Behind-the-scenes | Builds trust, lower competition |
-
-**Posting times:** Tuesday–Thursday, 7–9 AM or 12–1 PM in the audience's timezone.
-
-**Example LinkedIn post structure:**
-
-```
-I spent 3 years hiring the wrong way.
-
-The mistake was simple: I optimized for skills, not judgment.
-
-Here's what changed when I flipped that:
-
-→ Time-to-hire dropped 40%
-→ First-year retention went from 60% to 91%
-→ My best hire came from an industry I'd never considered
-
-The lesson: skills can be taught. Judgment can't.
-
-What's your #1 hiring filter? Drop it below.
-
-#hiring #leadership #startups
-```
-
-**Hashtag strategy:** Use **3–5 relevant hashtags** at the end of the post. Do not stuff. Choose one broad (#marketing), one niche (#b2bmarketing), one optional trending tag.
-
-**Engagement patterns:**
-- Comment on 5–10 posts in your niche before and after posting — triggers reciprocity and expands your network's reach
-- Reply to every comment on your posts within the first 2 hours
-- Ask a direct question at the end of every post to prompt comments
-
----
-
-### Twitter/X
-
-**Algorithm signals** (ranked by impact):
-1. **Replies** — the strongest engagement signal; content that sparks conversation gets amplified
-2. **Quote tweets** — extend reach into new networks
-3. **Bookmarks** — signal high-value content to the algorithm; strong for educational threads
-4. **Likes** — still matter but weighted lower than replies
-
-**Thread vs. single tweet:**
-- **Single tweet** (< 280 chars): best for hot takes, jokes, reactions, and one-liners — higher reach ceiling
-- **Thread**: best for breakdowns, how-tos, and storytelling — high bookmarks, good for authority building; hook tweet must stand alone and drive clicks to expand
-
-**Formatting rules:**
-- The hook tweet determines whether the thread gets read — write it last, after you know the full content
-- Each tweet in a thread should end with a reason to click next (cliffhanger, numbered promise, or "but here's the catch:")
-- Avoid putting the thread number in tweet 1 ("1/12") — it signals the content is long and reduces engagement on the hook
-
-**Hashtag usage:** **0–2 hashtags maximum.** On Twitter/X, hashtags rarely boost reach and look spammy. Reserve for live events or trending topics only.
-
-**Engagement windows:** The first **30 minutes** after posting are critical. Post when your audience is online; schedule replies to your own tweets to extend the window.
-
-**Example Twitter/X thread hook:**
-
-```
-Most product managers hire for skills.
-
-The best ones hire for judgment.
-
-Big difference. Here's why: 🧵
-```
-
-**Community building:**
-- Be a "reply guy" — thoughtful replies to larger accounts in your niche expose you to their audience
-- Build mutual engagement loops with 5–10 peers: like, reply, and quote each other's content
-- Quote tweet > retweet when you have something to add; adds your voice and extends reach
-
----
+Conversation is the point, so a post that provokes a considered reply is worth more than silent approval. A single post suits takes and reactions, whereas a thread suits breakdowns, how-tos and stories, and an educational thread is the kind of post people save to come back to. The opening post of a thread must stand alone, which is why you write it last. Leaving "1/12" off the opener is sound practice, since it advertises length before the reader has a reason to care. Keep hashtags to two or fewer, and build an audience through thoughtful replies to larger accounts and quote posts that add a point. Long posts belong to social-x-longform.
 
 ### Threads
 
-**Platform culture:**
-- Threads rewards **conversational, unpolished, human content** — the tone is closer to a group chat than a broadcast
-- Performative or overly polished LinkedIn-style content underperforms here
-- Humor, vulnerability, and genuine reactions work better than authority-signaling
-
-**Cross-posting from Twitter:** Do not copy-paste Twitter threads to Threads. The format, tone, and culture are different. Adapt:
-- Remove Twitter-specific conventions (thread numbers, "RT if you agree")
-- Make the tone warmer and more casual
-- Shorter posts often outperform threads here
-
-**Engagement patterns:**
-- Reply culture is strong — Threads users expect the author to show up in comments
-- Asking genuine questions (not just engagement-bait) drives good conversation
-- Tagging people you mention is more effective than on other platforms
-
-**Hashtag behavior:** Hashtags are functional on Threads but not as culturally embedded as Instagram. Use **1–3 relevant tags** — more for discoverability than community.
-
-**Discovery mechanics:** Threads surfaces content to non-followers based on engagement signals and topic relevance. Posts that get early replies from accounts outside your followers get boosted.
-
-**Instagram integration:** Your Instagram audience can follow you on Threads automatically. Leverage this if you have an existing Instagram presence — cross-promote thoughtfully.
-
----
+The tone sits closer to a group chat than a broadcast, so polished LinkedIn copy feels out of place there. Never paste an X thread across: strip the numbering, warm the tone, and accept that one short post is often enough. People expect the author in the replies, and tagging the people you mention is normal. Threads accounts are linked to Instagram, which makes an existing Instagram audience the natural first audience. Check how Threads currently handles topic tags instead of importing another platform's habit.
 
 ### Bluesky
 
-**Platform nuances:**
-- Bluesky is decentralized and early-adopter-heavy — the culture values **authenticity, anti-corporate tone, and genuine expertise**
-- Overt promotion is met with skepticism; lead with value and personality
-- The community skews toward tech, journalism, academia, and politics — tailor content accordingly
+The culture rewards authenticity and genuine expertise and is sceptical of overt promotion, so a new account earns a voice before it promotes anything. Its community is usually described as leaning toward tech, journalism, academia and politics. Custom feeds are curated by third parties and many are keyword-driven, so specific keywords in the text matter more than hashtags. Starter packs are curated follow lists, and being in a relevant one helps a new account get found, which is why it pays to know the people who build them.
 
-**Custom feeds:**
-- Bluesky's custom feeds are algorithmically curated by third parties — getting into a relevant feed dramatically expands reach
-- Research feeds in your niche (e.g., "Science," "Tech," topical feeds) and post content that matches their curation criteria
-- Use relevant keywords in your posts, not just hashtags — many feeds are keyword-driven
+### Instagram
 
-**Starter packs:**
-- Starter packs are curated follow lists — being included in a relevant starter pack is one of the fastest ways to grow
-- Build relationships with active community members who create starter packs in your niche
-- Consider creating your own starter pack of people worth following in your field — it builds goodwill and visibility
+The image or first frame stops the scroll and the caption explains, so the caption's first line has to work alone before "more". Carousels are Instagram's version of a thread, written with social-carousel-writer. Reels need a spoken hook in the first seconds, repeated as on-screen text for people watching without sound. Check current guidance on hashtags rather than borrowing a number from elsewhere.
 
-**Community dynamics:**
-- The reply culture is active and substantive — users engage with ideas, not just react to headlines
-- Long-form replies and genuine debate are rewarded
-- Avoid self-promotional content in your first 20–30 posts on a new account; establish your voice first
+### Facebook
 
-**Content discoverability:**
-- Posts with specific keywords, not vague language, surface better in feeds and search
-- Images and links are supported but text-first posts often get more engagement
-- Consistency matters more than frequency; 1–2 quality posts per day outperforms 10 low-effort ones
+Only the first few lines show, so front-load as you would on LinkedIn. Facebook suits storytelling, community and local audiences who share posts to friends and groups. Confirm the audience is actually there before planning around it, because a page kept running out of habit is no evidence that the buyers are.
 
----
+### TikTok
 
-## Cross-Posting Guidance
+Everything rides on the first one to three seconds, so the hook is spoken and shown on screen and the payoff is promised at once. Native, vertical, talk-to-camera video fits better than repurposed polish, and teaching works when the clip opens with the answer. Threads do not exist here and text-led formats are not the platform's strength, so plan video first. Strip another app's watermark from any reposted clip, since it tells viewers the video was made for somewhere else.
 
-### What to cross-post vs. what to make native
+### YouTube
 
-| Content Type | Cross-Post? | Notes |
+Long-form video is cornerstone material found through search and suggested viewing, so the title and thumbnail do the hook's job and the opening moments must confirm the title's promise. Shorts take the same spoken hook and on-screen text as TikTok and Reels. There are no threads.
+
+### Pinterest
+
+Treat Pinterest as visual search rather than a feed: a pin is written for the words people type, and it points to a page worth landing on, because Pinterest works as a source of visits far more than as a place for conversation. The subject goes first in the title, since only about 40 characters show. Evergreen how-to material, checklists and reference visuals suit it, and threads do not exist.
+
+## 4. Choosing platforms
+
+The matrix gives a starting answer for where a profile should focus. Each row is a hypothesis about how these platforms are generally used, not measured data about a particular audience.
+
+| Primary goal | Lead platform | Secondary platform |
 |---|---|---|
-| Major announcement | Yes — adapt each | Adjust tone and format per platform |
-| Personal story | Yes — adapt each | Remove platform-specific references |
-| Hot take / opinion | Partial — adapt heavily | Tone varies dramatically across platforms |
-| Platform-specific format (carousel, thread) | No | Native formats do not translate |
-| Humor / casual reaction | No | Humor reads differently on each platform |
-| How-to / educational | Yes — adapt length | Shorten for Twitter; expand for LinkedIn |
+| B2B lead generation | LinkedIn | X |
+| Thought leadership | LinkedIn | Bluesky or X |
+| Community building | Threads or Facebook | Bluesky |
+| Broad audience growth | TikTok or Instagram Reels | X |
+| Niche or technical credibility | Bluesky | X |
+| Evergreen discovery and site traffic | Pinterest | YouTube |
+| Teaching in depth | YouTube | LinkedIn |
+| Local customers and word of mouth | Facebook | Instagram |
 
-### Adaptation checklist per platform
+Check the recommendation against where the audience demonstrably is, using the client's own analytics or a direct question, because no matrix knows that a particular buyer lives on WhatsApp and nowhere else.
 
-Before cross-posting, run through this for each destination:
-
-**LinkedIn:**
-- [ ] Length is 1,200–1,500 chars
-- [ ] Line breaks every 1–2 sentences
-- [ ] Link moved to first comment
-- [ ] Ends with a question
-- [ ] 3–5 hashtags added
-
-**Twitter/X:**
-- [ ] Fits in 280 chars OR broken into a proper thread
-- [ ] Hook tweet stands alone
-- [ ] Hashtags reduced to 0–2
-- [ ] Tone is punchy and direct
-- [ ] CTA removed or made implicit
-
-**Threads:**
-- [ ] Tone is casual and conversational
-- [ ] Twitter-specific conventions removed
-- [ ] Shortened if originally a long-form post
-- [ ] Ends with a genuine question or observation
-
-**Bluesky:**
-- [ ] Corporate/promotional language removed
-- [ ] Relevant keywords included for feed discoverability
-- [ ] Tone is authentic and direct
-- [ ] Hashtags used contextually (1–3)
-
-### Common cross-posting mistakes
-
-- **Copy-pasting without adapting tone** — a LinkedIn post sounds robotic on Threads
-- **Leaving external links in LinkedIn post bodies** — always move to first comment
-- **Using Twitter thread format on other platforms** — numbered tweets look odd elsewhere
-- **Posting at the same time on all platforms** — audiences are active at different times
-- **Assuming the same CTA works everywhere** — "follow me on LinkedIn" sounds off on Bluesky
-
----
-
-## Platform Selection Framework
-
-### Decision matrix: Goal → Best Platform
-
-| Primary Goal | Best Platform | Secondary Platform |
-|---|---|---|
-| B2B lead generation | LinkedIn | Twitter/X |
-| Thought leadership / career | LinkedIn | Bluesky |
-| Community building | Threads | Bluesky |
-| Audience growth (general) | Twitter/X | Threads |
-| Tech / niche credibility | Bluesky | Twitter/X |
-| Brand awareness (broad) | Twitter/X | LinkedIn |
-| Personal brand (casual) | Threads | Twitter/X |
-
-### When to add a new platform vs. double down
-
-**Add a new platform when:**
-- You've hit a growth plateau on your primary platform
-- Your target audience is demonstrably more active elsewhere
-- You have a content format that maps naturally to the new platform (e.g., visual content → Instagram)
-- You can adapt existing content without a major time increase
-
-**Double down on existing when:**
-- You're posting inconsistently on your current platform
-- Engagement is growing but slowly — consistency compounds
-- Adding a new platform would split your attention below a sustainable threshold
-- Your audience is clearly concentrated on one platform
-
-**Rule of thumb:** Master one platform before adding a second. Two platforms done well beat four done poorly.
-
-**Example platform selection output:**
+Adding a platform makes sense when growth on the main one has plateaued, when the audience is demonstrably more active elsewhere, and when existing formats map onto the new platform without much extra time. Staying put makes sense when posting on the current platform is still inconsistent or when a new one would spread attention too thin. The rule of thumb is to get one platform working before adding a second, since two run well beat four run badly.
 
 ```
-Recommended primary: LinkedIn
-Reason: Your goal is B2B lead generation and your audience (VP-level buyers)
-is most active on LinkedIn. Your storytelling voice maps well to LinkedIn's
-algorithm signals (dwell time, comments).
-
-Recommended secondary: Twitter/X
-Reason: Reach amplification — use threads to drive awareness, then convert
-on LinkedIn. Post 3x/week on LinkedIn, 5x/week on X.
+Lead platform: LinkedIn
+Why: the goal is B2B leads and [audience] reads LinkedIn at work,
+which suits a practitioner voice that explains findings.
+Secondary: X, where threads reach people who have not met the brand.
+Cadence on each comes from capacity, not from a benchmark.
 ```
 
----
+## 5. Cross-posting
 
-## Tone Adaptation
+Some material survives the move between platforms and some does not, as the table shows.
 
-Same voice, different register. Use your authentic perspective everywhere — adjust the delivery.
-
-| Platform | Register | Example (same idea) |
+| Content type | Cross-post? | How |
 |---|---|---|
-| LinkedIn | Professional, insight-driven | "After 10 years in product, here's the hiring mistake I see most often — and how to avoid it." |
-| Twitter/X | Direct, punchy | "Most product managers hire for skills. The best ones hire for judgment. Big difference." |
-| Threads | Casual, conversational | "hot take: hiring for 'culture fit' is usually just hiring for comfort. tell me I'm wrong" |
-| Bluesky | Authentic, slightly irreverent | "The 'culture fit' hiring myth keeps teams homogeneous and calls it intentional. We can do better." |
+| Major announcement or story with a lesson | Yes, adapted | Change tone and format, and remove references to the original platform |
+| Opinion or hot take | Partly | Rework heavily, because tone varies most here |
+| Native format (thread, carousel) | No | Rebuild it in the destination's own format |
+| Humour or quick reaction | No | Humour reads differently everywhere |
+| How-to or educational | Yes, resized | Shorten for X and Bluesky, expand for LinkedIn, rebuild as a carousel or pin |
+| Short vertical video | Yes, re-cut | Recaption for TikTok, Reels and Shorts without other apps' watermarks |
+| Long video | No | Cut clips and write native posts that point to it |
 
----
+Before anything goes out, check the destination against section 2 and its entry in section 3: length, what shows before the fold, where the link sits, and whether the format exists there at all. Most failures come from copying without changing tone, leaving a link in a LinkedIn post body, carrying thread numbering onto platforms without threads, posting everywhere at once when audiences wake at different times, and reusing a call to action that only made sense on the original platform.
 
-## Platform Quick Reference
+## 6. Same voice, different register
 
-| Platform | Best For | Frequency | Key Format | Char Limit |
-|---|---|---|---|---|
-| LinkedIn | B2B, thought leadership, career | 3–5x/week | Long post, carousel | ~3,000 (feed ~1,500) |
-| Twitter/X | Reach, hot takes, community | 5–10x/week | Single tweet, thread | 280 per tweet |
-| Threads | Casual community, conversation | 3–7x/week | Short post, reply | 500 |
-| Bluesky | Niche credibility, early adopters | 1–3x/day | Text post, thread | 300 |
+The voice stays the same everywhere while the delivery changes, as this illustrative idea for a local SEO agency shows.
 
----
+| Platform | Example |
+|---|---|
+| LinkedIn | "Copying a landing page and changing the city name does not make it a local page. Before you build twenty of them, this is what a page needs to earn a visit from someone in Abuja." |
+| X | "A copied page with a new city name is still a copied page." |
+| Threads | "honest question for anyone running location pages: did you write them, or did you find and replace them?" |
+| Bluesky | "Find-and-replace location pages age badly, because nothing on them is actually about the place." |
+| Instagram | Carousel cover: "Your city pages might be one page wearing different names." |
+| Facebook | "If your business serves more than one town, a page that only swaps the town name tells your customers nothing about how you serve them." |
+| TikTok | Spoken: "If your Lagos page and your Abuja page say the same thing, neither one is about Lagos or Abuja." On screen: "Same page, different city?" |
+| YouTube | Title: "What a Real Location Page Needs That a Copied One Lacks" |
+| Pinterest | Title: "Local landing page checklist: what each city page needs" |
 
-## Boundaries
+The claim never grows as it travels. Register can make an idea sharper or warmer, but it is no licence to add a result nobody supplied.
 
-- Does not write posts, threads, or carousels — see **social-post-writer**, **social-thread-writer**, or **social-carousel-writer** for content creation
-- Does not define overall content strategy or pillars — see **social-content-strategy** for strategic planning
-- Does not analyze post performance or metrics — see **social-performance-analyzer** for analytics
-- Does not schedule or plan a content calendar — see **social-content-calendar** for posting schedules
-- Does not execute code or access external APIs without automated publishing integration — save as draft
-- Does not cover Instagram, TikTok, or YouTube — focuses on LinkedIn, Twitter/X, Threads, and Bluesky only
+## 7. Before you hand it over
 
-## See also
-
-**social-context** — establishes the foundational profile this skill reads from
-**social-content-strategy** — defines what to post and why across platforms
-**social-post-writer** — writes platform-native posts from your strategy
+Load the `house-prose-style` skill and run its pre-delivery voice check on everything you deliver, including example posts, adapted copy and the recommendation itself, then fix whatever fails. Fredrick's standing rule is that no copy goes out unless it follows the house style, so advice whose examples break it is not finished. Deliver the result in your reply, and only when working inside an EvoNexus workspace also save it under `workspace/social/`. For what to post and why, the next step is social-content-strategy, and for when to post it, social-content-calendar.
